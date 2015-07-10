@@ -1,0 +1,489 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12051FE50E58C5BE000D8508 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1253AFAD0BBC07BD00845BB7 /* AppController.m */; };
+		12051FE90E58C5C4000D8508 /* Dependency.m in Sources */ = {isa = PBXBuildFile; fileRef = 126216EA0BC51ADD007CED79 /* Dependency.m */; };
+		12051FEE0E58C5CC000D8508 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		12051FF00E58C5D5000D8508 /* Hernix.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* Hernix.m */; };
+		12051FF10E58C5D6000D8508 /* HM2DTVDD.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ED98C50D65261800620655 /* HM2DTVDD.m */; };
+		12051FF20E58C5D7000D8508 /* HMClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E41F410D01E3E40009294C /* HMClock.m */; };
+		12051FF40E58C5DC000D8508 /* HMFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 126218780BC551F7007CED79 /* HMFile.m */; };
+		12051FF50E58C5DE000D8508 /* HMHTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 128B3F650E3B851700BF2129 /* HMHTL.m */; };
+		12051FF60E58C5DE000D8508 /* HMInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ADF2340B8F34BD003A1095 /* HMInput.m */; };
+		12051FF70E58C5DF000D8508 /* HMInputSplitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 122983340C50E5E9006A29D0 /* HMInputSplitter.m */; };
+		12051FF80E58C5E1000D8508 /* HMLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ADF2280B8F344B003A1095 /* HMLevel.m */; };
+		12051FF90E58C5E2000D8508 /* HMLookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1223D0ED0BC19DF600DB3273 /* HMLookup.m */; };
+		12051FFA0E58C5E2000D8508 /* HMNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ADF21C0B8F3417003A1095 /* HMNode.m */; };
+		12051FFB0E58C5E4000D8508 /* HMOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ADF23A0B8F34E6003A1095 /* HMOutput.m */; };
+		12051FFC0E58C5E7000D8508 /* HMPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ADF2220B8F3432003A1095 /* HMPart.m */; };
+		12051FFD0E58C5E8000D8508 /* HMPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ADF22E0B8F3495003A1095 /* HMPort.m */; };
+		12051FFE0E58C5E9000D8508 /* HMStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E41F240D01AB6D0009294C /* HMStepper.m */; };
+		12051FFF0E58C5EB000D8508 /* HMTVDD.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ADF3460B8F44D7003A1095 /* HMTVDD.m */; };
+		120520010E58C5EC000D8508 /* Instantiator.m in Sources */ = {isa = PBXBuildFile; fileRef = 12ADF1750B8F1DD3003A1095 /* Instantiator.m */; };
+		120520090E58C5FD000D8508 /* Value.m in Sources */ = {isa = PBXBuildFile; fileRef = 1253AE400BBA8C5200845BB7 /* Value.m */; };
+		1205200A0E58C5FE000D8508 /* XML procedures.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BF7A0C0C69FE6000BBD1AC /* XML procedures.m */; };
+		1205200B0E58C5FF000D8508 /* XML_procedures_Linux.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B756C90D709CE6004CD4BA /* XML_procedures_Linux.m */; };
+		1205216F0E58D6FE000D8508 /* parse.y in Sources */ = {isa = PBXBuildFile; fileRef = 1253AEBB0BBBF02700845BB7 /* parse.y */; };
+		120521700E58D703000D8508 /* rules.l in Sources */ = {isa = PBXBuildFile; fileRef = 1253AEBC0BBBF02700845BB7 /* rules.l */; };
+		120CB79A1A6329DF005BF04F /* HMWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = 120CB7991A6329DF005BF04F /* HMWeather.m */; };
+		1274F95010C86204002AFB6A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1274F94F10C86204002AFB6A /* Cocoa.framework */; };
+		12B213930E5C48B3006FFAFC /* Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B213920E5C48B3006FFAFC /* Parsing.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		08FB7796FE84155DC02AAC07 /* Hernix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hernix.m; sourceTree = "<group>"; };
+		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		12051FD90E58C59D000D8508 /* Mercury */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mercury; sourceTree = BUILT_PRODUCTS_DIR; };
+		120CB7981A6329DF005BF04F /* HMWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWeather.h; sourceTree = "<group>"; };
+		120CB7991A6329DF005BF04F /* HMWeather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMWeather.m; sourceTree = "<group>"; };
+		1223D0EC0BC19DF600DB3273 /* HMLookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMLookup.h; sourceTree = "<group>"; tabWidth = 4; };
+		1223D0ED0BC19DF600DB3273 /* HMLookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMLookup.m; sourceTree = "<group>"; tabWidth = 4; };
+		122983330C50E5E9006A29D0 /* HMInputSplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMInputSplitter.h; sourceTree = "<group>"; tabWidth = 4; };
+		122983340C50E5E9006A29D0 /* HMInputSplitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMInputSplitter.m; sourceTree = "<group>"; tabWidth = 4; };
+		123B0B2A0BBD65BE009A5E51 /* Parts.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Parts.plist; path = ../../Hermes/GUI/Parts.plist; sourceTree = SOURCE_ROOT; };
+		124AFAE50B98667F0014D55D /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		1253ACF40BB9C37000845BB7 /* setup.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = setup.xml; sourceTree = "<group>"; };
+		1253ADA10BBA034D00845BB7 /* sample.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = sample.xml; sourceTree = "<group>"; };
+		1253AE3F0BBA8C5200845BB7 /* Value.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Value.h; sourceTree = "<group>"; };
+		1253AE400BBA8C5200845BB7 /* Value.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Value.m; sourceTree = "<group>"; };
+		1253AEBB0BBBF02700845BB7 /* parse.y */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.yacc; path = parse.y; sourceTree = "<group>"; };
+		1253AEBC0BBBF02700845BB7 /* rules.l */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.lex; path = rules.l; sourceTree = "<group>"; };
+		1253AFAD0BBC07BD00845BB7 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		126216E90BC51ADD007CED79 /* Dependency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dependency.h; sourceTree = "<group>"; };
+		126216EA0BC51ADD007CED79 /* Dependency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dependency.m; sourceTree = "<group>"; };
+		126218770BC551F7007CED79 /* HMFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFile.h; sourceTree = "<group>"; tabWidth = 4; };
+		126218780BC551F7007CED79 /* HMFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFile.m; sourceTree = "<group>"; tabWidth = 4; };
+		1274F94F10C86204002AFB6A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		128B3F640E3B851700BF2129 /* HMHTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMHTL.h; sourceTree = "<group>"; tabWidth = 4; };
+		128B3F650E3B851700BF2129 /* HMHTL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMHTL.m; sourceTree = "<group>"; tabWidth = 4; };
+		128C34F70BB8202B00FC6204 /* HMExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMExpression.h; sourceTree = "<group>"; tabWidth = 4; };
+		128C34FF0BB820BC00FC6204 /* HMExpression.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMExpression.mm; sourceTree = "<group>"; tabWidth = 4; };
+		129302990EE9D9B700FD7E3C /* rules.yy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rules.yy.c; sourceTree = "<group>"; };
+		1293029A0EE9D9B700FD7E3C /* y.tab.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = y.tab.c; sourceTree = "<group>"; };
+		1293029B0EE9D9B700FD7E3C /* y.tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = y.tab.h; sourceTree = "<group>"; };
+		12ADF1740B8F1DD3003A1095 /* Instantiator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instantiator.h; sourceTree = "<group>"; };
+		12ADF1750B8F1DD3003A1095 /* Instantiator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instantiator.m; sourceTree = "<group>"; };
+		12ADF21B0B8F3417003A1095 /* HMNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMNode.h; sourceTree = "<group>"; };
+		12ADF21C0B8F3417003A1095 /* HMNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMNode.m; sourceTree = "<group>"; };
+		12ADF2210B8F3432003A1095 /* HMPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMPart.h; sourceTree = "<group>"; };
+		12ADF2220B8F3432003A1095 /* HMPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMPart.m; sourceTree = "<group>"; };
+		12ADF2270B8F344B003A1095 /* HMLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMLevel.h; sourceTree = "<group>"; tabWidth = 4; };
+		12ADF2280B8F344B003A1095 /* HMLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMLevel.m; sourceTree = "<group>"; tabWidth = 4; };
+		12ADF22D0B8F3495003A1095 /* HMPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMPort.h; sourceTree = "<group>"; };
+		12ADF22E0B8F3495003A1095 /* HMPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMPort.m; sourceTree = "<group>"; };
+		12ADF2330B8F34BD003A1095 /* HMInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMInput.h; sourceTree = "<group>"; };
+		12ADF2340B8F34BD003A1095 /* HMInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMInput.m; sourceTree = "<group>"; };
+		12ADF2390B8F34E6003A1095 /* HMOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMOutput.h; sourceTree = "<group>"; };
+		12ADF23A0B8F34E6003A1095 /* HMOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMOutput.m; sourceTree = "<group>"; };
+		12ADF3450B8F44D7003A1095 /* HMTVDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTVDD.h; sourceTree = "<group>"; tabWidth = 4; };
+		12ADF3460B8F44D7003A1095 /* HMTVDD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTVDD.m; sourceTree = "<group>"; tabWidth = 4; };
+		12B213910E5C48B3006FFAFC /* Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parsing.h; sourceTree = "<group>"; };
+		12B213920E5C48B3006FFAFC /* Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parsing.m; sourceTree = "<group>"; };
+		12B756C80D709CE6004CD4BA /* XML_procedures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XML_procedures.h; sourceTree = "<group>"; };
+		12B756C90D709CE6004CD4BA /* XML_procedures_Linux.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XML_procedures_Linux.m; sourceTree = "<group>"; };
+		12B7581B0D71C8A0004CD4BA /* sample_output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample_output.txt; sourceTree = "<group>"; };
+		12BF7A0C0C69FE6000BBD1AC /* XML procedures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XML procedures.m"; sourceTree = "<group>"; };
+		12D609FC0DF59F5500422CBB /* SCM Nodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SCM Nodes.txt"; sourceTree = "<group>"; };
+		12E41F230D01AB6D0009294C /* HMStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMStepper.h; sourceTree = "<group>"; };
+		12E41F240D01AB6D0009294C /* HMStepper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMStepper.m; sourceTree = "<group>"; };
+		12E41F400D01E3E40009294C /* HMClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMClock.h; sourceTree = "<group>"; };
+		12E41F410D01E3E40009294C /* HMClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMClock.m; sourceTree = "<group>"; };
+		12EBBB020D70758700B83701 /* GNUmakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GNUmakefile; sourceTree = "<group>"; };
+		12EBBB030D70758700B83701 /* GNUmakefile.postamble */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GNUmakefile.postamble; sourceTree = "<group>"; };
+		12EBBB040D70758700B83701 /* GNUmakefile.preamble */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GNUmakefile.preamble; sourceTree = "<group>"; };
+		12ED98C40D65261800620655 /* HM2DTVDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HM2DTVDD.h; sourceTree = "<group>"; tabWidth = 4; };
+		12ED98C50D65261800620655 /* HM2DTVDD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HM2DTVDD.m; sourceTree = "<group>"; tabWidth = 4; };
+		32A70AAB03705E1F00C91783 /* Hernix_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hernix_Prefix.pch; sourceTree = "<group>"; };
+		C6859EA3029092ED04C91782 /* Hernix.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Hernix.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12051FD70E58C59D000D8508 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12051FEE0E58C5CC000D8508 /* Foundation.framework in Frameworks */,
+				1274F95010C86204002AFB6A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* Hernix */ = {
+			isa = PBXGroup;
+			children = (
+				12D609FC0DF59F5500422CBB /* SCM Nodes.txt */,
+				12ADF1A10B8F20E7003A1095 /* Sample files */,
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C6859EA2029092E104C91782 /* Documentation */,
+				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = Hernix;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				12E41F180D01AB190009294C /* Clocks */,
+				12ADF5AC0B8F9859003A1095 /* Values */,
+				12ADF5A50B8F9848003A1095 /* yacc */,
+				12ADF3420B8F44C4003A1095 /* Components */,
+				126216D70BC51A00007CED79 /* Vertex */,
+				12ADF2180B8F33F6003A1095 /* Tree */,
+				32A70AAB03705E1F00C91783 /* Hernix_Prefix.pch */,
+				08FB7796FE84155DC02AAC07 /* Hernix.m */,
+				12ADF1740B8F1DD3003A1095 /* Instantiator.h */,
+				12ADF1750B8F1DD3003A1095 /* Instantiator.m */,
+				124AFAE50B98667F0014D55D /* AppController.h */,
+				1253AFAD0BBC07BD00845BB7 /* AppController.m */,
+				12B756C80D709CE6004CD4BA /* XML_procedures.h */,
+				12B756C90D709CE6004CD4BA /* XML_procedures_Linux.m */,
+				12BF7A0C0C69FE6000BBD1AC /* XML procedures.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
+				1274F94F10C86204002AFB6A /* Cocoa.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		126216D70BC51A00007CED79 /* Vertex */ = {
+			isa = PBXGroup;
+			children = (
+				126216E90BC51ADD007CED79 /* Dependency.h */,
+				126216EA0BC51ADD007CED79 /* Dependency.m */,
+			);
+			name = Vertex;
+			sourceTree = "<group>";
+		};
+		12ADF1A10B8F20E7003A1095 /* Sample files */ = {
+			isa = PBXGroup;
+			children = (
+				12B7581B0D71C8A0004CD4BA /* sample_output.txt */,
+				1253ACF40BB9C37000845BB7 /* setup.xml */,
+				1253ADA10BBA034D00845BB7 /* sample.xml */,
+			);
+			name = "Sample files";
+			sourceTree = "<group>";
+		};
+		12ADF2180B8F33F6003A1095 /* Tree */ = {
+			isa = PBXGroup;
+			children = (
+				12ADF2210B8F3432003A1095 /* HMPart.h */,
+				12ADF2220B8F3432003A1095 /* HMPart.m */,
+				12ADF21B0B8F3417003A1095 /* HMNode.h */,
+				12ADF21C0B8F3417003A1095 /* HMNode.m */,
+				12ADF22D0B8F3495003A1095 /* HMPort.h */,
+				12ADF22E0B8F3495003A1095 /* HMPort.m */,
+				12ADF2330B8F34BD003A1095 /* HMInput.h */,
+				12ADF2340B8F34BD003A1095 /* HMInput.m */,
+				12ADF2390B8F34E6003A1095 /* HMOutput.h */,
+				12ADF23A0B8F34E6003A1095 /* HMOutput.m */,
+			);
+			name = Tree;
+			sourceTree = "<group>";
+		};
+		12ADF3420B8F44C4003A1095 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				123B0B2A0BBD65BE009A5E51 /* Parts.plist */,
+				128C34F70BB8202B00FC6204 /* HMExpression.h */,
+				128C34FF0BB820BC00FC6204 /* HMExpression.mm */,
+				12ADF3450B8F44D7003A1095 /* HMTVDD.h */,
+				12ADF3460B8F44D7003A1095 /* HMTVDD.m */,
+				12ADF2270B8F344B003A1095 /* HMLevel.h */,
+				12ADF2280B8F344B003A1095 /* HMLevel.m */,
+				1223D0EC0BC19DF600DB3273 /* HMLookup.h */,
+				1223D0ED0BC19DF600DB3273 /* HMLookup.m */,
+				126218770BC551F7007CED79 /* HMFile.h */,
+				126218780BC551F7007CED79 /* HMFile.m */,
+				122983330C50E5E9006A29D0 /* HMInputSplitter.h */,
+				122983340C50E5E9006A29D0 /* HMInputSplitter.m */,
+				12ED98C40D65261800620655 /* HM2DTVDD.h */,
+				12ED98C50D65261800620655 /* HM2DTVDD.m */,
+				128B3F640E3B851700BF2129 /* HMHTL.h */,
+				128B3F650E3B851700BF2129 /* HMHTL.m */,
+				120CB7981A6329DF005BF04F /* HMWeather.h */,
+				120CB7991A6329DF005BF04F /* HMWeather.m */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		12ADF5A50B8F9848003A1095 /* yacc */ = {
+			isa = PBXGroup;
+			children = (
+				129302990EE9D9B700FD7E3C /* rules.yy.c */,
+				1293029A0EE9D9B700FD7E3C /* y.tab.c */,
+				1293029B0EE9D9B700FD7E3C /* y.tab.h */,
+				1253AEBB0BBBF02700845BB7 /* parse.y */,
+				1253AEBC0BBBF02700845BB7 /* rules.l */,
+				12B213910E5C48B3006FFAFC /* Parsing.h */,
+				12B213920E5C48B3006FFAFC /* Parsing.m */,
+			);
+			name = yacc;
+			sourceTree = "<group>";
+		};
+		12ADF5AC0B8F9859003A1095 /* Values */ = {
+			isa = PBXGroup;
+			children = (
+				1253AE3F0BBA8C5200845BB7 /* Value.h */,
+				1253AE400BBA8C5200845BB7 /* Value.m */,
+			);
+			name = Values;
+			sourceTree = "<group>";
+		};
+		12E41F180D01AB190009294C /* Clocks */ = {
+			isa = PBXGroup;
+			children = (
+				12E41F230D01AB6D0009294C /* HMStepper.h */,
+				12E41F240D01AB6D0009294C /* HMStepper.m */,
+				12E41F400D01E3E40009294C /* HMClock.h */,
+				12E41F410D01E3E40009294C /* HMClock.m */,
+			);
+			name = Clocks;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12051FD90E58C59D000D8508 /* Mercury */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6859EA2029092E104C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				12EBBB020D70758700B83701 /* GNUmakefile */,
+				12EBBB030D70758700B83701 /* GNUmakefile.postamble */,
+				12EBBB040D70758700B83701 /* GNUmakefile.preamble */,
+				C6859EA3029092ED04C91782 /* Hernix.1 */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		12051FD80E58C59D000D8508 /* Mercury */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12051FE10E58C5BC000D8508 /* Build configuration list for PBXNativeTarget "Mercury" */;
+			buildPhases = (
+				12051FD60E58C59D000D8508 /* Sources */,
+				12051FD70E58C59D000D8508 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mercury;
+			productName = Mercury;
+			productReference = 12051FD90E58C59D000D8508 /* Mercury */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+			};
+			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "Hernix" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* Hernix */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12051FD80E58C59D000D8508 /* Mercury */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12051FD60E58C59D000D8508 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12051FE50E58C5BE000D8508 /* AppController.m in Sources */,
+				12051FE90E58C5C4000D8508 /* Dependency.m in Sources */,
+				12051FF00E58C5D5000D8508 /* Hernix.m in Sources */,
+				12051FF10E58C5D6000D8508 /* HM2DTVDD.m in Sources */,
+				12051FF20E58C5D7000D8508 /* HMClock.m in Sources */,
+				12051FF40E58C5DC000D8508 /* HMFile.m in Sources */,
+				12051FF50E58C5DE000D8508 /* HMHTL.m in Sources */,
+				12051FF60E58C5DE000D8508 /* HMInput.m in Sources */,
+				12051FF70E58C5DF000D8508 /* HMInputSplitter.m in Sources */,
+				12051FF80E58C5E1000D8508 /* HMLevel.m in Sources */,
+				12051FF90E58C5E2000D8508 /* HMLookup.m in Sources */,
+				12051FFA0E58C5E2000D8508 /* HMNode.m in Sources */,
+				12051FFB0E58C5E4000D8508 /* HMOutput.m in Sources */,
+				12051FFC0E58C5E7000D8508 /* HMPart.m in Sources */,
+				12051FFD0E58C5E8000D8508 /* HMPort.m in Sources */,
+				12051FFE0E58C5E9000D8508 /* HMStepper.m in Sources */,
+				12051FFF0E58C5EB000D8508 /* HMTVDD.m in Sources */,
+				120520010E58C5EC000D8508 /* Instantiator.m in Sources */,
+				120520090E58C5FD000D8508 /* Value.m in Sources */,
+				120CB79A1A6329DF005BF04F /* HMWeather.m in Sources */,
+				1205200A0E58C5FE000D8508 /* XML procedures.m in Sources */,
+				1205200B0E58C5FF000D8508 /* XML_procedures_Linux.m in Sources */,
+				1205216F0E58D6FE000D8508 /* parse.y in Sources */,
+				120521700E58D703000D8508 /* rules.l in Sources */,
+				12B213930E5C48B3006FFAFC /* Parsing.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		12051FDB0E58C59E000D8508 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PFE_FILE_C_DIALECTS = "objective-c c++ objective-c++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = Mercury;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		12051FDC0E58C59E000D8508 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_MODEL_TUNING = G5;
+				GCC_PFE_FILE_C_DIALECTS = "objective-c c++ objective-c++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = Mercury;
+				SKIP_INSTALL = YES;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		12051FDD0E58C59E000D8508 /* Release Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_MODEL_TUNING = G5;
+				GCC_PFE_FILE_C_DIALECTS = "objective-c c++ objective-c++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = Mercury;
+				SKIP_INSTALL = YES;
+			};
+			name = "Release Debug";
+		};
+		128B41C50E3CBA0B00BF2129 /* Release Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_FAST_OBJC_DISPATCH = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx;
+			};
+			name = "Release Debug";
+		};
+		1DEB927908733DD40010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1DEB927A08733DD40010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_FAST_OBJC_DISPATCH = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12051FE10E58C5BC000D8508 /* Build configuration list for PBXNativeTarget "Mercury" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12051FDB0E58C59E000D8508 /* Debug */,
+				12051FDC0E58C59E000D8508 /* Release */,
+				12051FDD0E58C59E000D8508 /* Release Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "Hernix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB927908733DD40010E9CD /* Debug */,
+				1DEB927A08733DD40010E9CD /* Release */,
+				128B41C50E3CBA0B00BF2129 /* Release Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

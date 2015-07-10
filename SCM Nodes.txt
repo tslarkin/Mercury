@@ -1,0 +1,14 @@
+Added initialization for input splitter.
+TVDD Outseepage was added to the state during updateStates instead of being subtracted.
+
+exec.h: added release in 2 places to stop memory leak.
+HMPart.h, HMPart.m, HM2DTVDD.m, HMTVDD.m, HMFile.h: Added "isStateVariable" for computation of dependencies. Added check
+that initialization of values are successful.
+HMPort.m: added freeing of values on dealloc.
+cell.m: removed redundant allocation.
+token.h: added free of mData in TToken destructor.
+Dependency.mm: rewrote DFSVisit to stop following dependencies if a state variable
+is encountered.
+HMInputSplitter.m: gave this an initialization.
+HMFile.m: checked for file opening failure.
+parse.y: added parsing of strings, which are always file paths.

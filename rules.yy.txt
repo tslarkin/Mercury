@@ -1,0 +1,3222 @@
+# 1 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+# 1 "<built-in>"
+# 1 "<command line>"
+# 1 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+# 2 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+# 4 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+# 20 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+# 1 "/usr/include/stdio.h" 1 3 4
+# 64 "/usr/include/stdio.h" 3 4
+# 1 "/usr/include/_types.h" 1 3 4
+# 27 "/usr/include/_types.h" 3 4
+# 1 "/usr/include/sys/_types.h" 1 3 4
+# 32 "/usr/include/sys/_types.h" 3 4
+# 1 "/usr/include/sys/cdefs.h" 1 3 4
+# 33 "/usr/include/sys/_types.h" 2 3 4
+# 1 "/usr/include/machine/_types.h" 1 3 4
+# 34 "/usr/include/machine/_types.h" 3 4
+# 1 "/usr/include/i386/_types.h" 1 3 4
+# 37 "/usr/include/i386/_types.h" 3 4
+typedef signed char __int8_t;
+
+
+
+typedef unsigned char __uint8_t;
+typedef short __int16_t;
+typedef unsigned short __uint16_t;
+typedef int __int32_t;
+typedef unsigned int __uint32_t;
+typedef long long __int64_t;
+typedef unsigned long long __uint64_t;
+
+typedef long __darwin_intptr_t;
+typedef unsigned int __darwin_natural_t;
+# 70 "/usr/include/i386/_types.h" 3 4
+typedef int __darwin_ct_rune_t;
+
+
+
+
+
+typedef union {
+ char __mbstate8[128];
+ long long _mbstateL;
+} __mbstate_t;
+
+typedef __mbstate_t __darwin_mbstate_t;
+
+
+typedef int __darwin_ptrdiff_t;
+
+
+
+
+
+typedef long unsigned int __darwin_size_t;
+
+
+
+
+
+typedef __builtin_va_list __darwin_va_list;
+
+
+
+
+
+typedef int __darwin_wchar_t;
+
+
+
+
+typedef __darwin_wchar_t __darwin_rune_t;
+
+
+typedef int __darwin_wint_t;
+
+
+
+
+typedef unsigned long __darwin_clock_t;
+typedef __uint32_t __darwin_socklen_t;
+typedef long __darwin_ssize_t;
+typedef long __darwin_time_t;
+# 35 "/usr/include/machine/_types.h" 2 3 4
+# 34 "/usr/include/sys/_types.h" 2 3 4
+# 58 "/usr/include/sys/_types.h" 3 4
+struct __darwin_pthread_handler_rec
+{
+ void (*__routine)(void *);
+ void *__arg;
+ struct __darwin_pthread_handler_rec *__next;
+};
+struct _opaque_pthread_attr_t { long __sig; char __opaque[36]; };
+struct _opaque_pthread_cond_t { long __sig; char __opaque[24]; };
+struct _opaque_pthread_condattr_t { long __sig; char __opaque[4]; };
+struct _opaque_pthread_mutex_t { long __sig; char __opaque[40]; };
+struct _opaque_pthread_mutexattr_t { long __sig; char __opaque[8]; };
+struct _opaque_pthread_once_t { long __sig; char __opaque[4]; };
+struct _opaque_pthread_rwlock_t { long __sig; char __opaque[124]; };
+struct _opaque_pthread_rwlockattr_t { long __sig; char __opaque[12]; };
+struct _opaque_pthread_t { long __sig; struct __darwin_pthread_handler_rec *__cleanup_stack; char __opaque[596]; };
+# 94 "/usr/include/sys/_types.h" 3 4
+typedef __int64_t __darwin_blkcnt_t;
+typedef __int32_t __darwin_blksize_t;
+typedef __int32_t __darwin_dev_t;
+typedef unsigned int __darwin_fsblkcnt_t;
+typedef unsigned int __darwin_fsfilcnt_t;
+typedef __uint32_t __darwin_gid_t;
+typedef __uint32_t __darwin_id_t;
+typedef __uint64_t __darwin_ino64_t;
+
+
+
+typedef __uint32_t __darwin_ino_t;
+
+typedef __darwin_natural_t __darwin_mach_port_name_t;
+typedef __darwin_mach_port_name_t __darwin_mach_port_t;
+typedef __uint16_t __darwin_mode_t;
+typedef __int64_t __darwin_off_t;
+typedef __int32_t __darwin_pid_t;
+typedef struct _opaque_pthread_attr_t
+   __darwin_pthread_attr_t;
+typedef struct _opaque_pthread_cond_t
+   __darwin_pthread_cond_t;
+typedef struct _opaque_pthread_condattr_t
+   __darwin_pthread_condattr_t;
+typedef unsigned long __darwin_pthread_key_t;
+typedef struct _opaque_pthread_mutex_t
+   __darwin_pthread_mutex_t;
+typedef struct _opaque_pthread_mutexattr_t
+   __darwin_pthread_mutexattr_t;
+typedef struct _opaque_pthread_once_t
+   __darwin_pthread_once_t;
+typedef struct _opaque_pthread_rwlock_t
+   __darwin_pthread_rwlock_t;
+typedef struct _opaque_pthread_rwlockattr_t
+   __darwin_pthread_rwlockattr_t;
+typedef struct _opaque_pthread_t
+   *__darwin_pthread_t;
+typedef __uint32_t __darwin_sigset_t;
+typedef __int32_t __darwin_suseconds_t;
+typedef __uint32_t __darwin_uid_t;
+typedef __uint32_t __darwin_useconds_t;
+typedef unsigned char __darwin_uuid_t[16];
+# 28 "/usr/include/_types.h" 2 3 4
+
+typedef int __darwin_nl_item;
+typedef int __darwin_wctrans_t;
+
+
+
+typedef unsigned long __darwin_wctype_t;
+# 65 "/usr/include/stdio.h" 2 3 4
+
+
+
+
+
+typedef __darwin_va_list va_list;
+
+
+
+
+typedef __darwin_off_t off_t;
+
+
+
+
+typedef __darwin_size_t size_t;
+
+
+
+
+
+
+typedef __darwin_off_t fpos_t;
+# 98 "/usr/include/stdio.h" 3 4
+struct __sbuf {
+ unsigned char *_base;
+ int _size;
+};
+
+
+struct __sFILEX;
+# 132 "/usr/include/stdio.h" 3 4
+typedef struct __sFILE {
+ unsigned char *_p;
+ int _r;
+ int _w;
+ short _flags;
+ short _file;
+ struct __sbuf _bf;
+ int _lbfsize;
+
+
+ void *_cookie;
+ int (*_close)(void *);
+ int (*_read) (void *, char *, int);
+ fpos_t (*_seek) (void *, fpos_t, int);
+ int (*_write)(void *, const char *, int);
+
+
+ struct __sbuf _ub;
+ struct __sFILEX *_extra;
+ int _ur;
+
+
+ unsigned char _ubuf[3];
+ unsigned char _nbuf[1];
+
+
+ struct __sbuf _lb;
+
+
+ int _blksize;
+ fpos_t _offset;
+} FILE;
+
+
+
+extern FILE *__stdinp;
+extern FILE *__stdoutp;
+extern FILE *__stderrp;
+
+
+
+
+# 248 "/usr/include/stdio.h" 3 4
+
+void clearerr(FILE *);
+int fclose(FILE *);
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+int fgetc(FILE *);
+int fgetpos(FILE * , fpos_t *);
+char *fgets(char * , int, FILE *);
+FILE *fopen(const char * , const char * );
+int fprintf(FILE * , const char * , ...) ;
+int fputc(int, FILE *);
+int fputs(const char * , FILE * ) __asm("_" "fputs" "$UNIX2003");
+size_t fread(void * , size_t, size_t, FILE * );
+FILE *freopen(const char * , const char * ,
+     FILE * ) __asm("_" "freopen" "$UNIX2003");
+int fscanf(FILE * , const char * , ...) ;
+int fseek(FILE *, long, int);
+int fsetpos(FILE *, const fpos_t *);
+long ftell(FILE *);
+size_t fwrite(const void * , size_t, size_t, FILE * ) __asm("_" "fwrite" "$UNIX2003");
+int getc(FILE *);
+int getchar(void);
+char *gets(char *);
+
+extern const int sys_nerr;
+extern const char *const sys_errlist[];
+
+void perror(const char *);
+int printf(const char * , ...) ;
+int putc(int, FILE *);
+int putchar(int);
+int puts(const char *);
+int remove(const char *);
+int rename (const char *, const char *);
+void rewind(FILE *);
+int scanf(const char * , ...) ;
+void setbuf(FILE * , char * );
+int setvbuf(FILE * , char * , int, size_t);
+int sprintf(char * , const char * , ...) ;
+int sscanf(const char * , const char * , ...) ;
+FILE *tmpfile(void);
+char *tmpnam(char *);
+int ungetc(int, FILE *);
+int vfprintf(FILE * , const char * , va_list) ;
+int vprintf(const char * , va_list) ;
+int vsprintf(char * , const char * , va_list) ;
+
+int asprintf(char **, const char *, ...) ;
+int vasprintf(char **, const char *, va_list) ;
+
+
+
+
+
+
+
+
+
+
+char *ctermid(char *);
+
+char *ctermid_r(char *);
+
+FILE *fdopen(int, const char *);
+
+char *fgetln(FILE *, size_t *);
+
+int fileno(FILE *);
+void flockfile(FILE *);
+
+const char
+ *fmtcheck(const char *, const char *);
+int fpurge(FILE *);
+
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+
+int getw(FILE *);
+
+int pclose(FILE *);
+FILE *popen(const char *, const char *);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+
+int putw(int, FILE *);
+void setbuffer(FILE *, char *, int);
+int setlinebuf(FILE *);
+
+int snprintf(char * , size_t, const char * , ...) ;
+char *tempnam(const char *, const char *) __asm("_" "tempnam" "$UNIX2003");
+int vfscanf(FILE * , const char * , va_list) ;
+int vscanf(const char * , va_list) ;
+int vsnprintf(char * , size_t, const char * , va_list) ;
+int vsscanf(const char * , const char * , va_list) ;
+
+FILE *zopen(const char *, const char *, int);
+
+
+
+
+
+
+
+
+FILE *funopen(const void *,
+  int (*)(void *, char *, int),
+  int (*)(void *, const char *, int),
+  fpos_t (*)(void *, fpos_t, int),
+  int (*)(void *));
+
+# 371 "/usr/include/stdio.h" 3 4
+
+int __srget(FILE *);
+int __svfscanf(FILE *, const char *, va_list) ;
+int __swbuf(int, FILE *);
+
+
+
+
+
+
+
+
+static __inline int __sputc(int _c, FILE *_p) {
+ if (--_p->_w >= 0 || (_p->_w >= _p->_lbfsize && (char)_c != '\n'))
+  return (*_p->_p++ = _c);
+ else
+  return (__swbuf(_c, _p));
+}
+# 21 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c" 2
+# 1 "/usr/include/string.h" 1 3 4
+# 70 "/usr/include/string.h" 3 4
+typedef __darwin_ssize_t ssize_t;
+# 80 "/usr/include/string.h" 3 4
+
+void *memchr(const void *, int, size_t);
+int memcmp(const void *, const void *, size_t);
+void *memcpy(void *, const void *, size_t);
+void *memmove(void *, const void *, size_t);
+void *memset(void *, int, size_t);
+
+char *stpcpy(char *, const char *);
+char *strcasestr(const char *, const char *);
+
+char *strcat(char *, const char *);
+char *strchr(const char *, int);
+int strcmp(const char *, const char *);
+int strcoll(const char *, const char *);
+char *strcpy(char *, const char *);
+size_t strcspn(const char *, const char *);
+char *strerror(int) __asm("_" "strerror" "$UNIX2003");
+int strerror_r(int, char *, size_t);
+size_t strlen(const char *);
+char *strncat(char *, const char *, size_t);
+int strncmp(const char *, const char *, size_t);
+char *strncpy(char *, const char *, size_t);
+
+char *strnstr(const char *, const char *, size_t);
+
+char *strpbrk(const char *, const char *);
+char *strrchr(const char *, int);
+size_t strspn(const char *, const char *);
+char *strstr(const char *, const char *);
+char *strtok(char *, const char *);
+size_t strxfrm(char *, const char *, size_t);
+
+
+
+void *memccpy(void *, const void *, int, size_t);
+char *strtok_r(char *, const char *, char **);
+char *strdup(const char *);
+
+int bcmp(const void *, const void *, size_t);
+void bcopy(const void *, void *, size_t);
+void bzero(void *, size_t);
+int ffs(int);
+int ffsl(long);
+int fls(int);
+int flsl(long);
+char *index(const char *, int);
+void memset_pattern4(void *, const void *, size_t);
+void memset_pattern8(void *, const void *, size_t);
+void memset_pattern16(void *, const void *, size_t);
+char *rindex(const char *, int);
+int strcasecmp(const char *, const char *);
+size_t strlcat(char *, const char *, size_t);
+size_t strlcpy(char *, const char *, size_t);
+void strmode(int, char *);
+int strncasecmp(const char *, const char *, size_t);
+char *strsep(char **, const char *);
+char *strsignal(int sig);
+void swab(const void * , void * , ssize_t);
+
+
+
+# 22 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c" 2
+# 1 "/usr/include/errno.h" 1 3 4
+# 23 "/usr/include/errno.h" 3 4
+# 1 "/usr/include/sys/errno.h" 1 3 4
+# 73 "/usr/include/sys/errno.h" 3 4
+
+extern int * __error(void);
+
+
+# 24 "/usr/include/errno.h" 2 3 4
+# 23 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c" 2
+# 1 "/usr/include/stdlib.h" 1 3 4
+# 61 "/usr/include/stdlib.h" 3 4
+# 1 "/usr/include/available.h" 1 3 4
+# 62 "/usr/include/stdlib.h" 2 3 4
+
+
+
+# 1 "/usr/include/sys/wait.h" 1 3 4
+# 79 "/usr/include/sys/wait.h" 3 4
+typedef enum {
+ P_ALL,
+ P_PID,
+ P_PGID
+} idtype_t;
+
+
+
+
+
+
+typedef __darwin_pid_t pid_t;
+
+
+
+
+typedef __darwin_id_t id_t;
+# 116 "/usr/include/sys/wait.h" 3 4
+# 1 "/usr/include/sys/signal.h" 1 3 4
+# 73 "/usr/include/sys/signal.h" 3 4
+# 1 "/usr/include/sys/appleapiopts.h" 1 3 4
+# 74 "/usr/include/sys/signal.h" 2 3 4
+
+
+
+
+
+
+
+# 1 "/usr/include/machine/signal.h" 1 3 4
+# 34 "/usr/include/machine/signal.h" 3 4
+# 1 "/usr/include/i386/signal.h" 1 3 4
+# 39 "/usr/include/i386/signal.h" 3 4
+typedef int sig_atomic_t;
+# 55 "/usr/include/i386/signal.h" 3 4
+# 1 "/usr/include/i386/_structs.h" 1 3 4
+# 56 "/usr/include/i386/signal.h" 2 3 4
+# 35 "/usr/include/machine/signal.h" 2 3 4
+# 82 "/usr/include/sys/signal.h" 2 3 4
+# 154 "/usr/include/sys/signal.h" 3 4
+# 1 "/usr/include/sys/_structs.h" 1 3 4
+# 57 "/usr/include/sys/_structs.h" 3 4
+# 1 "/usr/include/machine/_structs.h" 1 3 4
+# 31 "/usr/include/machine/_structs.h" 3 4
+# 1 "/usr/include/i386/_structs.h" 1 3 4
+# 38 "/usr/include/i386/_structs.h" 3 4
+# 1 "/usr/include/mach/i386/_structs.h" 1 3 4
+# 43 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_i386_thread_state
+{
+    unsigned int __eax;
+    unsigned int __ebx;
+    unsigned int __ecx;
+    unsigned int __edx;
+    unsigned int __edi;
+    unsigned int __esi;
+    unsigned int __ebp;
+    unsigned int __esp;
+    unsigned int __ss;
+    unsigned int __eflags;
+    unsigned int __eip;
+    unsigned int __cs;
+    unsigned int __ds;
+    unsigned int __es;
+    unsigned int __fs;
+    unsigned int __gs;
+};
+# 89 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_fp_control
+{
+    unsigned short __invalid :1,
+        __denorm :1,
+    __zdiv :1,
+    __ovrfl :1,
+    __undfl :1,
+    __precis :1,
+      :2,
+    __pc :2,
+
+
+
+
+
+    __rc :2,
+
+
+
+
+
+
+             :1,
+      :3;
+};
+typedef struct __darwin_fp_control __darwin_fp_control_t;
+# 147 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_fp_status
+{
+    unsigned short __invalid :1,
+        __denorm :1,
+    __zdiv :1,
+    __ovrfl :1,
+    __undfl :1,
+    __precis :1,
+    __stkflt :1,
+    __errsumm :1,
+    __c0 :1,
+    __c1 :1,
+    __c2 :1,
+    __tos :3,
+    __c3 :1,
+    __busy :1;
+};
+typedef struct __darwin_fp_status __darwin_fp_status_t;
+# 191 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_mmst_reg
+{
+ char __mmst_reg[10];
+ char __mmst_rsrv[6];
+};
+# 210 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_xmm_reg
+{
+ char __xmm_reg[16];
+};
+# 232 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_i386_float_state
+{
+ int __fpu_reserved[2];
+ struct __darwin_fp_control __fpu_fcw;
+ struct __darwin_fp_status __fpu_fsw;
+ __uint8_t __fpu_ftw;
+ __uint8_t __fpu_rsrv1;
+ __uint16_t __fpu_fop;
+ __uint32_t __fpu_ip;
+ __uint16_t __fpu_cs;
+ __uint16_t __fpu_rsrv2;
+ __uint32_t __fpu_dp;
+ __uint16_t __fpu_ds;
+ __uint16_t __fpu_rsrv3;
+ __uint32_t __fpu_mxcsr;
+ __uint32_t __fpu_mxcsrmask;
+ struct __darwin_mmst_reg __fpu_stmm0;
+ struct __darwin_mmst_reg __fpu_stmm1;
+ struct __darwin_mmst_reg __fpu_stmm2;
+ struct __darwin_mmst_reg __fpu_stmm3;
+ struct __darwin_mmst_reg __fpu_stmm4;
+ struct __darwin_mmst_reg __fpu_stmm5;
+ struct __darwin_mmst_reg __fpu_stmm6;
+ struct __darwin_mmst_reg __fpu_stmm7;
+ struct __darwin_xmm_reg __fpu_xmm0;
+ struct __darwin_xmm_reg __fpu_xmm1;
+ struct __darwin_xmm_reg __fpu_xmm2;
+ struct __darwin_xmm_reg __fpu_xmm3;
+ struct __darwin_xmm_reg __fpu_xmm4;
+ struct __darwin_xmm_reg __fpu_xmm5;
+ struct __darwin_xmm_reg __fpu_xmm6;
+ struct __darwin_xmm_reg __fpu_xmm7;
+ char __fpu_rsrv4[14*16];
+ int __fpu_reserved1;
+};
+# 308 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_i386_exception_state
+{
+    unsigned int __trapno;
+    unsigned int __err;
+    unsigned int __faultvaddr;
+};
+# 326 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_x86_debug_state32
+{
+ unsigned int __dr0;
+ unsigned int __dr1;
+ unsigned int __dr2;
+ unsigned int __dr3;
+ unsigned int __dr4;
+ unsigned int __dr5;
+ unsigned int __dr6;
+ unsigned int __dr7;
+};
+# 358 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_x86_thread_state64
+{
+ __uint64_t __rax;
+ __uint64_t __rbx;
+ __uint64_t __rcx;
+ __uint64_t __rdx;
+ __uint64_t __rdi;
+ __uint64_t __rsi;
+ __uint64_t __rbp;
+ __uint64_t __rsp;
+ __uint64_t __r8;
+ __uint64_t __r9;
+ __uint64_t __r10;
+ __uint64_t __r11;
+ __uint64_t __r12;
+ __uint64_t __r13;
+ __uint64_t __r14;
+ __uint64_t __r15;
+ __uint64_t __rip;
+ __uint64_t __rflags;
+ __uint64_t __cs;
+ __uint64_t __fs;
+ __uint64_t __gs;
+};
+# 413 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_x86_float_state64
+{
+ int __fpu_reserved[2];
+ struct __darwin_fp_control __fpu_fcw;
+ struct __darwin_fp_status __fpu_fsw;
+ __uint8_t __fpu_ftw;
+ __uint8_t __fpu_rsrv1;
+ __uint16_t __fpu_fop;
+
+
+ __uint32_t __fpu_ip;
+ __uint16_t __fpu_cs;
+
+ __uint16_t __fpu_rsrv2;
+
+
+ __uint32_t __fpu_dp;
+ __uint16_t __fpu_ds;
+
+ __uint16_t __fpu_rsrv3;
+ __uint32_t __fpu_mxcsr;
+ __uint32_t __fpu_mxcsrmask;
+ struct __darwin_mmst_reg __fpu_stmm0;
+ struct __darwin_mmst_reg __fpu_stmm1;
+ struct __darwin_mmst_reg __fpu_stmm2;
+ struct __darwin_mmst_reg __fpu_stmm3;
+ struct __darwin_mmst_reg __fpu_stmm4;
+ struct __darwin_mmst_reg __fpu_stmm5;
+ struct __darwin_mmst_reg __fpu_stmm6;
+ struct __darwin_mmst_reg __fpu_stmm7;
+ struct __darwin_xmm_reg __fpu_xmm0;
+ struct __darwin_xmm_reg __fpu_xmm1;
+ struct __darwin_xmm_reg __fpu_xmm2;
+ struct __darwin_xmm_reg __fpu_xmm3;
+ struct __darwin_xmm_reg __fpu_xmm4;
+ struct __darwin_xmm_reg __fpu_xmm5;
+ struct __darwin_xmm_reg __fpu_xmm6;
+ struct __darwin_xmm_reg __fpu_xmm7;
+ struct __darwin_xmm_reg __fpu_xmm8;
+ struct __darwin_xmm_reg __fpu_xmm9;
+ struct __darwin_xmm_reg __fpu_xmm10;
+ struct __darwin_xmm_reg __fpu_xmm11;
+ struct __darwin_xmm_reg __fpu_xmm12;
+ struct __darwin_xmm_reg __fpu_xmm13;
+ struct __darwin_xmm_reg __fpu_xmm14;
+ struct __darwin_xmm_reg __fpu_xmm15;
+ char __fpu_rsrv4[6*16];
+ int __fpu_reserved1;
+};
+# 517 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_x86_exception_state64
+{
+    unsigned int __trapno;
+    unsigned int __err;
+    __uint64_t __faultvaddr;
+};
+# 535 "/usr/include/mach/i386/_structs.h" 3 4
+struct __darwin_x86_debug_state64
+{
+ __uint64_t __dr0;
+ __uint64_t __dr1;
+ __uint64_t __dr2;
+ __uint64_t __dr3;
+ __uint64_t __dr4;
+ __uint64_t __dr5;
+ __uint64_t __dr6;
+ __uint64_t __dr7;
+};
+# 39 "/usr/include/i386/_structs.h" 2 3 4
+# 48 "/usr/include/i386/_structs.h" 3 4
+struct __darwin_mcontext32
+{
+ struct __darwin_i386_exception_state __es;
+ struct __darwin_i386_thread_state __ss;
+ struct __darwin_i386_float_state __fs;
+};
+# 68 "/usr/include/i386/_structs.h" 3 4
+struct __darwin_mcontext64
+{
+ struct __darwin_x86_exception_state64 __es;
+ struct __darwin_x86_thread_state64 __ss;
+ struct __darwin_x86_float_state64 __fs;
+};
+# 94 "/usr/include/i386/_structs.h" 3 4
+typedef struct __darwin_mcontext32 *mcontext_t;
+# 32 "/usr/include/machine/_structs.h" 2 3 4
+# 58 "/usr/include/sys/_structs.h" 2 3 4
+# 75 "/usr/include/sys/_structs.h" 3 4
+struct __darwin_sigaltstack
+{
+ void *ss_sp;
+ __darwin_size_t ss_size;
+ int ss_flags;
+};
+# 128 "/usr/include/sys/_structs.h" 3 4
+struct __darwin_ucontext
+{
+ int uc_onstack;
+ __darwin_sigset_t uc_sigmask;
+ struct __darwin_sigaltstack uc_stack;
+ struct __darwin_ucontext *uc_link;
+ __darwin_size_t uc_mcsize;
+ struct __darwin_mcontext32 *uc_mcontext;
+
+
+
+};
+# 218 "/usr/include/sys/_structs.h" 3 4
+typedef struct __darwin_sigaltstack stack_t;
+# 227 "/usr/include/sys/_structs.h" 3 4
+typedef struct __darwin_ucontext ucontext_t;
+# 155 "/usr/include/sys/signal.h" 2 3 4
+# 163 "/usr/include/sys/signal.h" 3 4
+typedef __darwin_pthread_attr_t pthread_attr_t;
+
+
+
+
+typedef __darwin_sigset_t sigset_t;
+# 178 "/usr/include/sys/signal.h" 3 4
+typedef __darwin_uid_t uid_t;
+
+
+union sigval {
+
+ int sival_int;
+ void *sival_ptr;
+};
+
+
+
+
+
+struct sigevent {
+ int sigev_notify;
+ int sigev_signo;
+ union sigval sigev_value;
+ void (*sigev_notify_function)(union sigval);
+ pthread_attr_t *sigev_notify_attributes;
+};
+
+
+typedef struct __siginfo {
+ int si_signo;
+ int si_errno;
+ int si_code;
+ pid_t si_pid;
+ uid_t si_uid;
+ int si_status;
+ void *si_addr;
+ union sigval si_value;
+ long si_band;
+ unsigned long __pad[7];
+} siginfo_t;
+# 292 "/usr/include/sys/signal.h" 3 4
+union __sigaction_u {
+ void (*__sa_handler)(int);
+ void (*__sa_sigaction)(int, struct __siginfo *,
+         void *);
+};
+
+
+struct __sigaction {
+ union __sigaction_u __sigaction_u;
+ void (*sa_tramp)(void *, int, int, siginfo_t *, void *);
+ sigset_t sa_mask;
+ int sa_flags;
+};
+
+
+
+
+struct sigaction {
+ union __sigaction_u __sigaction_u;
+ sigset_t sa_mask;
+ int sa_flags;
+};
+# 354 "/usr/include/sys/signal.h" 3 4
+typedef void (*sig_t)(int);
+# 371 "/usr/include/sys/signal.h" 3 4
+struct sigvec {
+ void (*sv_handler)(int);
+ int sv_mask;
+ int sv_flags;
+};
+# 390 "/usr/include/sys/signal.h" 3 4
+struct sigstack {
+ char *ss_sp;
+ int ss_onstack;
+};
+# 412 "/usr/include/sys/signal.h" 3 4
+
+void (*signal(int, void (*)(int)))(int);
+
+# 117 "/usr/include/sys/wait.h" 2 3 4
+# 1 "/usr/include/sys/resource.h" 1 3 4
+# 76 "/usr/include/sys/resource.h" 3 4
+# 1 "/usr/include/sys/_structs.h" 1 3 4
+# 100 "/usr/include/sys/_structs.h" 3 4
+struct timeval
+{
+ __darwin_time_t tv_sec;
+ __darwin_suseconds_t tv_usec;
+};
+# 77 "/usr/include/sys/resource.h" 2 3 4
+# 88 "/usr/include/sys/resource.h" 3 4
+typedef __uint64_t rlim_t;
+# 142 "/usr/include/sys/resource.h" 3 4
+struct rusage {
+ struct timeval ru_utime;
+ struct timeval ru_stime;
+# 153 "/usr/include/sys/resource.h" 3 4
+ long ru_maxrss;
+
+ long ru_ixrss;
+ long ru_idrss;
+ long ru_isrss;
+ long ru_minflt;
+ long ru_majflt;
+ long ru_nswap;
+ long ru_inblock;
+ long ru_oublock;
+ long ru_msgsnd;
+ long ru_msgrcv;
+ long ru_nsignals;
+ long ru_nvcsw;
+ long ru_nivcsw;
+
+
+};
+# 213 "/usr/include/sys/resource.h" 3 4
+struct rlimit {
+ rlim_t rlim_cur;
+ rlim_t rlim_max;
+};
+# 235 "/usr/include/sys/resource.h" 3 4
+
+int getpriority(int, id_t);
+
+int getiopolicy_np(int, int);
+
+int getrlimit(int, struct rlimit *) __asm("_" "getrlimit" "$UNIX2003");
+int getrusage(int, struct rusage *);
+int setpriority(int, id_t, int);
+
+int setiopolicy_np(int, int, int);
+
+int setrlimit(int, const struct rlimit *) __asm("_" "setrlimit" "$UNIX2003");
+
+# 118 "/usr/include/sys/wait.h" 2 3 4
+# 193 "/usr/include/sys/wait.h" 3 4
+# 1 "/usr/include/machine/endian.h" 1 3 4
+# 37 "/usr/include/machine/endian.h" 3 4
+# 1 "/usr/include/i386/endian.h" 1 3 4
+# 99 "/usr/include/i386/endian.h" 3 4
+# 1 "/usr/include/sys/_endian.h" 1 3 4
+# 124 "/usr/include/sys/_endian.h" 3 4
+# 1 "/usr/include/libkern/_OSByteOrder.h" 1 3 4
+# 66 "/usr/include/libkern/_OSByteOrder.h" 3 4
+# 1 "/usr/include/libkern/i386/_OSByteOrder.h" 1 3 4
+# 44 "/usr/include/libkern/i386/_OSByteOrder.h" 3 4
+static __inline__
+__uint16_t
+_OSSwapInt16(
+    __uint16_t _data
+)
+{
+    return ((_data << 8) | (_data >> 8));
+}
+
+static __inline__
+__uint32_t
+_OSSwapInt32(
+    __uint32_t _data
+)
+{
+    __asm__ ("bswap   %0" : "+r" (_data));
+    return _data;
+}
+
+
+static __inline__
+__uint64_t
+_OSSwapInt64(
+    __uint64_t _data
+)
+{
+    __asm__ ("bswap   %%eax\n\t"
+             "bswap   %%edx\n\t"
+             "xchgl   %%eax, %%edx"
+             : "+A" (_data));
+    return _data;
+}
+# 67 "/usr/include/libkern/_OSByteOrder.h" 2 3 4
+# 125 "/usr/include/sys/_endian.h" 2 3 4
+# 100 "/usr/include/i386/endian.h" 2 3 4
+# 38 "/usr/include/machine/endian.h" 2 3 4
+# 194 "/usr/include/sys/wait.h" 2 3 4
+
+
+
+
+
+
+
+union wait {
+ int w_status;
+
+
+
+ struct {
+
+  unsigned int w_Termsig:7,
+    w_Coredump:1,
+    w_Retcode:8,
+    w_Filler:16;
+
+
+
+
+
+
+
+ } w_T;
+
+
+
+
+
+ struct {
+
+  unsigned int w_Stopval:8,
+    w_Stopsig:8,
+    w_Filler:16;
+
+
+
+
+
+
+ } w_S;
+};
+# 254 "/usr/include/sys/wait.h" 3 4
+
+pid_t wait(int *) __asm("_" "wait" "$UNIX2003");
+pid_t waitpid(pid_t, int *, int) __asm("_" "waitpid" "$UNIX2003");
+
+int waitid(idtype_t, id_t, siginfo_t *, int) __asm("_" "waitid" "$UNIX2003");
+
+
+pid_t wait3(int *, int, struct rusage *);
+pid_t wait4(pid_t, int *, int, struct rusage *);
+
+
+# 66 "/usr/include/stdlib.h" 2 3 4
+
+# 1 "/usr/include/alloca.h" 1 3 4
+# 35 "/usr/include/alloca.h" 3 4
+
+void *alloca(size_t);
+
+# 68 "/usr/include/stdlib.h" 2 3 4
+# 81 "/usr/include/stdlib.h" 3 4
+typedef __darwin_ct_rune_t ct_rune_t;
+
+
+
+
+typedef __darwin_rune_t rune_t;
+
+
+
+
+
+
+typedef __darwin_wchar_t wchar_t;
+
+
+
+typedef struct {
+ int quot;
+ int rem;
+} div_t;
+
+typedef struct {
+ long quot;
+ long rem;
+} ldiv_t;
+
+
+typedef struct {
+ long long quot;
+ long long rem;
+} lldiv_t;
+# 134 "/usr/include/stdlib.h" 3 4
+extern int __mb_cur_max;
+# 144 "/usr/include/stdlib.h" 3 4
+
+void abort(void) __attribute__((__noreturn__));
+int abs(int) __attribute__((__const__));
+int atexit(void (*)(void));
+double atof(const char *);
+int atoi(const char *);
+long atol(const char *);
+
+long long
+  atoll(const char *);
+
+void *bsearch(const void *, const void *, size_t,
+     size_t, int (*)(const void *, const void *));
+void *calloc(size_t, size_t);
+div_t div(int, int) __attribute__((__const__));
+void exit(int) __attribute__((__noreturn__));
+void free(void *);
+char *getenv(const char *);
+long labs(long) __attribute__((__const__));
+ldiv_t ldiv(long, long) __attribute__((__const__));
+
+long long
+  llabs(long long);
+lldiv_t lldiv(long long, long long);
+
+void *malloc(size_t);
+int mblen(const char *, size_t);
+size_t mbstowcs(wchar_t * , const char * , size_t);
+int mbtowc(wchar_t * , const char * , size_t);
+void qsort(void *, size_t, size_t,
+     int (*)(const void *, const void *));
+int rand(void);
+void *realloc(void *, size_t);
+void srand(unsigned);
+double strtod(const char *, char **) __asm("_" "strtod" "$UNIX2003");
+float strtof(const char *, char **) __asm("_" "strtof" "$UNIX2003");
+long strtol(const char *, char **, int);
+long double
+  strtold(const char *, char **) ;
+
+long long
+  strtoll(const char *, char **, int);
+
+unsigned long
+  strtoul(const char *, char **, int);
+
+unsigned long long
+  strtoull(const char *, char **, int);
+
+int system(const char *) __asm("_" "system" "$UNIX2003");
+size_t wcstombs(char * , const wchar_t * , size_t);
+int wctomb(char *, wchar_t);
+
+
+void _Exit(int) __attribute__((__noreturn__));
+long a64l(const char *);
+double drand48(void);
+char *ecvt(double, int, int *, int *);
+double erand48(unsigned short[3]);
+char *fcvt(double, int, int *, int *);
+char *gcvt(double, int, char *);
+int getsubopt(char **, char * const *, char **);
+int grantpt(int);
+
+char *initstate(unsigned, char *, size_t);
+
+
+
+long jrand48(unsigned short[3]);
+char *l64a(long);
+void lcong48(unsigned short[7]);
+long lrand48(void);
+char *mktemp(char *);
+int mkstemp(char *);
+long mrand48(void);
+long nrand48(unsigned short[3]);
+int posix_openpt(int);
+char *ptsname(int);
+int putenv(char *) __asm("_" "putenv" "$UNIX2003");
+long random(void);
+int rand_r(unsigned *);
+
+char *realpath(const char * , char * ) __asm("_" "realpath" "$DARWIN_EXTSN");
+
+
+
+unsigned short
+ *seed48(unsigned short[3]);
+int setenv(const char *, const char *, int) __asm("_" "setenv" "$UNIX2003");
+
+void setkey(const char *) __asm("_" "setkey" "$UNIX2003");
+
+
+
+char *setstate(const char *);
+void srand48(long);
+
+void srandom(unsigned);
+
+
+
+int unlockpt(int);
+
+int unsetenv(const char *) __asm("_" "unsetenv" "$UNIX2003");
+
+
+
+
+
+
+# 1 "/usr/include/machine/types.h" 1 3 4
+# 37 "/usr/include/machine/types.h" 3 4
+# 1 "/usr/include/i386/types.h" 1 3 4
+# 78 "/usr/include/i386/types.h" 3 4
+typedef signed char int8_t;
+
+typedef unsigned char u_int8_t;
+
+
+typedef short int16_t;
+
+typedef unsigned short u_int16_t;
+
+
+typedef int int32_t;
+
+typedef unsigned int u_int32_t;
+
+
+typedef long long int64_t;
+
+typedef unsigned long long u_int64_t;
+
+
+
+
+typedef int32_t register_t;
+
+
+
+
+typedef __darwin_intptr_t intptr_t;
+
+
+
+typedef unsigned long int uintptr_t;
+
+
+
+
+typedef u_int64_t user_addr_t;
+typedef u_int64_t user_size_t;
+typedef int64_t user_ssize_t;
+typedef int64_t user_long_t;
+typedef u_int64_t user_ulong_t;
+typedef int64_t user_time_t;
+
+
+
+
+
+typedef u_int64_t syscall_arg_t;
+# 38 "/usr/include/machine/types.h" 2 3 4
+# 255 "/usr/include/stdlib.h" 2 3 4
+
+
+typedef __darwin_dev_t dev_t;
+
+
+
+
+typedef __darwin_mode_t mode_t;
+
+
+
+u_int32_t
+  arc4random(void);
+void arc4random_addrandom(unsigned char *dat, int datlen);
+void arc4random_stir(void);
+
+
+char *cgetcap(char *, const char *, int);
+int cgetclose(void);
+int cgetent(char **, char **, const char *);
+int cgetfirst(char **, char **);
+int cgetmatch(const char *, const char *);
+int cgetnext(char **, char **);
+int cgetnum(char *, const char *, long *);
+int cgetset(const char *);
+int cgetstr(char *, const char *, char **);
+int cgetustr(char *, const char *, char **);
+
+int daemon(int, int) __asm("_" "daemon" "$1050") __attribute__((deprecated));
+char *devname(dev_t, mode_t);
+char *devname_r(dev_t, mode_t, char *buf, int len);
+char *getbsize(int *, long *);
+int getloadavg(double [], int);
+const char
+ *getprogname(void);
+
+int heapsort(void *, size_t, size_t,
+     int (*)(const void *, const void *));
+int mergesort(void *, size_t, size_t,
+     int (*)(const void *, const void *));
+void qsort_r(void *, size_t, size_t, void *,
+     int (*)(void *, const void *, const void *));
+int radixsort(const unsigned char **, int, const unsigned char *,
+     unsigned);
+void setprogname(const char *);
+int sradixsort(const unsigned char **, int, const unsigned char *,
+     unsigned);
+void sranddev(void);
+void srandomdev(void);
+void *reallocf(void *, size_t);
+
+long long
+  strtoq(const char *, char **, int);
+unsigned long long
+  strtouq(const char *, char **, int);
+
+extern char *suboptarg;
+void *valloc(size_t);
+
+
+
+
+
+
+
+# 24 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c" 2
+# 51 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+typedef signed char flex_int8_t;
+typedef short int flex_int16_t;
+typedef int flex_int32_t;
+typedef unsigned char flex_uint8_t;
+typedef unsigned short int flex_uint16_t;
+typedef unsigned int flex_uint32_t;
+# 152 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+typedef struct yy_buffer_state *YY_BUFFER_STATE;
+
+
+extern int yyleng;
+
+extern FILE *yyin, *yyout;
+# 188 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+typedef unsigned int yy_size_t;
+
+
+
+
+struct yy_buffer_state
+ {
+ FILE *yy_input_file;
+
+ char *yy_ch_buf;
+ char *yy_buf_pos;
+
+
+
+
+ yy_size_t yy_buf_size;
+
+
+
+
+ int yy_n_chars;
+
+
+
+
+
+ int yy_is_our_buffer;
+
+
+
+
+
+
+ int yy_is_interactive;
+
+
+
+
+
+ int yy_at_bol;
+
+    int yy_bs_lineno;
+    int yy_bs_column;
+
+
+
+
+ int yy_fill_buffer;
+
+ int yy_buffer_status;
+# 253 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+ };
+
+
+
+static size_t yy_buffer_stack_top = 0;
+static size_t yy_buffer_stack_max = 0;
+static YY_BUFFER_STATE * yy_buffer_stack = 0;
+# 277 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+static char yy_hold_char;
+static int yy_n_chars;
+int yyleng;
+
+
+static char *yy_c_buf_p = (char *) 0;
+static int yy_init = 0;
+static int yy_start = 0;
+
+
+
+
+static int yy_did_buffer_switch_on_eof;
+
+void yyrestart (FILE *input_file );
+void yy_switch_to_buffer (YY_BUFFER_STATE new_buffer );
+YY_BUFFER_STATE yy_create_buffer (FILE *file,int size );
+void yy_delete_buffer (YY_BUFFER_STATE b );
+void yy_flush_buffer (YY_BUFFER_STATE b );
+void yypush_buffer_state (YY_BUFFER_STATE new_buffer );
+void yypop_buffer_state (void );
+
+static void yyensure_buffer_stack (void );
+static void yy_load_buffer_state (void );
+static void yy_init_buffer (YY_BUFFER_STATE b,FILE *file );
+
+
+
+YY_BUFFER_STATE yy_scan_buffer (char *base,yy_size_t size );
+YY_BUFFER_STATE yy_scan_string (const char *yy_str );
+YY_BUFFER_STATE yy_scan_bytes (const char *bytes,int len );
+
+void *yyalloc (yy_size_t );
+void *yyrealloc (void *,yy_size_t );
+void yyfree (void * );
+# 339 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+typedef unsigned char YY_CHAR;
+
+FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;
+
+typedef int yy_state_type;
+
+extern int yylineno;
+
+int yylineno = 1;
+
+extern char *yytext;
+
+
+static yy_state_type yy_get_previous_state (void );
+static yy_state_type yy_try_NUL_trans (yy_state_type current_state );
+static int yy_get_next_buffer (void );
+static void yy_fatal_error (const char msg[] );
+# 371 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+struct yy_trans_info
+ {
+ flex_int32_t yy_verify;
+ flex_int32_t yy_nxt;
+ };
+static const flex_int16_t yy_accept[30] =
+    { 0,
+        0, 0, 11, 8, 7, 8, 7, 8, 10, 6,
+       10, 2, 10, 4, 5, 8, 8, 2, 3, 2,
+        1, 0, 2, 0, 0, 0, 3, 2, 0
+    } ;
+
+static const flex_int32_t yy_ec[256] =
+    { 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 2, 3,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 4, 1, 1, 1, 1, 1, 1, 5, 1,
+        1, 1, 6, 7, 6, 8, 1, 9, 9, 9,
+        9, 9, 9, 9, 9, 9, 9, 10, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+       11, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 12, 1, 13, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 14, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1
+    } ;
+
+static const flex_int32_t yy_meta[15] =
+    { 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+        1, 1, 1, 1
+    } ;
+
+static const flex_int16_t yy_base[31] =
+    { 0,
+        0, 0, 36, 0, 0, 0, 37, 21, 25, 37,
+       24, 7, 37, 37, 37, 0, 27, 9, 10, 11,
+        0, 25, 14, 24, 20, 19, 18, 17, 37, 23
+    } ;
+
+static const flex_int16_t yy_def[31] =
+    { 0,
+       29, 1, 29, 30, 30, 30, 29, 30, 29, 29,
+       29, 29, 29, 29, 29, 30, 30, 29, 29, 29,
+       30, 29, 29, 29, 29, 29, 29, 29, 0, 29
+    } ;
+
+static const flex_int16_t yy_nxt[52] =
+    { 0,
+        4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+        4, 14, 15, 4, 20, 18, 20, 18, 19, 23,
+       22, 24, 23, 16, 24, 28, 27, 28, 27, 26,
+       25, 21, 19, 18, 17, 29, 3, 29, 29, 29,
+       29, 29, 29, 29, 29, 29, 29, 29, 29, 29,
+       29
+    } ;
+
+static const flex_int16_t yy_chk[52] =
+    { 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 12, 12, 18, 18, 19, 20,
+       19, 20, 23, 30, 23, 28, 27, 26, 25, 24,
+       22, 17, 11, 9, 8, 3, 29, 29, 29, 29,
+       29, 29, 29, 29, 29, 29, 29, 29, 29, 29,
+       29
+    } ;
+
+static yy_state_type yy_last_accepting_state;
+static char *yy_last_accepting_cpos;
+
+extern int yy_flex_debug;
+int yy_flex_debug = 0;
+# 468 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+char *yytext;
+# 1 "/Users/tslarkin/Hermes/Mercury/rules.l"
+# 2 "/Users/tslarkin/Hermes/Mercury/rules.l"
+# 1 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/y.tab.h" 1
+# 41 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/y.tab.h"
+   enum yytokentype {
+     LBRACE = 258,
+     RBRACE = 259,
+     COMMA = 260,
+     NUMBER = 261,
+     PATH = 262
+   };
+# 60 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/y.tab.h"
+typedef union YYSTYPE
+# 21 "/Users/tslarkin/Hermes/Mercury/parse.y"
+{
+ float dval;
+ float *aval;
+ float **mval;
+ char* sval;
+}
+# 70 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/y.tab.h"
+ YYSTYPE;
+
+
+
+
+
+extern YYSTYPE yylval;
+# 3 "/Users/tslarkin/Hermes/Mercury/rules.l" 2
+
+
+# 1 "/usr/include/math.h" 1 3 4
+# 28 "/usr/include/math.h" 3 4
+# 1 "/usr/include/architecture/i386/math.h" 1 3 4
+# 49 "/usr/include/architecture/i386/math.h" 3 4
+ typedef float float_t;
+ typedef double double_t;
+# 83 "/usr/include/architecture/i386/math.h" 3 4
+enum {
+ _FP_NAN = 1,
+ _FP_INFINITE = 2,
+ _FP_ZERO = 3,
+ _FP_NORMAL = 4,
+ _FP_SUBNORMAL = 5,
+ _FP_SUPERNORMAL = 6
+};
+# 117 "/usr/include/architecture/i386/math.h" 3 4
+extern unsigned int __math_errhandling ( void );
+# 137 "/usr/include/architecture/i386/math.h" 3 4
+extern int __fpclassifyf(float );
+extern int __fpclassifyd(double );
+extern int __fpclassify (long double);
+# 172 "/usr/include/architecture/i386/math.h" 3 4
+ static __inline__ int __inline_isfinitef (float ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isfinited (double ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isfinite (long double) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isinff (float ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isinfd (double ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isinf (long double) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isnanf (float ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isnand (double ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isnan (long double) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isnormalf (float ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isnormald (double ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_isnormal (long double) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_signbitf (float ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_signbitd (double ) __attribute__ ((__always_inline__));
+ static __inline__ int __inline_signbit (long double) __attribute__ ((__always_inline__));
+
+ static __inline__ int __inline_isinff( float __x ) { return __builtin_fabsf(__x) == __builtin_inff(); }
+ static __inline__ int __inline_isinfd( double __x ) { return __builtin_fabs(__x) == __builtin_inf(); }
+ static __inline__ int __inline_isinf( long double __x ) { return __builtin_fabsl(__x) == __builtin_infl(); }
+ static __inline__ int __inline_isfinitef( float __x ) { return __x == __x && __builtin_fabsf(__x) != __builtin_inff(); }
+ static __inline__ int __inline_isfinited( double __x ) { return __x == __x && __builtin_fabs(__x) != __builtin_inf(); }
+ static __inline__ int __inline_isfinite( long double __x ) { return __x == __x && __builtin_fabsl(__x) != __builtin_infl(); }
+ static __inline__ int __inline_isnanf( float __x ) { return __x != __x; }
+ static __inline__ int __inline_isnand( double __x ) { return __x != __x; }
+ static __inline__ int __inline_isnan( long double __x ) { return __x != __x; }
+ static __inline__ int __inline_signbitf( float __x ) { union{ float __f; unsigned int __u; }__u; __u.__f = __x; return (int)(__u.__u >> 31); }
+ static __inline__ int __inline_signbitd( double __x ) { union{ double __f; unsigned int __u[2]; }__u; __u.__f = __x; return (int)(__u.__u[1] >> 31); }
+ static __inline__ int __inline_signbit( long double __x ){ union{ long double __ld; struct{ unsigned int __m[2]; short __sexp; }__p; }__u; __u.__ld = __x; return (int) (((unsigned short) __u.__p.__sexp) >> 15); }
+ static __inline__ int __inline_isnormalf( float __x ) { float fabsf = __builtin_fabsf(__x); if( __x != __x ) return 0; return fabsf < __builtin_inff() && fabsf >= 1.17549435e-38F; }
+ static __inline__ int __inline_isnormald( double __x ) { double fabsf = __builtin_fabs(__x); if( __x != __x ) return 0; return fabsf < __builtin_inf() && fabsf >= 2.2250738585072014e-308; }
+ static __inline__ int __inline_isnormal( long double __x ) { long double fabsf = __builtin_fabsl(__x); if( __x != __x ) return 0; return fabsf < __builtin_infl() && fabsf >= 3.36210314311209350626e-4932L; }
+# 262 "/usr/include/architecture/i386/math.h" 3 4
+extern double acos( double );
+extern float acosf( float );
+
+extern double asin( double );
+extern float asinf( float );
+
+extern double atan( double );
+extern float atanf( float );
+
+extern double atan2( double, double );
+extern float atan2f( float, float );
+
+extern double cos( double );
+extern float cosf( float );
+
+extern double sin( double );
+extern float sinf( float );
+
+extern double tan( double );
+extern float tanf( float );
+
+extern double acosh( double );
+extern float acoshf( float );
+
+extern double asinh( double );
+extern float asinhf( float );
+
+extern double atanh( double );
+extern float atanhf( float );
+
+extern double cosh( double );
+extern float coshf( float );
+
+extern double sinh( double );
+extern float sinhf( float );
+
+extern double tanh( double );
+extern float tanhf( float );
+
+extern double exp ( double );
+extern float expf ( float );
+
+extern double exp2 ( double );
+extern float exp2f ( float );
+
+extern double expm1 ( double );
+extern float expm1f ( float );
+
+extern double log ( double );
+extern float logf ( float );
+
+extern double log10 ( double );
+extern float log10f ( float );
+
+extern double log2 ( double );
+extern float log2f ( float );
+
+extern double log1p ( double );
+extern float log1pf ( float );
+
+extern double logb ( double );
+extern float logbf ( float );
+
+extern double modf ( double, double * );
+extern float modff ( float, float * );
+
+extern double ldexp ( double, int );
+extern float ldexpf ( float, int );
+
+extern double frexp ( double, int * );
+extern float frexpf ( float, int * );
+
+extern int ilogb ( double );
+extern int ilogbf ( float );
+
+extern double scalbn ( double, int );
+extern float scalbnf ( float, int );
+
+extern double scalbln ( double, long int );
+extern float scalblnf ( float, long int );
+
+extern double fabs( double );
+extern float fabsf( float );
+
+extern double cbrt( double );
+extern float cbrtf( float );
+
+extern double hypot ( double, double );
+extern float hypotf ( float, float );
+
+extern double pow ( double, double );
+extern float powf ( float, float );
+
+extern double sqrt( double );
+extern float sqrtf( float );
+
+extern double erf( double );
+extern float erff( float );
+
+extern double erfc( double );
+extern float erfcf( float );
+
+extern double lgamma( double );
+extern float lgammaf( float );
+
+extern double tgamma( double );
+extern float tgammaf( float );
+
+extern double ceil ( double );
+extern float ceilf ( float );
+
+extern double floor ( double );
+extern float floorf ( float );
+
+extern double nearbyint ( double );
+extern float nearbyintf ( float );
+
+extern double rint ( double );
+extern float rintf ( float );
+
+extern long int lrint ( double );
+extern long int lrintf ( float );
+
+extern double round ( double );
+extern float roundf ( float );
+
+extern long int lround ( double );
+extern long int lroundf ( float );
+
+
+
+
+    extern long long int llrint ( double );
+    extern long long int llrintf ( float );
+
+    extern long long int llround ( double );
+    extern long long int llroundf ( float );
+
+
+
+extern double trunc ( double );
+extern float truncf ( float );
+
+extern double fmod ( double, double );
+extern float fmodf ( float, float );
+
+extern double remainder ( double, double );
+extern float remainderf ( float, float );
+
+extern double remquo ( double, double, int * );
+extern float remquof ( float, float, int * );
+
+extern double copysign ( double, double );
+extern float copysignf ( float, float );
+
+extern double nan( const char * );
+extern float nanf( const char * );
+
+extern double nextafter ( double, double );
+extern float nextafterf ( float, float );
+
+extern double fdim ( double, double );
+extern float fdimf ( float, float );
+
+extern double fmax ( double, double );
+extern float fmaxf ( float, float );
+
+extern double fmin ( double, double );
+extern float fminf ( float, float );
+
+extern double fma ( double, double, double );
+extern float fmaf ( float, float, float );
+
+extern long double acosl(long double);
+extern long double asinl(long double);
+extern long double atanl(long double);
+extern long double atan2l(long double, long double);
+extern long double cosl(long double);
+extern long double sinl(long double);
+extern long double tanl(long double);
+extern long double acoshl(long double);
+extern long double asinhl(long double);
+extern long double atanhl(long double);
+extern long double coshl(long double);
+extern long double sinhl(long double);
+extern long double tanhl(long double);
+extern long double expl(long double);
+extern long double exp2l(long double);
+extern long double expm1l(long double);
+extern long double logl(long double);
+extern long double log10l(long double);
+extern long double log2l(long double);
+extern long double log1pl(long double);
+extern long double logbl(long double);
+extern long double modfl(long double, long double *);
+extern long double ldexpl(long double, int);
+extern long double frexpl(long double, int *);
+extern int ilogbl(long double);
+extern long double scalbnl(long double, int);
+extern long double scalblnl(long double, long int);
+extern long double fabsl(long double);
+extern long double cbrtl(long double);
+extern long double hypotl(long double, long double);
+extern long double powl(long double, long double);
+extern long double sqrtl(long double);
+extern long double erfl(long double);
+extern long double erfcl(long double);
+extern long double lgammal(long double);
+extern long double tgammal(long double);
+extern long double ceill(long double);
+extern long double floorl(long double);
+extern long double nearbyintl(long double);
+extern long double rintl(long double);
+extern long int lrintl(long double);
+extern long double roundl(long double);
+extern long int lroundl(long double);
+
+
+
+    extern long long int llrintl(long double);
+    extern long long int llroundl(long double);
+
+
+extern long double truncl(long double);
+extern long double fmodl(long double, long double);
+extern long double remainderl(long double, long double);
+extern long double remquol(long double, long double, int *);
+extern long double copysignl(long double, long double);
+extern long double nanl(const char *);
+extern long double nextafterl(long double, long double);
+extern double nexttoward(double, long double);
+extern float nexttowardf(float, long double);
+extern long double nexttowardl(long double, long double);
+extern long double fdiml(long double, long double);
+extern long double fmaxl(long double, long double);
+extern long double fminl(long double, long double);
+extern long double fmal(long double, long double, long double);
+# 507 "/usr/include/architecture/i386/math.h" 3 4
+extern double __inf( void );
+extern float __inff( void );
+extern long double __infl( void );
+extern float __nan( void );
+
+
+extern double j0 ( double );
+
+extern double j1 ( double );
+
+extern double jn ( int, double );
+
+extern double y0 ( double );
+
+extern double y1 ( double );
+
+extern double yn ( int, double );
+
+extern double scalb ( double, double );
+# 543 "/usr/include/architecture/i386/math.h" 3 4
+extern int signgam;
+# 557 "/usr/include/architecture/i386/math.h" 3 4
+extern long int rinttol ( double );
+
+extern long int roundtol ( double );
+# 568 "/usr/include/architecture/i386/math.h" 3 4
+struct exception {
+ int type;
+ char *name;
+ double arg1;
+ double arg2;
+ double retval;
+};
+# 597 "/usr/include/architecture/i386/math.h" 3 4
+extern int finite ( double );
+
+extern double gamma ( double );
+
+
+
+
+extern int matherr ( struct exception * );
+
+
+
+
+
+extern double significand ( double );
+
+
+
+
+extern double drem ( double, double );
+# 29 "/usr/include/math.h" 2 3 4
+# 6 "/Users/tslarkin/Hermes/Mercury/rules.l" 2
+
+unsigned lineno;
+int yywrap();
+
+int yywrap() { return 1; }
+# 482 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+# 490 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+# 1 "/usr/include/unistd.h" 1 3 4
+# 72 "/usr/include/unistd.h" 3 4
+# 1 "/usr/include/sys/unistd.h" 1 3 4
+# 138 "/usr/include/sys/unistd.h" 3 4
+struct accessx_descriptor {
+ unsigned int ad_name_offset;
+ int ad_flags;
+ int ad_pad[2];
+};
+# 73 "/usr/include/unistd.h" 2 3 4
+# 83 "/usr/include/unistd.h" 3 4
+typedef __darwin_gid_t gid_t;
+# 127 "/usr/include/unistd.h" 3 4
+typedef __darwin_useconds_t useconds_t;
+
+
+
+
+
+typedef __darwin_uuid_t uuid_t;
+# 414 "/usr/include/unistd.h" 3 4
+
+
+void _exit(int) __attribute__((__noreturn__));
+int access(const char *, int);
+unsigned int
+  alarm(unsigned int);
+int chdir(const char *);
+int chown(const char *, uid_t, gid_t);
+int close(int) __asm("_" "close" "$UNIX2003");
+size_t confstr(int, char *, size_t) __asm("_" "confstr" "$UNIX2003");
+char *crypt(const char *, const char *);
+char *ctermid(char *);
+int dup(int);
+int dup2(int, int);
+
+void encrypt(char *, int) __asm("_" "encrypt" "$UNIX2003");
+
+
+
+int execl(const char *, const char *, ...);
+int execle(const char *, const char *, ...);
+int execlp(const char *, const char *, ...);
+int execv(const char *, char * const *);
+int execve(const char *, char * const *, char * const *);
+int execvp(const char *, char * const *);
+int fchown(int, uid_t, gid_t);
+int fchdir(int);
+pid_t fork(void);
+long fpathconf(int, int);
+int fsync(int) __asm("_" "fsync" "$UNIX2003");
+int ftruncate(int, off_t);
+char *getcwd(char *, size_t);
+gid_t getegid(void);
+uid_t geteuid(void);
+gid_t getgid(void);
+int getgroups(int, gid_t []);
+long gethostid(void);
+int gethostname(char *, size_t);
+char *getlogin(void);
+int getlogin_r(char *, size_t);
+int getopt(int, char * const [], const char *) __asm("_" "getopt" "$UNIX2003");
+pid_t getpgid(pid_t);
+pid_t getpgrp(void);
+pid_t getpid(void);
+pid_t getppid(void);
+pid_t getsid(pid_t);
+uid_t getuid(void);
+char *getwd(char *);
+int isatty(int);
+int lchown(const char *, uid_t, gid_t) __asm("_" "lchown" "$UNIX2003");
+int link(const char *, const char *);
+int lockf(int, int, off_t) __asm("_" "lockf" "$UNIX2003");
+off_t lseek(int, off_t, int);
+int nice(int) __asm("_" "nice" "$UNIX2003");
+long pathconf(const char *, int);
+int pause(void) __asm("_" "pause" "$UNIX2003");
+int pipe(int [2]);
+ssize_t pread(int, void *, size_t, off_t) __asm("_" "pread" "$UNIX2003");
+ssize_t pwrite(int, const void *, size_t, off_t) __asm("_" "pwrite" "$UNIX2003");
+ssize_t read(int, void *, size_t) __asm("_" "read" "$UNIX2003");
+ssize_t readlink(const char * , char * , size_t);
+int rmdir(const char *);
+int setegid(gid_t);
+int seteuid(uid_t);
+int setgid(gid_t);
+int setpgid(pid_t, pid_t);
+
+pid_t setpgrp(void) __asm("_" "setpgrp" "$UNIX2003");
+
+
+
+int setregid(gid_t, gid_t) __asm("_" "setregid" "$UNIX2003");
+int setreuid(uid_t, uid_t) __asm("_" "setreuid" "$UNIX2003");
+pid_t setsid(void);
+int setuid(uid_t);
+unsigned int
+  sleep(unsigned int) __asm("_" "sleep" "$UNIX2003");
+void swab(const void * , void * , ssize_t);
+int symlink(const char *, const char *);
+void sync(void);
+long sysconf(int);
+pid_t tcgetpgrp(int);
+int tcsetpgrp(int, pid_t);
+int truncate(const char *, off_t);
+char *ttyname(int);
+
+int ttyname_r(int, char *, size_t) __asm("_" "ttyname_r" "$UNIX2003");
+
+
+
+useconds_t
+  ualarm(useconds_t, useconds_t);
+int unlink(const char *);
+int usleep(useconds_t) __asm("_" "usleep" "$UNIX2003");
+pid_t vfork(void);
+ssize_t write(int, const void *, size_t) __asm("_" "write" "$UNIX2003");
+
+extern char *optarg;
+extern int optind, opterr, optopt;
+
+
+# 1 "/usr/include/sys/select.h" 1 3 4
+# 78 "/usr/include/sys/select.h" 3 4
+# 1 "/usr/include/sys/_structs.h" 1 3 4
+# 88 "/usr/include/sys/_structs.h" 3 4
+struct timespec
+{
+ __darwin_time_t tv_sec;
+ long tv_nsec;
+};
+# 183 "/usr/include/sys/_structs.h" 3 4
+
+typedef struct fd_set {
+ __int32_t fds_bits[(((1024) + (((sizeof(__int32_t) * 8)) - 1)) / ((sizeof(__int32_t) * 8)))];
+} fd_set;
+
+
+
+static __inline int
+__darwin_fd_isset(int _n, struct fd_set *_p)
+{
+ return (_p->fds_bits[_n/(sizeof(__int32_t) * 8)] & (1<<(_n % (sizeof(__int32_t) * 8))));
+}
+# 79 "/usr/include/sys/select.h" 2 3 4
+# 87 "/usr/include/sys/select.h" 3 4
+typedef __darwin_time_t time_t;
+
+
+
+
+typedef __darwin_suseconds_t suseconds_t;
+# 134 "/usr/include/sys/select.h" 3 4
+
+
+
+int pselect(int, fd_set * , fd_set * ,
+  fd_set * , const struct timespec * ,
+  const sigset_t * )
+
+
+
+
+
+
+  __asm("_" "pselect" "$UNIX2003")
+
+
+  ;
+
+
+# 1 "/usr/include/sys/_select.h" 1 3 4
+# 39 "/usr/include/sys/_select.h" 3 4
+int select(int, fd_set * , fd_set * ,
+  fd_set * , struct timeval * )
+
+
+
+
+
+
+  __asm("_" "select" "$UNIX2003")
+
+
+  ;
+# 153 "/usr/include/sys/select.h" 2 3 4
+
+
+# 516 "/usr/include/unistd.h" 2 3 4
+
+void _Exit(int) __attribute__((__noreturn__));
+int accessx_np(const struct accessx_descriptor *, size_t, int *, uid_t);
+int acct(const char *);
+int add_profil(char *, size_t, unsigned long, unsigned int);
+void *brk(const void *);
+int chroot(const char *);
+void endusershell(void);
+int execvP(const char *, const char *, char * const *);
+char *fflagstostr(unsigned long);
+int getdtablesize(void);
+int getdomainname(char *, int);
+int getgrouplist(const char *, int, int *, int *);
+mode_t getmode(const void *, mode_t);
+int getpagesize(void) __attribute__((__const__));
+char *getpass(const char *);
+int getpeereid(int, uid_t *, gid_t *);
+int getpgid(pid_t _pid);
+int getsgroups_np(int *, uuid_t);
+int getsid(pid_t _pid);
+char *getusershell(void);
+int getwgroups_np(int *, uuid_t);
+int initgroups(const char *, int);
+int iruserok(unsigned long, int, const char *, const char *);
+int iruserok_sa(const void *, int, int, const char *, const char *);
+int issetugid(void);
+char *mkdtemp(char *);
+int mknod(const char *, mode_t, dev_t);
+int mkstemp(char *);
+int mkstemps(char *, int);
+char *mktemp(char *);
+int nfssvc(int, void *);
+int profil(char *, size_t, unsigned long, unsigned int);
+int pthread_setugid_np(uid_t, gid_t);
+int pthread_getugid_np( uid_t *, gid_t *);
+int rcmd(char **, int, const char *, const char *, const char *, int *);
+int rcmd_af(char **, int, const char *, const char *, const char *, int *,
+  int);
+int reboot(int);
+int revoke(const char *);
+int rresvport(int *);
+int rresvport_af(int *, int);
+int ruserok(const char *, int, const char *, const char *);
+void *sbrk(int);
+int setdomainname(const char *, int);
+int setgroups(int, const gid_t *);
+void sethostid(long);
+int sethostname(const char *, int);
+
+void setkey(const char *) __asm("_" "setkey" "$UNIX2003");
+
+
+
+int setlogin(const char *);
+void *setmode(const char *);
+int setrgid(gid_t);
+int setruid(uid_t);
+int setsgroups_np(int, const uuid_t);
+void setusershell(void);
+int setwgroups_np(int, const uuid_t);
+int strtofflags(char **, unsigned long *, unsigned long *);
+int swapon(const char *);
+int syscall(int, ...);
+int ttyslot(void);
+int undelete(const char *);
+int unwhiteout(const char *);
+void *valloc(size_t);
+
+extern char *suboptarg;
+int getsubopt(char **, char * const *, char **);
+# 597 "/usr/include/unistd.h" 3 4
+int getattrlist(const char*,void*,void*,size_t,unsigned long) __asm("_" "getattrlist" "$UNIX2003");
+int setattrlist(const char*,void*,void*,size_t,unsigned long) __asm("_" "setattrlist" "$UNIX2003");
+int exchangedata(const char*,const char*,unsigned long);
+int getdirentriesattr(int,void*,void*,size_t,unsigned long*,unsigned long*,unsigned long*,unsigned long);
+int searchfs(const char*,void*,void*,unsigned long,unsigned long,void*);
+
+int fsctl(const char *,unsigned long,void*,unsigned long);
+
+
+extern int optreset;
+
+
+
+# 491 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c" 2
+
+
+
+
+
+
+static int yy_init_globals (void );
+# 507 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+extern int yywrap (void );
+
+
+
+    static void yyunput (int c,char *buf_ptr );
+# 526 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+static int input (void );
+# 606 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+extern int yylex (void);
+# 628 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+int yylex (void)
+{
+ register yy_state_type yy_current_state;
+ register char *yy_cp, *yy_bp;
+ register int yy_act;
+# 17 "/Users/tslarkin/Hermes/Mercury/rules.l"
+# 638 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+
+ if ( !(yy_init) )
+  {
+  (yy_init) = 1;
+
+
+
+
+
+  if ( ! (yy_start) )
+   (yy_start) = 1;
+
+  if ( ! yyin )
+   yyin = __stdinp;
+
+  if ( ! yyout )
+   yyout = __stdoutp;
+
+  if ( ! ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) ) {
+   yyensure_buffer_stack ();
+   (yy_buffer_stack)[(yy_buffer_stack_top)] =
+    yy_create_buffer(yyin,16384 );
+  }
+
+  yy_load_buffer_state( );
+  }
+
+ while ( 1 )
+  {
+  yy_cp = (yy_c_buf_p);
+
+
+  *yy_cp = (yy_hold_char);
+
+
+
+
+  yy_bp = yy_cp;
+
+  yy_current_state = (yy_start);
+yy_match:
+  do
+   {
+   register YY_CHAR yy_c = yy_ec[((unsigned int) (unsigned char) *yy_cp)];
+   if ( yy_accept[yy_current_state] )
+    {
+    (yy_last_accepting_state) = yy_current_state;
+    (yy_last_accepting_cpos) = yy_cp;
+    }
+   while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
+    {
+    yy_current_state = (int) yy_def[yy_current_state];
+    if ( yy_current_state >= 30 )
+     yy_c = yy_meta[(unsigned int) yy_c];
+    }
+   yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
+   ++yy_cp;
+   }
+  while ( yy_base[yy_current_state] != 37 );
+
+yy_find_action:
+  yy_act = yy_accept[yy_current_state];
+  if ( yy_act == 0 )
+   {
+   yy_cp = (yy_last_accepting_cpos);
+   yy_current_state = (yy_last_accepting_state);
+   yy_act = yy_accept[yy_current_state];
+   }
+
+  (yytext) = yy_bp; yyleng = (size_t) (yy_cp - yy_bp); (yy_hold_char) = *yy_cp; *yy_cp = '\0'; (yy_c_buf_p) = yy_cp;;
+
+do_action:
+
+  switch ( yy_act )
+ {
+   case 0:
+
+   *yy_cp = (yy_hold_char);
+   yy_cp = (yy_last_accepting_cpos);
+   yy_current_state = (yy_last_accepting_state);
+   goto yy_find_action;
+
+case 1:
+
+# 19 "/Users/tslarkin/Hermes/Mercury/rules.l"
+{
+ yylval.dval = 1.0 / 0.0;
+ return(261);
+}
+ break;
+case 2:
+
+# 24 "/Users/tslarkin/Hermes/Mercury/rules.l"
+{
+ yylval.dval = atof(yytext);
+ return(261);
+}
+ break;
+case 3:
+
+# 29 "/Users/tslarkin/Hermes/Mercury/rules.l"
+{
+ yylval.dval = atof(yytext);
+ return(261);
+}
+ break;
+case 4:
+
+# 34 "/Users/tslarkin/Hermes/Mercury/rules.l"
+return 258;
+ break;
+case 5:
+
+# 35 "/Users/tslarkin/Hermes/Mercury/rules.l"
+return 259;
+ break;
+case 6:
+
+# 36 "/Users/tslarkin/Hermes/Mercury/rules.l"
+return 260;
+ break;
+case 7:
+
+# 37 "/Users/tslarkin/Hermes/Mercury/rules.l"
+;
+ break;
+case 8:
+
+
+# 38 "/Users/tslarkin/Hermes/Mercury/rules.l"
+{
+ yylval.sval = strdup(yytext);
+ return 262;
+}
+ break;
+case 9:
+
+
+# 42 "/Users/tslarkin/Hermes/Mercury/rules.l"
+;
+ break;
+case (11 + 0 + 1):
+# 43 "/Users/tslarkin/Hermes/Mercury/rules.l"
+return (-1);
+ break;
+case 10:
+
+# 44 "/Users/tslarkin/Hermes/Mercury/rules.l"
+(void) fwrite( yytext, yyleng, 1, yyout );
+ break;
+# 789 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+
+ case 11:
+  {
+
+  int yy_amount_of_matched_text = (int) (yy_cp - (yytext)) - 1;
+
+
+  *yy_cp = (yy_hold_char);
+ 
+
+  if ( (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buffer_status == 0 )
+   {
+# 810 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+   (yy_n_chars) = (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_n_chars;
+   (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_input_file = yyin;
+   (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buffer_status = 1;
+   }
+# 822 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+  if ( (yy_c_buf_p) <= &(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[(yy_n_chars)] )
+   {
+   yy_state_type yy_next_state;
+
+   (yy_c_buf_p) = (yytext) + yy_amount_of_matched_text;
+
+   yy_current_state = yy_get_previous_state( );
+# 839 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+   yy_next_state = yy_try_NUL_trans( yy_current_state );
+
+   yy_bp = (yytext) + 0;
+
+   if ( yy_next_state )
+    {
+
+    yy_cp = ++(yy_c_buf_p);
+    yy_current_state = yy_next_state;
+    goto yy_match;
+    }
+
+   else
+    {
+    yy_cp = (yy_c_buf_p);
+    goto yy_find_action;
+    }
+   }
+
+  else switch ( yy_get_next_buffer( ) )
+   {
+   case 1:
+    {
+    (yy_did_buffer_switch_on_eof) = 0;
+
+    if ( yywrap( ) )
+     {
+# 875 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+     (yy_c_buf_p) = (yytext) + 0;
+
+     yy_act = (11 + (((yy_start) - 1) / 2) + 1);
+     goto do_action;
+     }
+
+    else
+     {
+     if ( ! (yy_did_buffer_switch_on_eof) )
+      yyrestart(yyin );
+     }
+    break;
+    }
+
+   case 0:
+    (yy_c_buf_p) =
+     (yytext) + yy_amount_of_matched_text;
+
+    yy_current_state = yy_get_previous_state( );
+
+    yy_cp = (yy_c_buf_p);
+    yy_bp = (yytext) + 0;
+    goto yy_match;
+
+   case 2:
+    (yy_c_buf_p) =
+    &(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[(yy_n_chars)];
+
+    yy_current_state = yy_get_previous_state( );
+
+    yy_cp = (yy_c_buf_p);
+    yy_bp = (yytext) + 0;
+    goto yy_find_action;
+   }
+  break;
+  }
+
+ default:
+  yy_fatal_error( "fatal flex scanner internal error--no action found" );
+
+ }
+  }
+}
+# 926 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+static int yy_get_next_buffer (void)
+{
+     register char *dest = (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf;
+ register char *source = (yytext);
+ register int number_to_move, i;
+ int ret_val;
+
+ if ( (yy_c_buf_p) > &(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[(yy_n_chars) + 1] )
+  yy_fatal_error( "fatal flex scanner internal error--end of buffer missed" );
+
+
+ if ( (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_fill_buffer == 0 )
+  {
+  if ( (yy_c_buf_p) - (yytext) - 0 == 1 )
+   {
+
+
+
+   return 1;
+   }
+
+  else
+   {
+
+
+
+   return 2;
+   }
+  }
+
+
+
+
+ number_to_move = (int) ((yy_c_buf_p) - (yytext)) - 1;
+
+ for ( i = 0; i < number_to_move; ++i )
+  *(dest++) = *(source++);
+
+ if ( (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buffer_status == 2 )
+
+
+
+  (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_n_chars = (yy_n_chars) = 0;
+
+ else
+  {
+   int num_to_read =
+   (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buf_size - number_to_move - 1;
+
+  while ( num_to_read <= 0 )
+   {
+
+
+   YY_BUFFER_STATE b = ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0));
+
+   int yy_c_buf_p_offset =
+    (int) ((yy_c_buf_p) - b->yy_ch_buf);
+
+   if ( b->yy_is_our_buffer )
+    {
+    int new_size = b->yy_buf_size * 2;
+
+    if ( new_size <= 0 )
+     b->yy_buf_size += b->yy_buf_size / 8;
+    else
+     b->yy_buf_size *= 2;
+
+    b->yy_ch_buf = (char *)
+
+     yyrealloc((void *) b->yy_ch_buf,b->yy_buf_size + 2 );
+    }
+   else
+
+    b->yy_ch_buf = 0;
+
+   if ( ! b->yy_ch_buf )
+    yy_fatal_error( "fatal error - scanner input buffer overflow" );
+
+
+   (yy_c_buf_p) = &b->yy_ch_buf[yy_c_buf_p_offset];
+
+   num_to_read = (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buf_size -
+      number_to_move - 1;
+
+   }
+
+  if ( num_to_read > 8192 )
+   num_to_read = 8192;
+
+
+  if ( (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_is_interactive ) { int c = '*'; size_t n; for ( n = 0; n < num_to_read && (c = getc( yyin )) != (-1) && c != '\n'; ++n ) (&(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[number_to_move])[n] = (char) c; if ( c == '\n' ) (&(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[number_to_move])[n++] = (char) c; if ( c == (-1) && ferror( yyin ) ) yy_fatal_error( "input in flex scanner failed" ); (yy_n_chars) = n; } else { (*__error())=0; while ( ((yy_n_chars) = fread((&(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[number_to_move]), 1, num_to_read, yyin))==0 && ferror(yyin)) { if( (*__error()) != 4) { yy_fatal_error( "input in flex scanner failed" ); break; } (*__error())=0; clearerr(yyin); } };
+
+
+  (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_n_chars = (yy_n_chars);
+  }
+
+ if ( (yy_n_chars) == 0 )
+  {
+  if ( number_to_move == 0 )
+   {
+   ret_val = 1;
+   yyrestart(yyin );
+   }
+
+  else
+   {
+   ret_val = 2;
+   (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buffer_status =
+    2;
+   }
+  }
+
+ else
+  ret_val = 0;
+
+ (yy_n_chars) += number_to_move;
+ (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[(yy_n_chars)] = 0;
+ (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[(yy_n_chars) + 1] = 0;
+
+ (yytext) = &(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[0];
+
+ return ret_val;
+}
+
+
+
+    static yy_state_type yy_get_previous_state (void)
+{
+ register yy_state_type yy_current_state;
+ register char *yy_cp;
+
+ yy_current_state = (yy_start);
+
+ for ( yy_cp = (yytext) + 0; yy_cp < (yy_c_buf_p); ++yy_cp )
+  {
+  register YY_CHAR yy_c = (*yy_cp ? yy_ec[((unsigned int) (unsigned char) *yy_cp)] : 1);
+  if ( yy_accept[yy_current_state] )
+   {
+   (yy_last_accepting_state) = yy_current_state;
+   (yy_last_accepting_cpos) = yy_cp;
+   }
+  while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
+   {
+   yy_current_state = (int) yy_def[yy_current_state];
+   if ( yy_current_state >= 30 )
+    yy_c = yy_meta[(unsigned int) yy_c];
+   }
+  yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
+  }
+
+ return yy_current_state;
+}
+
+
+
+
+
+
+    static yy_state_type yy_try_NUL_trans (yy_state_type yy_current_state )
+{
+ register int yy_is_jam;
+     register char *yy_cp = (yy_c_buf_p);
+
+ register YY_CHAR yy_c = 1;
+ if ( yy_accept[yy_current_state] )
+  {
+  (yy_last_accepting_state) = yy_current_state;
+  (yy_last_accepting_cpos) = yy_cp;
+  }
+ while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
+  {
+  yy_current_state = (int) yy_def[yy_current_state];
+  if ( yy_current_state >= 30 )
+   yy_c = yy_meta[(unsigned int) yy_c];
+  }
+ yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
+ yy_is_jam = (yy_current_state == 29);
+
+ return yy_is_jam ? 0 : yy_current_state;
+}
+
+    static void yyunput (int c, register char * yy_bp )
+{
+ register char *yy_cp;
+
+    yy_cp = (yy_c_buf_p);
+
+
+ *yy_cp = (yy_hold_char);
+
+ if ( yy_cp < (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf + 2 )
+  {
+
+  register int number_to_move = (yy_n_chars) + 2;
+  register char *dest = &(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[
+     (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buf_size + 2];
+  register char *source =
+    &(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[number_to_move];
+
+  while ( source > (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf )
+   *--dest = *--source;
+
+  yy_cp += (int) (dest - source);
+  yy_bp += (int) (dest - source);
+  (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_n_chars =
+   (yy_n_chars) = (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buf_size;
+
+  if ( yy_cp < (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf + 2 )
+   yy_fatal_error( "flex scanner push-back overflow" );
+  }
+
+ *--yy_cp = (char) c;
+
+ (yytext) = yy_bp;
+ (yy_hold_char) = *yy_cp;
+ (yy_c_buf_p) = yy_cp;
+}
+
+
+
+
+
+    static int input (void)
+
+
+{
+ int c;
+
+ *(yy_c_buf_p) = (yy_hold_char);
+
+ if ( *(yy_c_buf_p) == 0 )
+  {
+
+
+
+
+  if ( (yy_c_buf_p) < &(yy_buffer_stack)[(yy_buffer_stack_top)]->yy_ch_buf[(yy_n_chars)] )
+
+   *(yy_c_buf_p) = '\0';
+
+  else
+   {
+   int offset = (yy_c_buf_p) - (yytext);
+   ++(yy_c_buf_p);
+
+   switch ( yy_get_next_buffer( ) )
+    {
+    case 2:
+# 1185 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+     yyrestart(yyin );
+
+
+
+    case 1:
+     {
+     if ( yywrap( ) )
+      return 0;
+
+     if ( ! (yy_did_buffer_switch_on_eof) )
+      yyrestart(yyin );
+
+
+
+     return input();
+
+     }
+
+    case 0:
+     (yy_c_buf_p) = (yytext) + offset;
+     break;
+    }
+   }
+  }
+
+ c = *(unsigned char *) (yy_c_buf_p);
+ *(yy_c_buf_p) = '\0';
+ (yy_hold_char) = *++(yy_c_buf_p);
+
+ return c;
+}
+
+
+
+
+
+
+
+    void yyrestart (FILE * input_file )
+{
+
+ if ( ! ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) ){
+        yyensure_buffer_stack ();
+  (yy_buffer_stack)[(yy_buffer_stack_top)] =
+            yy_create_buffer(yyin,16384 );
+ }
+
+ yy_init_buffer(( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)),input_file );
+ yy_load_buffer_state( );
+}
+
+
+
+
+
+    void yy_switch_to_buffer (YY_BUFFER_STATE new_buffer )
+{
+
+
+
+
+
+
+ yyensure_buffer_stack ();
+ if ( ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) == new_buffer )
+  return;
+
+ if ( ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) )
+  {
+
+  *(yy_c_buf_p) = (yy_hold_char);
+  (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buf_pos = (yy_c_buf_p);
+  (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_n_chars = (yy_n_chars);
+  }
+
+ (yy_buffer_stack)[(yy_buffer_stack_top)] = new_buffer;
+ yy_load_buffer_state( );
+
+
+
+
+
+
+ (yy_did_buffer_switch_on_eof) = 1;
+}
+
+static void yy_load_buffer_state (void)
+{
+     (yy_n_chars) = (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_n_chars;
+ (yytext) = (yy_c_buf_p) = (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buf_pos;
+ yyin = (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_input_file;
+ (yy_hold_char) = *(yy_c_buf_p);
+}
+
+
+
+
+
+
+
+    YY_BUFFER_STATE yy_create_buffer (FILE * file, int size )
+{
+ YY_BUFFER_STATE b;
+
+ b = (YY_BUFFER_STATE) yyalloc(sizeof( struct yy_buffer_state ) );
+ if ( ! b )
+  yy_fatal_error( "out of dynamic memory in yy_create_buffer()" );
+
+ b->yy_buf_size = size;
+
+
+
+
+ b->yy_ch_buf = (char *) yyalloc(b->yy_buf_size + 2 );
+ if ( ! b->yy_ch_buf )
+  yy_fatal_error( "out of dynamic memory in yy_create_buffer()" );
+
+ b->yy_is_our_buffer = 1;
+
+ yy_init_buffer(b,file );
+
+ return b;
+}
+
+
+
+
+
+    void yy_delete_buffer (YY_BUFFER_STATE b )
+{
+
+ if ( ! b )
+  return;
+
+ if ( b == ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) )
+  (yy_buffer_stack)[(yy_buffer_stack_top)] = (YY_BUFFER_STATE) 0;
+
+ if ( b->yy_is_our_buffer )
+  yyfree((void *) b->yy_ch_buf );
+
+ yyfree((void *) b );
+}
+
+
+extern int isatty (int );
+
+
+
+
+
+
+    static void yy_init_buffer (YY_BUFFER_STATE b, FILE * file )
+
+{
+ int oerrno = (*__error());
+
+ yy_flush_buffer(b );
+
+ b->yy_input_file = file;
+ b->yy_fill_buffer = 1;
+
+
+
+
+
+    if (b != ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0))){
+        b->yy_bs_lineno = 1;
+        b->yy_bs_column = 0;
+    }
+
+        b->yy_is_interactive = file ? (isatty( fileno(file) ) > 0) : 0;
+
+ (*__error()) = oerrno;
+}
+
+
+
+
+
+    void yy_flush_buffer (YY_BUFFER_STATE b )
+{
+     if ( ! b )
+  return;
+
+ b->yy_n_chars = 0;
+
+
+
+
+
+ b->yy_ch_buf[0] = 0;
+ b->yy_ch_buf[1] = 0;
+
+ b->yy_buf_pos = &b->yy_ch_buf[0];
+
+ b->yy_at_bol = 1;
+ b->yy_buffer_status = 0;
+
+ if ( b == ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) )
+  yy_load_buffer_state( );
+}
+
+
+
+
+
+
+
+void yypush_buffer_state (YY_BUFFER_STATE new_buffer )
+{
+     if (new_buffer == ((void *)0))
+  return;
+
+ yyensure_buffer_stack();
+
+
+ if ( ( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) )
+  {
+
+  *(yy_c_buf_p) = (yy_hold_char);
+  (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_buf_pos = (yy_c_buf_p);
+  (yy_buffer_stack)[(yy_buffer_stack_top)]->yy_n_chars = (yy_n_chars);
+  }
+
+
+ if (( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)))
+  (yy_buffer_stack_top)++;
+ (yy_buffer_stack)[(yy_buffer_stack_top)] = new_buffer;
+
+
+ yy_load_buffer_state( );
+ (yy_did_buffer_switch_on_eof) = 1;
+}
+
+
+
+
+
+void yypop_buffer_state (void)
+{
+     if (!( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)))
+  return;
+
+ yy_delete_buffer(( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) );
+ (yy_buffer_stack)[(yy_buffer_stack_top)] = ((void *)0);
+ if ((yy_buffer_stack_top) > 0)
+  --(yy_buffer_stack_top);
+
+ if (( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0))) {
+  yy_load_buffer_state( );
+  (yy_did_buffer_switch_on_eof) = 1;
+ }
+}
+
+
+
+
+static void yyensure_buffer_stack (void)
+{
+ int num_to_alloc;
+
+ if (!(yy_buffer_stack)) {
+
+
+
+
+
+  num_to_alloc = 1;
+  (yy_buffer_stack) = (struct yy_buffer_state**)yyalloc
+        (num_to_alloc * sizeof(struct yy_buffer_state*)
+        );
+
+  memset((yy_buffer_stack), 0, num_to_alloc * sizeof(struct yy_buffer_state*));
+
+  (yy_buffer_stack_max) = num_to_alloc;
+  (yy_buffer_stack_top) = 0;
+  return;
+ }
+
+ if ((yy_buffer_stack_top) >= ((yy_buffer_stack_max)) - 1){
+
+
+  int grow_size = 8 ;
+
+  num_to_alloc = (yy_buffer_stack_max) + grow_size;
+  (yy_buffer_stack) = (struct yy_buffer_state**)yyrealloc
+        ((yy_buffer_stack),
+        num_to_alloc * sizeof(struct yy_buffer_state*)
+        );
+
+
+  memset((yy_buffer_stack) + (yy_buffer_stack_max), 0, grow_size * sizeof(struct yy_buffer_state*));
+  (yy_buffer_stack_max) = num_to_alloc;
+ }
+}
+
+
+
+
+
+
+
+YY_BUFFER_STATE yy_scan_buffer (char * base, yy_size_t size )
+{
+ YY_BUFFER_STATE b;
+
+ if ( size < 2 ||
+      base[size-2] != 0 ||
+      base[size-1] != 0 )
+
+  return 0;
+
+ b = (YY_BUFFER_STATE) yyalloc(sizeof( struct yy_buffer_state ) );
+ if ( ! b )
+  yy_fatal_error( "out of dynamic memory in yy_scan_buffer()" );
+
+ b->yy_buf_size = size - 2;
+ b->yy_buf_pos = b->yy_ch_buf = base;
+ b->yy_is_our_buffer = 0;
+ b->yy_input_file = 0;
+ b->yy_n_chars = b->yy_buf_size;
+ b->yy_is_interactive = 0;
+ b->yy_at_bol = 1;
+ b->yy_fill_buffer = 0;
+ b->yy_buffer_status = 0;
+
+ yy_switch_to_buffer(b );
+
+ return b;
+}
+# 1524 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+YY_BUFFER_STATE yy_scan_string (const char * yystr )
+{
+
+ return yy_scan_bytes(yystr,strlen(yystr) );
+}
+# 1537 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+YY_BUFFER_STATE yy_scan_bytes (const char * yybytes, int _yybytes_len )
+{
+ YY_BUFFER_STATE b;
+ char *buf;
+ yy_size_t n;
+ int i;
+
+
+ n = _yybytes_len + 2;
+ buf = (char *) yyalloc(n );
+ if ( ! buf )
+  yy_fatal_error( "out of dynamic memory in yy_scan_bytes()" );
+
+ for ( i = 0; i < _yybytes_len; ++i )
+  buf[i] = yybytes[i];
+
+ buf[_yybytes_len] = buf[_yybytes_len+1] = 0;
+
+ b = yy_scan_buffer(buf,n );
+ if ( ! b )
+  yy_fatal_error( "bad buffer in yy_scan_bytes()" );
+
+
+
+
+ b->yy_is_our_buffer = 1;
+
+ return b;
+}
+
+
+
+
+
+static void yy_fatal_error (const char* msg )
+{
+     (void) fprintf( __stderrp, "%s\n", msg );
+ exit( 2 );
+}
+# 1599 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+int yyget_lineno (void)
+{
+
+    return yylineno;
+}
+
+
+
+
+FILE *yyget_in (void)
+{
+        return yyin;
+}
+
+
+
+
+FILE *yyget_out (void)
+{
+        return yyout;
+}
+
+
+
+
+int yyget_leng (void)
+{
+        return yyleng;
+}
+
+
+
+
+
+char *yyget_text (void)
+{
+        return yytext;
+}
+
+
+
+
+
+void yyset_lineno (int line_number )
+{
+
+    yylineno = line_number;
+}
+
+
+
+
+
+
+
+void yyset_in (FILE * in_str )
+{
+        yyin = in_str ;
+}
+
+void yyset_out (FILE * out_str )
+{
+        yyout = out_str ;
+}
+
+int yyget_debug (void)
+{
+        return yy_flex_debug;
+}
+
+void yyset_debug (int bdebug )
+{
+        yy_flex_debug = bdebug ;
+}
+
+static int yy_init_globals (void)
+{
+
+
+
+
+    (yy_buffer_stack) = 0;
+    (yy_buffer_stack_top) = 0;
+    (yy_buffer_stack_max) = 0;
+    (yy_c_buf_p) = (char *) 0;
+    (yy_init) = 0;
+    (yy_start) = 0;
+
+
+
+
+
+
+    yyin = (FILE *) 0;
+    yyout = (FILE *) 0;
+
+
+
+
+
+    return 0;
+}
+
+
+int yylex_destroy (void)
+{
+
+
+ while(( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0))){
+  yy_delete_buffer(( (yy_buffer_stack) ? (yy_buffer_stack)[(yy_buffer_stack_top)] : ((void *)0)) );
+  (yy_buffer_stack)[(yy_buffer_stack_top)] = ((void *)0);
+  yypop_buffer_state();
+ }
+
+
+ yyfree((yy_buffer_stack) );
+ (yy_buffer_stack) = ((void *)0);
+
+
+
+    yy_init_globals( );
+
+    return 0;
+}
+# 1748 "/Users/tslarkin/Hermes/Mercury/build/Hernix.build/Debug/Mercury.build/DerivedSources/rules.yy.c"
+void *yyalloc (yy_size_t size )
+{
+ return (void *) malloc( size );
+}
+
+void *yyrealloc (void * ptr, yy_size_t size )
+{
+
+
+
+
+
+
+
+ return (void *) realloc( (char *) ptr, size );
+}
+
+void yyfree (void * ptr )
+{
+ free( (char *) ptr );
+}
+# 44 "/Users/tslarkin/Hermes/Mercury/rules.l"
+
+
+
+YY_BUFFER_STATE buf_state;
+
+int end_parse()
+{
+ yy_delete_buffer(buf_state);
+ return 0;
+}
+
+
+void setup(const char* buffer)
+{
+ lineno = 0;
+ buf_state = yy_scan_string(buffer);
+}

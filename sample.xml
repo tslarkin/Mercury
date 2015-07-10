@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
+
+<database>
+    <databaseInfo>
+        <version>134481920</version>
+        <UUID>BC2E86D2-8A65-494A-B222-E8896AD02AEC</UUID>
+        <nextObjectID>127</nextObjectID>
+        <metadata>
+            <plist version="1.0">
+                <dict>
+                    <key>NSPersistenceFrameworkVersion</key>
+                    <integer>186</integer>
+                    <key>NSStoreModelVersionHashes</key>
+                    <dict>
+                        <key>HM2DTVDD</key>
+                        <data>
+		sh6B17jrxbXNybfm8ty8YGBNBW1vLMgce1kOg9ilqPo=
+		</data>
+                        <key>HMExpression</key>
+                        <data>
+		Fk7o81d5RsILLZ8PL7IF4JbQLXrmApwxQATldmo2r+k=
+		</data>
+                        <key>HMFile</key>
+                        <data>
+		mHh5fyHtTmTnKw+XJc2/YOMiFPYyIY0Lf3DGzKz+fVI=
+		</data>
+                        <key>HMInput</key>
+                        <data>
+		aCcM7jgHAUIvljcmnzeptLd3VkvL6Y8P/8hKpnYmQX0=
+		</data>
+                        <key>HMInputSplitter</key>
+                        <data>
+		Zy10X7QPkAGrwjECKjieRHxAtaF2U7lVszSpuPNXKEY=
+		</data>
+                        <key>HMLevel</key>
+                        <data>
+		oqUmSaxItLCWm25bRqPRTP27BJFznjNDqY2kA7XN1wY=
+		</data>
+                        <key>HMLookup</key>
+                        <data>
+		KfuKsfiHrKjyoI3IkqS3XPlgWrXfiWuHXLgdd7PcBTM=
+		</data>
+                        <key>HMNode</key>
+                        <data>
+		RLNfmQEXDC6XFt9dTBiJKuMjNzLFZ0mrQoouh9+PdmI=
+		</data>
+                        <key>HMOutput</key>
+                        <data>
+		Yk2j/lhhucTEBly3QCV+7d3SpHDE6T/1MN8gABJ1B/M=
+		</data>
+                        <key>HMPart</key>
+                        <data>
+		BVB9HNecvuM3xGJFoW74dBu1LrTmEnsslEx+67A5HR0=
+		</data>
+                        <key>HMPort</key>
+                        <data>
+		9A1aXoi5iVEe0ukaQG2zh5Tj2E8W1i6c+Q6hErshK8I=
+		</data>
+                        <key>HMTVDD</key>
+                        <data>
+		PnzkJ0Bk0YTOycYSNlqMi3GBEWkFzkRV4qPst8AGZhc=
+		</data>
+                        <key>HMTemplate</key>
+                        <data>
+		FOkvpvghBWFNVx7fgV5sNq6r/agB8IuUF/yHpl5DfOM=
+		</data>
+                    </dict>
+                    <key>NSStoreModelVersionHashesVersion</key>
+                    <integer>3</integer>
+                    <key>NSStoreModelVersionIdentifiers</key>
+                    <array></array>
+                </dict>
+            </plist>
+        </metadata>
+    </databaseInfo>
+    <object type="HMLEVEL" id="z102">
+        <attribute name="rectstring" type="string">{{0, 0}, {88.8369, 36}}</attribute>
+        <attribute name="isflipped" type="bool">0</attribute>
+        <attribute name="alpha" type="float">0.8500000238418579</attribute>
+        <attribute name="name" type="string">Model</attribute>
+        <relationship name="parent" type="1/1" destination="HMLEVEL"></relationship>
+        <relationship name="inputs" type="0/0" destination="HMINPUT"></relationship>
+        <relationship name="outputs" type="0/0" destination="HMOUTPUT"></relationship>
+        <relationship name="children" type="0/0" destination="HMPART" idrefs="z119"></relationship>
+    </object>
+    <object type="HMINPUT" id="z103">
+        <attribute name="varid" type="int16">6</attribute>
+        <attribute name="userorder" type="int16">0</attribute>
+        <attribute name="stringvalue" type="string">{0}</attribute>
+        <attribute name="name" type="string">ratein2</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="provider" type="1/1" destination="HMOUTPUT"></relationship>
+    </object>
+    <object type="HMINPUT" id="z104">
+        <attribute name="varid" type="int16">1</attribute>
+        <attribute name="userorder" type="int16">6</attribute>
+        <attribute name="stringvalue" type="string">20</attribute>
+        <attribute name="name" type="string">delaytime2</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="provider" type="1/1" destination="HMOUTPUT"></relationship>
+    </object>
+    <object type="HMOUTPUT" id="z105">
+        <attribute name="recordp" type="bool">0</attribute>
+        <attribute name="varid" type="int16">1</attribute>
+        <attribute name="userorder" type="int16">6</attribute>
+        <attribute name="name" type="string">innerrates2</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="clients" type="0/0" destination="HMINPUT"></relationship>
+    </object>
+    <object type="HMINPUT" id="z106">
+        <attribute name="varid" type="int16">0</attribute>
+        <attribute name="userorder" type="int16">7</attribute>
+        <attribute name="stringvalue" type="string">20</attribute>
+        <attribute name="name" type="string">delaytime1</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="provider" type="1/1" destination="HMOUTPUT"></relationship>
+    </object>
+    <object type="HMOUTPUT" id="z107">
+        <attribute name="recordp" type="bool">0</attribute>
+        <attribute name="varid" type="int16">4</attribute>
+        <attribute name="userorder" type="int16">3</attribute>
+        <attribute name="name" type="string">rateout1</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="clients" type="0/0" destination="HMINPUT"></relationship>
+    </object>
+    <object type="HMOUTPUT" id="z108">
+        <attribute name="recordp" type="bool">0</attribute>
+        <attribute name="varid" type="int16">7</attribute>
+        <attribute name="userorder" type="int16">0</attribute>
+        <attribute name="stringvalue" type="string">0</attribute>
+        <attribute name="name" type="string">totaldead</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="clients" type="0/0" destination="HMINPUT"></relationship>
+    </object>
+    <object type="HMOUTPUT" id="z109">
+        <attribute name="recordp" type="bool">0</attribute>
+        <attribute name="varid" type="int16">0</attribute>
+        <attribute name="userorder" type="int16">7</attribute>
+        <attribute name="name" type="string">innerrates1</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="clients" type="0/0" destination="HMINPUT"></relationship>
+    </object>
+    <object type="HMOUTPUT" id="z110">
+        <attribute name="recordp" type="bool">1</attribute>
+        <attribute name="varid" type="int16">2</attribute>
+        <attribute name="userorder" type="int16">1</attribute>
+        <attribute name="stringvalue" type="string">0</attribute>
+        <attribute name="name" type="string">store</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="clients" type="0/0" destination="HMINPUT"></relationship>
+    </object>
+    <object type="HMOUTPUT" id="z111">
+        <attribute name="recordp" type="bool">0</attribute>
+        <attribute name="varid" type="int16">6</attribute>
+        <attribute name="userorder" type="int16">5</attribute>
+        <attribute name="name" type="string">innerstates</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="clients" type="0/0" destination="HMINPUT"></relationship>
+    </object>
+    <object type="HMINPUT" id="z112">
+        <attribute name="varid" type="int16">4</attribute>
+        <attribute name="userorder" type="int16">2</attribute>
+        <attribute name="stringvalue" type="string">0</attribute>
+        <attribute name="name" type="string">lossrate</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="provider" type="1/1" destination="HMOUTPUT"></relationship>
+    </object>
+    <object type="HMINPUT" id="z113">
+        <attribute name="varid" type="int16">2</attribute>
+        <attribute name="userorder" type="int16">4</attribute>
+        <attribute name="stringvalue" type="string">5</attribute>
+        <attribute name="name" type="string">k1</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="provider" type="1/1" destination="HMOUTPUT"></relationship>
+    </object>
+    <object type="HMINPUT" id="z114">
+        <attribute name="varid" type="int16">3</attribute>
+        <attribute name="userorder" type="int16">3</attribute>
+        <attribute name="stringvalue" type="string">10</attribute>
+        <attribute name="name" type="string">k2</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="provider" type="1/1" destination="HMOUTPUT"></relationship>
+    </object>
+    <object type="HMINPUT" id="z115">
+        <attribute name="varid" type="int16">5</attribute>
+        <attribute name="userorder" type="int16">1</attribute>
+        <attribute name="stringvalue" type="string">{0}</attribute>
+        <attribute name="name" type="string">ratein1</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="provider" type="1/1" destination="HMOUTPUT"></relationship>
+    </object>
+    <object type="HMOUTPUT" id="z116">
+        <attribute name="recordp" type="bool">0</attribute>
+        <attribute name="varid" type="int16">5</attribute>
+        <attribute name="userorder" type="int16">2</attribute>
+        <attribute name="name" type="string">rateout2</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="clients" type="0/0" destination="HMINPUT"></relationship>
+    </object>
+    <object type="HMOUTPUT" id="z117">
+        <attribute name="recordp" type="bool">0</attribute>
+        <attribute name="varid" type="int16">3</attribute>
+        <attribute name="userorder" type="int16">4</attribute>
+        <attribute name="name" type="string">lost</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="clients" type="0/0" destination="HMINPUT"></relationship>
+    </object>
+    <object type="HMINPUT" id="z118">
+        <attribute name="varid" type="int16">7</attribute>
+        <attribute name="userorder" type="int16">5</attribute>
+        <attribute name="stringvalue" type="string">100</attribute>
+        <attribute name="name" type="string">initialvalue</attribute>
+        <relationship name="next" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="previous" type="1/1" destination="HMPORT"></relationship>
+        <relationship name="part" type="1/1" destination="HMPART" idrefs="z119"></relationship>
+        <relationship name="provider" type="1/1" destination="HMOUTPUT"></relationship>
+    </object>
+    <object type="HM2DTVDD" id="z119">
+        <attribute name="rectstring" type="string">{{343.095, 1741.65}, {133.809, 112.701}}</attribute>
+        <attribute name="isflipped" type="bool">0</attribute>
+        <attribute name="alpha" type="float">0.8500000238418579</attribute>
+        <attribute name="name" type="string">2DTVDD</attribute>
+        <relationship name="parent" type="1/1" destination="HMLEVEL" idrefs="z102"></relationship>
+        <relationship name="inputs" type="0/0" destination="HMINPUT" idrefs="z104 z115 z103 z106 z112 z118 z114 z113"></relationship>
+        <relationship name="outputs" type="0/0" destination="HMOUTPUT" idrefs="z110 z108 z117 z105 z111 z107 z116 z109"></relationship>
+    </object>
+</database>
