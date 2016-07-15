@@ -103,7 +103,7 @@ void freeValue(Value *val)
 
 void checkDataType(Value *val, ValueType type)
 {
-	HMPort *thePort = (HMPort*)val->port;
+	HMPort *thePort = (__bridge HMPort*)val->port;
 	if (!typeNames) {
 		typeNames = [NSArray arrayWithObjects: @"undefined", @"error", @"float", @"array", 
 					 @"matrix", @"path", @"lookup", nil];
