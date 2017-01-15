@@ -46,7 +46,7 @@
 		1223D0ED0BC19DF600DB3273 /* HMLookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMLookup.m; sourceTree = "<group>"; tabWidth = 4; };
 		122983330C50E5E9006A29D0 /* HMInputSplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMInputSplitter.h; sourceTree = "<group>"; tabWidth = 4; };
 		122983340C50E5E9006A29D0 /* HMInputSplitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMInputSplitter.m; sourceTree = "<group>"; tabWidth = 4; };
-		123B0B2A0BBD65BE009A5E51 /* Parts.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Parts.plist; path = ../../Hermes/GUI/Parts.plist; sourceTree = SOURCE_ROOT; };
+		123B0B2A0BBD65BE009A5E51 /* Parts.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Parts.plist; path = ../GUI/Parts.plist; sourceTree = SOURCE_ROOT; };
 		124AFAE50B98667F0014D55D /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		1253ACF40BB9C37000845BB7 /* setup.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = setup.xml; sourceTree = "<group>"; };
 		1253ADA10BBA034D00845BB7 /* sample.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = sample.xml; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 			attributes = {
 				LastUpgradeCheck = 0630;
 			};
-			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "Hernix" */;
+			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "Mercury" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -473,7 +473,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "Hernix" */ = {
+		1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "Mercury" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB927908733DD40010E9CD /* Debug */,

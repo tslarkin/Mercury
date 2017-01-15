@@ -204,7 +204,7 @@ Value *sum(Value *v)
 		{
 			float x = 0;
 			float *d = arrayValue(v);
-			for (int i = 0; i < columns(v); i++) {
+			for (int i = 0; i < v->length1; i++) {
 				x+= d[i];
 			}
 			setFloatValue(u, x);
@@ -212,22 +212,95 @@ Value *sum(Value *v)
 			break;
 		case matrixtype:
 		{
-			int rowsv = rows(v), columnsv = columns(v);
-			setZeroArrayValue(u, columnsv);
-			float *c = arrayValue(u);
-			float **d = matrixValue(u);
+			int rowsv = v->length1, columnsv = v->length2;
+            float x = 0;
+			float **d = matrixValue(v);
 			for (int i = 0; i < columnsv; i++) {
-				float x = 0;
 				for (int j = 0; j < rowsv; j++) {
-					x += d[j][i];
+                    float z = d[i][j];
+					x += z;
 				}
-				c[i] = x;
 			}
+            setFloatValue(u, x);
 		}
 		default:
 			break;
 	}
 	return u;
+}
+
+Value *rsum(Value *v)
+{
+    Value *u = next();
+    switch (v->utype) {
+        case floattype:
+            setFloatValue(u, floatValue(v));
+            break;
+        case arraytype:
+        {
+            float x = 0;
+            float *d = arrayValue(v);
+            for (int i = 0; i < v->length1; i++) {
+                x+= d[i];
+            }
+            setFloatValue(u, x);
+        }
+            break;
+        case matrixtype:
+        {
+            int rowsv = v->length1, columnsv = v->length2;
+            setZeroArrayValue(u, rowsv);
+            float *c = arrayValue(u);
+            float **d = matrixValue(v);
+            for (int i = 0; i < rowsv; i++) {
+                float x = 0;
+                for (int j = 0; j < columnsv; j++) {
+                    x += d[j][i];
+                }
+                c[i] = x;
+            }
+        }
+        default:
+            break;
+    }
+    return u;
+}
+
+Value *csum(Value *v)
+{
+    Value *u = next();
+    switch (v->utype) {
+        case floattype:
+            setFloatValue(u, floatValue(v));
+            break;
+        case arraytype:
+        {
+            float x = 0;
+            float *d = arrayValue(v);
+            for (int i = 0; i < v->length1; i++) {
+                x+= d[i];
+            }
+            setFloatValue(u, x);
+        }
+            break;
+        case matrixtype:
+        {
+            int rowsv = v->length1, columnsv = v->length2;
+            setZeroArrayValue(u, columnsv);
+            float *c = arrayValue(u);
+            float **d = matrixValue(v);
+            for (int i = 0; i < columnsv; i++) {
+                float x = 0;
+                for (int j = 0; j < rowsv; j++) {
+                    x += d[i][j];
+                }
+                c[i] = x;
+            }
+        }
+        default:
+            break;
+    }
+    return u;
 }
 
 float *applyArray(double(*func)(double, double), float *a, float *b, int max, int min)
@@ -260,12 +333,12 @@ Value* apply2Matrix(double(*func)(double, double), Value* a, Value* b)
 	long maxRows = fmaxl(rows(a), rows(b));
 	float **am = matrixValue(a);
 	float **bm = matrixValue(b);
-	float **d = malloc(maxRows * sizeof(float*));
-	for (int i = 0; i < maxRows; i++) {
-		if (i < minRows) {
-			d[i] = applyArray(func, am[i], bm[i], maxCols, minCols);
+	float **d = malloc(maxCols * sizeof(float*));
+	for (int i = 0; i < maxCols; i++) {
+		if (i < minCols) {
+			d[i] = applyArray(func, am[i], bm[i], maxRows, minRows);
 		} else {
-			d[i] = calloc(maxCols, sizeof(float));
+			d[i] = calloc(maxRows, sizeof(float));
 		}
 	}
 	setMatrixValue(v, d, maxCols, maxRows);
@@ -606,6 +679,47 @@ NSMutableDictionary *sharedVariables;
 	}
 }
 
+- (NSArray*)otherDependencies
+{
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: @"\\[[A-Za-z][A-Za-z0-9]*\\]"
+                                                                           options:NSRegularExpressionUseUnicodeWordBoundaries
+                                                                             error:&error];
+    NSString *program = [self valueForKey:@"programrpn"];
+    NSArray *matches = [regex matchesInString:program
+                                      options:0
+                                        range:NSMakeRange(0, program.length)];
+    if (matches.count == 0) {
+        return nil;
+    }
+    NSMutableSet *globalNames = [NSMutableSet set];
+    for (NSTextCheckingResult *result in matches) {
+        NSString *gname = [program substringWithRange:result.range];
+        [globalNames addObject:[gname lowercaseString]];
+    }
+    NSMutableSet *inputNames = [NSMutableSet set];
+    for (HMInput *input in inputs) {
+        [inputNames addObject:[[input name] lowercaseString]];
+    }
+    NSMutableSet *outputNames = [NSMutableSet set];
+    for (HMInput *output in outputs) {
+        [outputNames addObject:[[output name] lowercaseString]];
+    }
+    extern NSArray *globals;
+    [globalNames minusSet:inputNames];
+    [globalNames minusSet:outputNames];
+    NSMutableArray *dependencies = [NSMutableArray array];
+    for (NSString *gname in [globalNames allObjects]) {
+        NSInteger index = [globals indexOfObjectPassingTest:^BOOL(HMOutput *obj, NSUInteger idx, BOOL *stop)
+                             {
+                                 return [gname isEqualToString:[[obj name] lowercaseString]];
+                             }];
+        NSAssert(index != NSNotFound, @"Couldn't find global %@", name);
+        [dependencies addObject:globals[index]];
+    }
+    return dependencies;
+}
+
 - (void) disassemble
 {
 	for (int i = 0; i < instructionCount; i++) {
@@ -722,7 +836,15 @@ NSMutableDictionary *sharedVariables;
 				  ip = calloc(1, sizeof(instruction));
 				  ip->opcode = kSum;
 				  [instructions1 addObject:[NSValue valueWithPointer:ip]];
-			} else if ((func = functionSearch(cToken))) {
+            } else if ([token isEqualToString:@"csum"]) {
+                ip = calloc(1, sizeof(instruction));
+                ip->opcode = kCSum;
+                [instructions1 addObject:[NSValue valueWithPointer:ip]];
+            } else if ([token isEqualToString:@"rsum"]) {
+                ip = calloc(1, sizeof(instruction));
+                ip->opcode = kRSum;
+                [instructions1 addObject:[NSValue valueWithPointer:ip]];
+            } else if ((func = functionSearch(cToken))) {
 				  if (func->immediate) {
 						instructionPtr(*f)(symbolTableEntryPtr) = (void*)func->address;
 						ip = f((symbolTableEntryPtr)[self pop]);
@@ -855,91 +977,107 @@ NSString *stringValue(Value *val);
 
 - (void)updateRates
 {
-	  pStore = 0;	
-	  instructionPtr instr;
-	  symbolTableEntryPtr step;
-	  Value *v, *v1, *v2;
-	  double (*f1)(double);
-	  double (*f2)(double a, double b);
-	  
-	  //	if ([[self fullPath] isEqualToString:@"/Environmental Factors/Solar Radiation/Par/Solar Position/SolarTime/"]) {
-	  //		Debugger();
-	  //	}
-	  unsigned long pc = 0;
-	  NSCAssert(tos == 0, @"TOS is not zero before execution.");
-	  while (pc < instructionCount) {
-			instr = instructions[pc];
-			switch (instr->opcode) {
-				  case kPushValue:
-						step = (symbolTableEntryPtr)(instr->data);
-						/*
-						 if (!(step->value->utype > errortype
-						 && step->value->utype < endtype)) {
-						 NSException *ex = [NSException 
-						 exceptionWithName:@"Undefined Variable"
-						 reason:[NSString stringWithFormat:@"Variable \"%s\" is undefined"
-						 " during the evaluation of %@",
-						 step->symbol, [self fullPath]]
-						 userInfo:nil];
-						 [ex raise];
-						 }
-						 */
-						[self push:(void*)(step->value) ];
-						pc++;
-						break;
-				  case kApply1:
-						f1 = (void*)[self pop];
-						v1 = (Value*)[self pop];
-						v = apply1(f1, v1);
-						[self push:v];
-						pc++;
-						break;
-				  case kApply2:
-						f2 = (void*)[self pop];
-						v2 = (Value*)[self pop];
-						v1 = (Value*)[self pop];
-						v = apply2(f2, v1, v2);
-						[self push:v];
-						pc++;
-						break;
-				  case kJump:
-						pc = instr->data;
-						break;
-				  case kIf:
-						v = (Value*)[self pop];
-						if (isFalse(v)) {
-							  pc++;
-						} else {
-							  pc += 2;
-						}
-						break;
-				  case kPushFunc:
-				  {
-						functionPtr fp = (void*)instr->data;
-						[self push:(void*)fp->address];
-						pc++;
-						break;
-						
-				  }
-				  case kSum:
-				  {
-						v1 = (Value*)[self pop];
-						v = sum(v1);
-						[self push:v];
-						pc++;
-						break;
-				  }
-				  case kAssign:
-						[self assign];
-						NSCAssert(tos == 0, @"TOS is not zero after assignment.");
-						pc++;
-						break;
-						
-				  default:
-						break;
-			}
-	  }
-	  NSCAssert(tos == 0, @"TOS is not zero after execution.");
+    pStore = 0;
+    instructionPtr instr;
+    symbolTableEntryPtr step;
+    Value *v, *v1, *v2;
+    double (*f1)(double);
+    double (*f2)(double a, double b);
+    
+    //	if ([[self fullPath] isEqualToString:@"/Environmental Factors/Solar Radiation/Par/Solar Position/SolarTime/"]) {
+    //		Debugger();
+    //	}
+    unsigned long pc = 0;
+    NSCAssert(tos == 0, @"TOS is not zero before execution.");
+    while (pc < instructionCount) {
+        instr = instructions[pc];
+        switch (instr->opcode) {
+            case kPushValue:
+                step = (symbolTableEntryPtr)(instr->data);
+                /*
+                 if (!(step->value->utype > errortype
+                 && step->value->utype < endtype)) {
+                 NSException *ex = [NSException
+                 exceptionWithName:@"Undefined Variable"
+                 reason:[NSString stringWithFormat:@"Variable \"%s\" is undefined"
+                 " during the evaluation of %@",
+                 step->symbol, [self fullPath]]
+                 userInfo:nil];
+                 [ex raise];
+                 }
+                 */
+                [self push:(void*)(step->value) ];
+                pc++;
+                break;
+            case kApply1:
+                f1 = (void*)[self pop];
+                v1 = (Value*)[self pop];
+                v = apply1(f1, v1);
+                [self push:v];
+                pc++;
+                break;
+            case kApply2:
+                f2 = (void*)[self pop];
+                v2 = (Value*)[self pop];
+                v1 = (Value*)[self pop];
+                v = apply2(f2, v1, v2);
+                [self push:v];
+                pc++;
+                break;
+            case kJump:
+                pc = instr->data;
+                break;
+            case kIf:
+                v = (Value*)[self pop];
+                if (isFalse(v)) {
+                    pc++;
+                } else {
+                    pc += 2;
+                }
+                break;
+            case kPushFunc:
+            {
+                functionPtr fp = (void*)instr->data;
+                [self push:(void*)fp->address];
+                pc++;
+                break;
+                
+            }
+            case kSum:
+            {
+                v1 = (Value*)[self pop];
+                v = sum(v1);
+                [self push:v];
+                pc++;
+                break;
+            }
+            case kCSum:
+            {
+                v1 = (Value*)[self pop];
+                v = csum(v1);
+                [self push:v];
+                pc++;
+                break;
+            }
+            case kRSum:
+            {
+                v1 = (Value*)[self pop];
+                v = rsum(v1);
+                [self push:v];
+                pc++;
+                break;
+            }
+            case kAssign:
+                [self assign];
+                NSCAssert(tos == 0, @"TOS is not zero after assignment.");
+                pc++;
+                break;
+                
+            default:
+                break;
+        }
+    }
+    NSCAssert(tos == 0, @"TOS is not zero after execution.");
 }
 
 

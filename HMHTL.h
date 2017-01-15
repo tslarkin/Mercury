@@ -13,7 +13,7 @@
 @class HMPort;
 
 typedef enum {
-	kPushValue, kApply1, kApply2, kJump, kIf, kPushFunc, kSum, kAssign
+	kPushValue, kApply1, kApply2, kJump, kIf, kPushFunc, kSum, kAssign, kRSum, kCSum
 } opcodeType;
 
 typedef struct {

@@ -12,6 +12,7 @@
 #import "HMOutput.h"
 #import "HMLevel.h"
 #include <math.h>
+#import "Instantiator.h"
 
 long random(void);
 
@@ -94,13 +95,14 @@ extern HMOutput *gTime;
 	tmp = calloc(k, sizeof(float));
 	setArrayValue([self outputValue:tv1_lossrates], tmp, k);
 	tmp = calloc(k, sizeof(float));
+    Value *val;
 	setArrayValue([self outputValue:tv1_translatedout], tmp, k);
-	Value *val;
-	val = [self finalInputValueAt:tv1_inseep];
-	//if (val->utype == undefined) {
-		tmp = calloc(k, sizeof(float));
-		setArrayValue(val, tmp, k);
-	//}
+    val = [self outputValue:tv1_translatedout];
+    NSAssert(val->length1 == k, @"Seep out incorrectly initialized");
+    HMInput *input = [self input:tv1_inseep];
+    if (input == [input finalSource]) {
+        setZeroArrayValue([self inputValue:tv1_inseep], k);
+    }
 	setFloatValue([self outputValue:tv1_rateout], 0);
 	
 //	dispersion = calloc(k, sizeof(float));
@@ -144,9 +146,12 @@ NSString *stringValue(Value *val);
 
 - (void)updateStates
 {
+    bool negativeStateError = false;
 	int k = intValue([self finalInputValueAt:tv1_k]);
 	float ratein = floatValue([self finalInputValueAt:tv1_ratein]);
-	float *seepin = arrayValue([self finalInputValueAt:tv1_inseep]);
+    Value *tmp = [self finalInputValueAt:tv1_inseep];
+    NSAssert(tmp->length1 == k, @"Length of seep-in vector (%d) for %@ not equal to k (%d).", tmp->length1, [self fullPath], k);
+	float *seepin = arrayValue(tmp);
 	float *states = arrayValue([self outputValue:tv1_innerstates]);
 	float *rates = arrayValue([self outputValue:tv1_innerrates]);
 	float *loss = arrayValue([self outputValue:tv1_lossrates]);
@@ -162,19 +167,32 @@ NSString *stringValue(Value *val);
 //
 //			tmp += emigration[j][i];
 //		}
-		
-		factor = ratein + seepin[i] - (rates[i] + loss[i] + seepout[i]);
-//		factor = ratein - (rates[i] + loss[i] - seepout[i]);
-		states[i] += dT * factor;
-        if (states[i] < 0.0 && states[i] > -1.0e-4) {
-            states[i] = 0.0;
+        float totalLoss = rates[i] + loss[i] + seepout[i];
+        if (totalLoss < 0.000001) {
+            totalLoss = 0.0;
         }
-		NSAssert3 ((states[i] >= -1.0e-4) && states[i] < 1.0e10,
-				   @"Error: Negative or infitite state\nComponent:%@, Value: %f\nTime: %@",
-				   [self path], states[i], stringValue([gTime value]));
+		factor = ratein + seepin[i] - totalLoss;
+//		factor = ratein - (rates[i] + loss[i] - seepout[i]);
+        float s = states[i] + dT * factor;
+//		states[i] += dT * factor;
+        NSAssert(!isnan(states[i]), @"State is NAN");
+        if (s < 0.0 /* && states[i] > -1.0e-4 */) {
+            states[i] = 0.0;
+            negativeStateError = true;
+        } else {
+            states[i] = s;
+        }
+//		NSAssert3 ((states[i] >= -1.0e-4) && states[i] < 1.0e10,
+//				   @"Error: Negative or infinite state\nComponent:%@, Value: %f\nTime: %@",
+//				   [self path], states[i], stringValue([gTime value]));
 		ratein = rates[i];
 		store += states[i];
 	}
+    if (negativeStateError) {
+        recordUnderflow(self);
+//        NSLog(@"Error: Negative state\nComponent:%@, \nTime: %@",
+//              [self path], stringValue([gTime value]));
+    }
 	setFloatValue([self outputValue:tv1_store], store);
 }
 
@@ -204,6 +222,8 @@ NSString *stringValue(Value *val);
 	float *states = arrayValue([self outputValue:tv1_innerstates]);
 	float *rates = arrayValue([self outputValue:tv1_innerrates]);
 	float *loss = arrayValue([self outputValue:tv1_lossrates]);
+    Value *val = [self outputValue:tv1_translatedout];
+    NSAssert(val->length1 == k, @"Wrong size for seep out vector, should be %d, really is %d", k, val->length1);
 	float *seepout = arrayValue([self outputValue:tv1_translatedout]);
 	float delaytime = floatValue([self finalInputValueAt:tv1_delaytime]);
 	if (!(delaytime > 0)) {
@@ -219,7 +239,9 @@ NSString *stringValue(Value *val);
 		state = states[i];
 		rates[i] = state * dr;
 		loss[i] = state * lr;
+        NSAssert(!isnan(loss[i]), @"Loss is NAN in %@.", [self fullPath]);
 		seepout[i] = state * sr;
+        NSAssert(!isnan(seepout[i]), @"Seepout is NAN in %@.", [self fullPath]);
 
 		NSAssert3 ((state >= -1.0e-10) && state < 1.0e10,
 				   @"Error: Negative or infinite state\nComponent:%@, Value: %f\nTime: %@", 

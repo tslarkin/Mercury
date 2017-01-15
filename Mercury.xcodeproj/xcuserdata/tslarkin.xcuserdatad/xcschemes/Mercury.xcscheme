@@ -17,27 +17,30 @@
                BlueprintIdentifier = "12051FD80E58C59D000D8508"
                BuildableName = "Mercury"
                BlueprintName = "Mercury"
-               ReferencedContainer = "container:Hernix.xcodeproj">
+               ReferencedContainer = "container:Mercury.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
@@ -46,23 +49,23 @@
             BlueprintIdentifier = "12051FD80E58C59D000D8508"
             BuildableName = "Mercury"
             BlueprintName = "Mercury"
-            ReferencedContainer = "container:Hernix.xcodeproj">
+            ReferencedContainer = "container:Mercury.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/tslarkin/Projects/MesoWest/TMPF2014.crocusxmldoc"
-            isEnabled = "NO">
+            argument = "&quot;/Users/tslarkin/Hermes/Models/CBB 2-29-16/NewCBBrunner.crocusxmldoc&quot;"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
@@ -71,7 +74,7 @@
             BlueprintIdentifier = "12051FD80E58C59D000D8508"
             BuildableName = "Mercury"
             BlueprintName = "Mercury"
-            ReferencedContainer = "container:Hernix.xcodeproj">
+            ReferencedContainer = "container:Mercury.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

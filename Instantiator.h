@@ -14,3 +14,5 @@ NSArray *XMLtoDictionaries(NSString *path);
 HMLevel *partsFromDictionaries(NSArray *dictionaries);
 NSArray *buildMatrix(NSArray *dictionaries, int rows, int columns);
 void wireMatrix(NSArray *matrix);
+void recordUnderflow(HMPart *part);
+void printUnderflowRecords();

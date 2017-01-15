@@ -14,6 +14,7 @@
 -(void)updateRates
 {
 	Value *input = [self finalInputValueAt:0];
+    NSAssert(input, @"Input to splitter %@ is null.", [self fullPath]);
 	copyValue([self outputValue:0], input);
 }
 

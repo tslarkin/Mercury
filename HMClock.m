@@ -10,6 +10,7 @@
 #import "HMClock.h"
 #import "AppController.h"
 #import "HMHTL.h"
+#import "Instantiator.h"
 #if __linux__
 double round(double x);
 #endif
@@ -66,6 +67,7 @@ NSDate *gCurrentDate;
 		gCurrentDate = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:referenceTime];
 		i++;
 	} while (i < end);
+    printUnderflowRecords();
 }
 
 //=========================================================== 

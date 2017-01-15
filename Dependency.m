@@ -62,7 +62,7 @@ BOOL DFSVisit(HMPart *part, NSMutableArray *queue)
 		e = [[part inputs] objectEnumerator];
 	}
 	HMInput *input;
-	BOOL goodVisit;
+	BOOL goodVisit = true;
 	while ((input = [e nextObject])) {
         // if the input is not part of the rate computation, then it has no dependency.
         if (![part isRatePhaseInput:[input varid]]) {
@@ -82,14 +82,29 @@ BOOL DFSVisit(HMPart *part, NSMutableArray *queue)
 		}
 		goodVisit = DFSVisit([source part], queue);
 		if (!goodVisit) {
-			[NSException raise:@"Simulation terminated" format:@"Circular dependency at %@", [[source part] fullPath]];
+//			[NSException raise:@"Simulation terminated" format:@"Circular dependency at %@", [[source part] fullPath]];
+            NSLog(@"Circular dependency at %@", [[source part] fullPath]);
 		}
 	}
+    for (HMOutput *source in [part otherDependencies]) {
+        HMPart *sourcePart = [source part];
+        // if the source is computed during the state phase, then there is no dependency
+        if (![sourcePart isRatePhaseOutput:[source varid]]) {
+            continue;
+        }
+        goodVisit = DFSVisit([source part], queue);
+        if (!goodVisit) {
+            //			[NSException raise:@"Simulation terminated" format:@"Circular dependency at %@", [[source part] fullPath]];
+            NSLog(@"Circular dependency at %@", [[source part] fullPath]);
+        }
+    }
 	[part setColor:kblack];
 	gClock++;
 	[part setEnd:gClock];
 //	NSLog(@"\%@ is done at %d", part, gClock);
-	[queue addObject:part];
+    if (true) {
+        [queue addObject:part];
+    }
 	return YES;
 }
 
@@ -128,6 +143,10 @@ BOOL DFSVisit(HMPart *part, NSMutableArray *queue)
 	while (part = [e nextObject]) {
 		NSLog(@"%d %@", [part end], part);
 	}
+    NSAssert(p.count == tmp.count, @"Loss during dependency analysis");
+    NSSet *before = [NSSet setWithArray:p];
+    NSSet *after = [NSSet setWithArray:tmp];
+    NSAssert([before isEqualToSet:after], @"Simulation parts changed");
 	return tmp;
 }
 

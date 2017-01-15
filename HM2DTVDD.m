@@ -7,6 +7,12 @@
 //
 
 #import "HM2DTVDD.h"
+#import "Value.h"
+#import "HMInput.h"
+#import "HMOutput.h"
+#import "HMLevel.h"
+#include <math.h>
+#import "Instantiator.h"
 
 enum{
 	tv2_delaytime1,
@@ -33,6 +39,8 @@ enum{
 };
 
 extern float dT;
+extern HMOutput *gTime;
+NSString *stringValue(Value *val);
 
 @implementation HM2DTVDD
 
@@ -77,6 +85,14 @@ extern float dT;
 	setZeroMatrixValue([self outputValue:tv2_lost], k1, k2);
 	setZeroArrayValue([self outputValue:tv2_rateout1], k2);
 	setZeroArrayValue([self outputValue:tv2_rateout2], k1);
+    HMInput *input = [self input:tv2_ratein2];
+    if (input == [input finalSource]) {
+        setZeroArrayValue([self inputValue:tv2_ratein2], k1);
+    }
+    input = [self input:tv2_ratein1];
+    if (input == [input finalSource]) {
+        setZeroArrayValue([self inputValue:tv2_ratein1], k2);
+    }
 	Value *tmp = [self outputValue:tv2_innerstates];
 	matrixValue(tmp)[0][0] = 
 		floatValue([self finalInputValueAt:tv2_initialvalue]);
@@ -160,11 +176,13 @@ extern float dT;
                            coefficient:coef
                                     k1:k1
                                     k2:k2];
-    for(i = 0;i<k2;i++)rateout1[i] = innerrates1[i][k1-1];
     float sum = 0.0;
+    for(i = 0;i<k2;i++) {
+        rateout1[i] = innerrates1[i][k1-1];
+        sum+= rateout1[i];
+    }
     for(i = 0;i<k1;i++){
         rateout2[i] = innerrates2[k2-1][i];
-        sum+= rateout2[i];
     }
     setFloatValue([self outputValue:tv2_totaldead], sum);
 }
@@ -194,18 +212,23 @@ extern float dT;
 
 -(void)updateStates
 {
+    bool negativeStateError = false;
+    int k2 = floatValue([self finalInputValueAt:tv2_k2]),
+    k1 = floatValue([self finalInputValueAt:tv2_k1]);
 	float**innerstates = matrixValue([self outputValue:tv2_innerstates]);
 	float**innerrates1 = matrixValue([self outputValue:tv2_innerrates1]);
 	float**innerrates2 = matrixValue([self outputValue:tv2_innerrates2]);
 	float**lost = matrixValue([self outputValue:tv2_lost]);
-	float*ratein1 = arrayValue([self finalInputValueAt:tv2_ratein1]);
-	float*ratein2 = arrayValue([self finalInputValueAt:tv2_ratein2]);
+    Value *tmp = [self finalInputValueAt:tv2_ratein1];
+    NSAssert(tmp->length1 == k2, @"Length of ratin1 vector (%d) for %@ not equal to k2 (%d) at time %@.", tmp->length1, [self fullPath], k2, stringValue([gTime value]));
+	float*ratein1 = arrayValue(tmp);
+    tmp = [self finalInputValueAt:tv2_ratein2];
+    NSAssert(tmp->length1 == k1, @"Length of ratin2 vector (%d) for %@ not equal to k1 (%d) at time %@.", tmp->length1, [self fullPath], k1, stringValue([gTime value]));
+	float*ratein2 = arrayValue(tmp);
 	float*intop;
 	float rin2;
 	int i,j;
 	float sum = 0.0,y;
-	int k2 = floatValue([self finalInputValueAt:tv2_k2]),
-		k1 = floatValue([self finalInputValueAt:tv2_k1]);
 	unsigned nr1 = [self finalInputValueAt:tv2_ratein1]->length1,
 		nr2 = [self finalInputValueAt:tv2_ratein2]->length1;
 	for(i = 0,intop = ratein2; i<k2; intop = innerrates2[i],i++)
@@ -218,9 +241,16 @@ extern float dT;
 			else rin2 = intop[j];
 			innerstates[i][j]+= dT*(rin2+y-innerrates1[i][j]-innerrates2[i][j]
 									-lost[i][j]);
+            if (innerstates[i][j] < 0.0) {
+                innerstates[i][j] = 0.0;
+                negativeStateError = true;
+            }
 			sum+= innerstates[i][j];
 			y = innerrates1[i][j];
 		}
+    }
+    if (negativeStateError) {
+        recordUnderflow(self);
     }
 	setFloatValue([self outputValue:tv2_store], sum);
 }

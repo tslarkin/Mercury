@@ -16,6 +16,34 @@
 NSArray *globals;
 HMOutput *gTime;
 
+static NSMutableDictionary *underflowErrors = nil;
+
+void recordUnderflow(HMPart *part)
+{
+    if (underflowErrors == nil) {
+        underflowErrors = [[NSMutableDictionary alloc] init];
+    }
+    NSString *key = [part fullPath];
+    NSNumber *count = [underflowErrors objectForKey:key];
+    if (count == nil) {
+        count = [NSNumber numberWithInt:0];
+    }
+    count = [NSNumber numberWithInt: [count integerValue] + 1];
+    [underflowErrors setValue:count forKey:key];
+}
+
+void printUnderflowRecords()
+{
+    NSArray *keys = [underflowErrors allKeys];
+    if (underflowErrors.count == 0) {
+        return;
+    }
+    NSLog(@"Underflow detected in %ld delays.", underflowErrors.count);
+    for (NSString *key in [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
+        printf("%s, %ld\n", [key cStringUsingEncoding:NSUTF8StringEncoding], [[underflowErrors valueForKey:key] integerValue]);
+    }
+}
+
 HMLevel *partsFromDictionaries(NSArray *dictionaries)
 {
 	gTime = [[HMOutput alloc] init];

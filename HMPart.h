@@ -51,6 +51,7 @@ typedef enum{kwhite,kblack,kgray}Color;
 
 - (NSArray *)inputs;
 - (void)setInputs:(NSArray *)anInput;
+- (NSArray *)otherDependencies;
 
 - (Value*)inputValue:(int)index;
 - (Value*)outputValue:(int)index;

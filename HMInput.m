@@ -94,8 +94,8 @@ extern NSArray *globals;
 			link = (HMInput*)[link previous];
 		}
 	}
-//	HMPort *tmp = [self finalSource];
-//	NSAssert([tmp value] == val, @"Value of final source != final value");
+	HMPort *tmp = [self finalSource];
+	NSAssert([tmp value] == val, @"Value of final source != final value");
 	return val;
 }
 

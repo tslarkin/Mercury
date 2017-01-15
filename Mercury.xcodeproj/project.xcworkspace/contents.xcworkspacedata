@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Hernix.xcodeproj">
+      location = "self:/Users/tslarkin/Hermes/Mercury/Mercury.xcodeproj">
    </FileRef>
 </Workspace>
