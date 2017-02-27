@@ -8,6 +8,7 @@
 
 #import "HMFile.h"
 #import "Parsing.h"
+#import "AppController.h"
 #include <stdlib.h>
 
 float strtof(const char *start, char **end);
@@ -75,8 +76,16 @@ float strtof(const char *start, char **end);
 	[super initialize];
 	NSValue *v = [[self finalInputValues] objectAtIndex:0];
 	Value *val = (Value*)[v pointerValue];
-	char *path = pathValue(val);
+	const char *path = pathValue(val);
 	file = fopen(path, "r");
+    if (!file) {
+        NSString *nspath = [NSString stringWithCString:path encoding:NSUTF8StringEncoding];
+        NSString *filename = [nspath lastPathComponent];
+        extern NSString *defaultDirectory;
+        NSString *otherPath = [NSString stringWithFormat:@"%@/%@", defaultDirectory, filename];
+        path = otherPath.UTF8String;
+        file = fopen(path, "r");
+    }
 	if (!file) {
 		NSException *e = [NSException exceptionWithName:@"Simulation aborted"
 												 reason:[NSString stringWithFormat:@"Could not open file %s in part %@", 

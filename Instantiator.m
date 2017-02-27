@@ -12,6 +12,8 @@
 #import "HMLevel.h"
 #import "HMOutput.h"
 #import "HMHTL.h"
+#import "HexMap.h"
+#import "AppController.h"
 
 NSArray *globals;
 HMOutput *gTime;
@@ -58,7 +60,7 @@ HMLevel *partsFromDictionaries(NSArray *dictionaries)
 	NSDictionary *tmp;
 	NSArray *classes = [NSArray arrayWithObjects:@"HMExpression", @"HMTVDD", @"HM2DTVDD", @"HMHTL", 
 		@"HMLevel", @"HMInput", @"HMOutput", @"HMLookup", @"HMFile", @"HMInputSplitter",
-                        @"HMWeather", nil];
+                        @"HMWeather", @"HMRandom", nil];
 	while (partDict = [e nextObject]) {
 		NSString *ucclassname = [partDict valueForKey:@"class"], *class;
 		if ([ucclassname isEqualToString:@"HMTEMPLATE"]) {
@@ -72,6 +74,7 @@ HMLevel *partsFromDictionaries(NSArray *dictionaries)
 		}
 		NSCAssert1(class, @"Couldn't find class for %@", ucclassname);
 		HMNode *part = [[[bundle classNamed:class] alloc] init];
+        [part autorelease];
 		NSString *nodeID = [partDict valueForKey:@"id"];
 		[part setNodeID:nodeID];
 		f = [[partDict valueForKey:@"attributes"] objectEnumerator];
@@ -80,6 +83,7 @@ HMLevel *partsFromDictionaries(NSArray *dictionaries)
             if ([type isEqualToString:@"encodable"]) {
                 NSData *archive = [[NSData alloc] initWithBase64EncodedString:[tmp valueForKey:@"value"]
                                                                    options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                [archive autorelease];
                 NSArray *data = [NSKeyedUnarchiver unarchiveObjectWithData:archive];
                 [part setValue:data forKey:@"data"];
                 
@@ -165,13 +169,23 @@ NSArray *XMLtoDictionaries(NSString *path)
 	NSXMLDocument *doc = [[NSXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path]
 															  options:0 
 																error:&error];
+    [doc autorelease];
+    if (error) {
+        error = nil;
+        NSString *fileName = [path lastPathComponent];
+        extern NSString *defaultDirectory;
+        NSString *modelPath = [NSString stringWithFormat:@"%@/%@", defaultDirectory, fileName];
+        doc = [[NSXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:modelPath]
+                                                   options:0
+                                                     error:&error];
+        [doc autorelease];
+    }
 	if (error) {
 		NSLog(@"Error opening XML document %@", path);
 		return nil;
 	}
 	NSArray *objects = [doc objectsForXQuery:@"database/object" error:&error];
 	// Clang suggests
-	[doc release];
 	NSEnumerator *e = [objects objectEnumerator];
 	NSXMLElement *element;
 	NSMutableArray *model = [NSMutableArray array];
@@ -290,104 +304,57 @@ NSArray *XMLtoDictionaries(NSString *path)
 
 #endif
 
-NSArray *buildMatrix(NSArray *dictionaries, int nRows, int nColumns)
+NSDictionary *buildMatrix(NSArray *dictionaries, int nRows, int nColumns)
 {
-	NSMutableArray *rows = [NSMutableArray array];
-	int i, j;
-	for (i = 0; i < nRows; i++) {
-		NSMutableArray *columns = [NSMutableArray array];
-		for (j = 0;  j < nColumns; j++) {
-			HMLevel *model = partsFromDictionaries(dictionaries);
-			[columns addObject:model];
+    NSMutableDictionary *map = [NSMutableDictionary dictionary];
+    int count = 0;
+	for (int r = 0; r < nRows; r++) {
+        int rOffset = r >> 1;
+		for (int q = -rOffset;  q < (nColumns - rOffset); q++) {
+            HMLevel *model = partsFromDictionaries(dictionaries);
+            Hex *hex = [[Hex alloc] initWithQ:q andR: r];
+            HexTile *tile = [[HexTile alloc] initWithHex:hex andModel:model];
+            [hex autorelease];
+            [tile autorelease];
+            if (map[hex.hashValue]) {
+                [NSException raise:@"Simulation terminated"
+                            format:@"Hash collision during map construction."];
+            }
+			map[hex.hashValue] = tile;
+            count++;
 		}
-		[rows addObject:columns];
 	}
-	return rows;
+	return map;
 }
 
-Direction opposite(Direction d)
+NSInteger opposite(NSInteger d)
 {
-	switch (d) {
-		case north: return south;
-		case south:  return north;
-		case east: return west;
-		case west: return east;
-        	case nDirections: return -1;
-	}
-	return -1;
+    return (d + 3) % 6;
 }
 
-BOOL neighbor(unsigned int x, unsigned int y,
-			  unsigned int maxX, unsigned int maxY,
-			  Direction d,
-			  unsigned int *xNeighbor, unsigned int *yNeighbor)
+void wireMatrix(NSDictionary *map)
 {
-	switch (d) {
-		case north: 
-			y++;
-			break;
-		case south:
-			y--;
-			break;
-		case east:
-			x++;
-			break;
-		case west:
-			x--;
-			break;
-	case nDirections: break;
-	}
-	
-	if (//(x < 0) || (y < 0) ||
-        (x >= maxX) || (y >= maxY)) {
-		return NO;
-	}
-	*yNeighbor = y;
-	*xNeighbor = x;
-	return YES;
-}
-
-
-void wireMatrix(NSArray *matrix)
-{
-	int iRow = 0, iCol;
-	Direction direction;
-	int nRows = [matrix count];
-	int nCols = [[matrix objectAtIndex:0] count];
-	NSEnumerator *e = [matrix objectEnumerator], *f, *g;
-	NSArray *row;
-	HMLevel *model;
-	NSMutableIndexSet *edges;
-	while (row = [e nextObject]) {
-		f = [row objectEnumerator];
-		iCol = 0;
-		while(model = [f nextObject]) {
-			g = [[model flattened] objectEnumerator];
-			HMTVDD *part;
-			while (part = [g nextObject]) {
-				if ([part isMemberOfClass:[HMTVDD class]]) {
-					[part setPosition:NSMakePoint(iCol, iRow)];
-					edges = [NSMutableIndexSet indexSet];
-					NSString *nodeID = [part nodeID];
-					unsigned int yNeighbor, xNeighbor;
-					HMTVDD *twin;
-					for (direction = north; direction < nDirections; direction++) {
-						if (neighbor(iCol, iRow, nCols, nRows, 
-									 direction, &xNeighbor, &yNeighbor)) {
-							[edges addIndex:direction];
-							model = [[matrix objectAtIndex:yNeighbor] objectAtIndex:xNeighbor];
-							twin = (HMTVDD*)[model partWithNodeID:nodeID];
-							[twin setImigration:[part emigrationInDirection:direction]
-								  fromDirection:opposite(direction)];
-						}
-					}
-					[part setEdges:edges];
-				}
-			}
-			iCol++;
-		}
-		iRow++;
-	}
+    for (HexTile *tile in map.allValues) {
+        HMLevel *model = tile.model;
+        for (HMTVDD *part in [model flattened]) {
+            if ([part isMemberOfClass:[HMTVDD class]]) {
+                [part setPosition:tile.hex];
+                NSString *nodeID = [part nodeID];
+                HMTVDD *twin;
+                for (int direction = 0; direction < 6; direction++) {
+                    Hex *neighborHex = [tile.hex neighbor:direction];
+                    HexTile *neighbor = map[neighborHex.hashValue];
+                    if (neighbor) {
+                        model = neighbor.model;
+                        twin = (HMTVDD*)[model partWithNodeID:nodeID];
+                        [twin setImmigration:[part emigrationInDirection:direction]
+                              fromDirection:opposite(direction)];
+                    }
+                }
+//                [part setEdges:edges];
+            }
+        }
+    }
 }
 
 

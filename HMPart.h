@@ -21,7 +21,7 @@ typedef enum{kwhite,kblack,kgray}Color;
 	NSArray *inputs;
 	NSArray *outputs;
 	float attraction;
-	NSArray *map;
+	NSDictionary *map;
 	NSArray *finalInputValues;
 	Color color;
 	unsigned begin;
@@ -72,8 +72,8 @@ typedef enum{kwhite,kblack,kgray}Color;
 
 - (void)setInitialValue:(NSString*)valueString forPort:(NSString*)portName;
 
-- (NSArray *)map;
-- (void)setMap:(NSArray *)aMap;
+- (NSDictionary *)map;
+- (void)setMap:(NSDictionary *)aMap;
 
 
 -(BOOL)isRatePhaseInput:(Fixed)i;

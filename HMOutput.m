@@ -13,7 +13,7 @@
 
 - (id)init
 {
-	[super init];
+	self = [super init];
 	value.utype = undefined;
 	value.length1 = value.length2 = 0;
 	value.u.dval = 0.0;

@@ -14,9 +14,12 @@
 #import "Instantiator.h"
 #import "HMStepper.h"
 #import "HMClock.h"
+#import "HexMap.h"
 
 @implementation AppController (XML)
 
+// Read the XML setup file and retrieve the simulation arguments.
+// The pattern, find key and value, is repeated for each argument.
 - (void)getRunParameters:(NSString*)setupPath
 {
 	
@@ -93,6 +96,7 @@
                                                                          options:0
                                                                           locale:nil];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter autorelease];
         dateFormatter.dateFormat = format;
 		date = [dateFormatter dateFromString:[[tmp objectAtIndex:0] stringValue]];
         NSAssert(date, @"Couldn't derive date object from \"%@\"", [[tmp objectAtIndex:0] stringValue]);
@@ -114,7 +118,7 @@
 	[steppers addObject:clock];
 	[clock release];
 	
-	if (([space count] == 1) && ([[space objectAtIndex:0] count] == 1)) {
+	if ([space count] == 1) {
 		NSString *pathName = [self defaultOutputPath];
 		[self setupOutputsFromRecordersUsingPath:pathName];
 	}
@@ -137,6 +141,8 @@
 	}
 }
 
+// Read the output objects (called from getRunParameters). The argument array
+// consists of the root elements of the key "Output".
 - (void)setupOutputsFromXML:(NSArray*)outputs
 {
 	NSEnumerator *e = [outputs objectEnumerator];
@@ -145,8 +151,12 @@
 	while(output = [e nextObject]) {
 		NSArray *tmp;
 		NSString *portName = nil, *partName = nil, *pathName = nil;
+        // Originally, ports were located by partname.portname. This did not work because
+        // there was no guarantee that the pair would be unique. So this was replaced by
+        // specifying the full port path.
 		tmp = [output elementsForName:@"PartName"];
 		if ([tmp count] == 1) {
+            // Found the old style specification
 			partName = [[tmp objectAtIndex:0] stringValue];
 			tmp = [output elementsForName:@"PortName"];
 			if ([tmp count] != 1) {
@@ -155,6 +165,7 @@
 			}
 			portName = [[tmp objectAtIndex:0] stringValue];
 		} else {
+            // Found the new style specification
 			tmp = [output elementsForName:@"PortPath"];
 			if ([tmp count] != 1) {
 				[NSException raise:@"Simulation terminated" 
@@ -162,6 +173,7 @@
 			}
 			pathName = [[tmp lastObject] stringValue];
 			if ([pathName characterAtIndex:0] != '/') {
+                // Not sure how this happens. The port path is not absolute.
 				tmp = [pathName componentsSeparatedByString:@"/"];
 				NSAssert([tmp count] == 2, @"Unrecognized output path");
 				partName = [tmp objectAtIndex:0];
@@ -169,7 +181,8 @@
 				pathName = nil;
 			}
 		}
-				
+        NSString *portPath = pathName;
+        // The output path name is the name of the file to which the output values will be written.
 		tmp = [output elementsForName:@"OutputPathName"];
 		if ([tmp count] != 1) {
 			[NSException raise:@"Simulation terminated" 
@@ -193,7 +206,7 @@
 		}
 		
 		if (pathName) {
-			[self setOutputFile:file forPath:pathName];
+			[self setOutputFile:file forPath:portPath];
 		}
 		else {
 			[self setOutputFile:file ofPort:portName ofPart:partName];
@@ -201,6 +214,7 @@
 	}
 }
 
+// Process stepper initializations (called from getRunParameters).
 - (NSMutableArray*)getSteppers:(NSArray*)stepperxml
 {
 	NSMutableArray *someSteppers = [NSMutableArray array];
@@ -243,24 +257,19 @@
 													  andStop:stop];
 		[stepper setName:[pathName lastPathComponent]];
 		NSMutableArray *inputs = [NSMutableArray array];
-		NSEnumerator *f, *e = [space objectEnumerator];
-		NSArray *row;
-		HMLevel *model;
-		while (row = [e nextObject]) {
-			f = [row objectEnumerator];
-			while (model = [f nextObject]) {
-				pathName = [pathName stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" /"]];
-				pathName = [@"Model/" stringByAppendingString:pathName];
-				NSArray *pathComponents = [pathName componentsSeparatedByString:@"/"];
-				HMPort *port = [model recursiveSearchOnPath:pathComponents
-												  forPortIn:@"inputs"];
-				if (!port) {
-					[NSException raise:@"Simulation terminated" 
-								format:@"Couldn't find stepper port \"%@\"", pathName];
-				}
-				[inputs addObject:port];
-			}
-		}
+        for (HexTile *tile in space.allValues) {
+            HMLevel *model = tile.model;
+            pathName = [pathName stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" /"]];
+            pathName = [@"Model/" stringByAppendingString:pathName];
+            NSArray *pathComponents = [pathName componentsSeparatedByString:@"/"];
+            HMPort *port = [model recursiveSearchOnPath:pathComponents
+                                              forPortIn:@"inputs"];
+            if (!port) {
+                [NSException raise:@"Simulation terminated"
+                            format:@"Couldn't find stepper port \"%@\"", pathName];
+            }
+            [inputs addObject:port];
+        }
 		[stepper setInputs:inputs];
 		[someSteppers addObject:stepper];
 		[stepper release];
@@ -269,6 +278,7 @@
 	return someSteppers;
 }
 
+// Process the input initializations (called from getRunParameters).
 - (void)doInitializations:(NSArray*)inits
 {
 	NSEnumerator *e = [inits objectEnumerator];
@@ -311,7 +321,14 @@
 						format:@"Missing Value in initialization"];
 		}
 		NSString *value = [[tmp objectAtIndex:0] stringValue];
-		HMLevel *model = [[space objectAtIndex:coordinates.y] objectAtIndex:coordinates.x];
+        Hex *hex = [[Hex alloc] initWithX:coordinates.x andY:coordinates.y];
+        [hex autorelease];
+        HexTile *tile = space[hex.hashValue];
+        HMLevel *model = tile.model;
+        if (!model) {
+            [NSException raise:@"Simulation terminated"
+                        format:@"Couldn't find model at %@", NSStringFromPoint(coordinates)];
+        }
 		
 		if (oldStyle) {
 			HMPart *part = [model partWithName:partName];

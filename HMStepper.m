@@ -13,7 +13,7 @@
 
 - (id)initWithStart:(float)astart step:(float)astep andStop:(float)astop
 {
-	[super init];
+	self = [super init];
 	[self setStart:astart];
 	[self setStep:astep];
 	[self setStop:astop];

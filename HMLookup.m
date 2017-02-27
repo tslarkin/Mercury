@@ -30,7 +30,7 @@ enum{lk_output,lk_outputsize};
 	int size2 = size1 - 1; 
 	float minx = lookup[0][0];
 	float maxx = lookup[size1][0];
-	float y;
+	float y = 0.0;
 	
 	if (x == minx) {
 		y = lookup[0][1];

@@ -23,7 +23,7 @@ float *scanArray(const char *s, char **end, int *n)
 	string = [string substringWithRange:NSMakeRange(1, [string length] - 1)];
 	NSArray *numbers = [string componentsSeparatedByString:@","];
 	*n = [numbers count];
-	float *array;
+	float *array = nil;
 	if (*n > 0) {
 		array = malloc(*n * sizeof(float));
 		float *p = array;
@@ -348,7 +348,7 @@ Value* apply2Matrix(double(*func)(double, double), Value* a, Value* b)
 Value* apply2(double(*func)(double, double), Value* a, Value* b)
 {
         if(!func) return (Value*)nil;
-	Value *v, *tmp;
+	Value *v = nil, *tmp;
 	switch (a->utype) {
 		case floattype:
 			switch (b->utype) {
@@ -507,7 +507,7 @@ BOOL isFalse(Value* a)
 			float **aMatrix = matrixValue(a);
 			for (int i = 0; i < nrows; i++) {
 				float *aArray = aMatrix[i];
-				for (int j; j < ncolumns; j++) {
+				for (int j = 0; j < ncolumns; j++) {
 					if (*aArray++ != 0.0) {
 						zero = NO;
 						break;

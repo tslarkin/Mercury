@@ -12,7 +12,7 @@
 
 NSArray *XMLtoDictionaries(NSString *path);
 HMLevel *partsFromDictionaries(NSArray *dictionaries);
-NSArray *buildMatrix(NSArray *dictionaries, int rows, int columns);
-void wireMatrix(NSArray *matrix);
+NSDictionary *buildMatrix(NSArray *dictionaries, int rows, int columns);
+void wireMatrix(NSDictionary *map);
 void recordUnderflow(HMPart *part);
 void printUnderflowRecords();

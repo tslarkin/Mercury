@@ -27,7 +27,7 @@ extern HMOutput *gTime;
 
 
 @implementation HMTVDD
-
+@synthesize position;
 //=========================================================== 
 //  edges 
 //=========================================================== 
@@ -40,7 +40,7 @@ extern HMOutput *gTime;
     if (edges != anEdges) {
         [anEdges retain];
         [edges release];
-        edges = anEdges;
+        edges = anEdges.mutableCopy;
     }
 }
 
@@ -56,8 +56,8 @@ extern HMOutput *gTime;
 		}
 		free(emigration);
 	}
-	if (imigration) {
-		free(imigration);
+	if (immigration) {
+		free(immigration);
 	}
 	freeValue([self outputValue:tv1_innerstates]);
 	freeValue([self outputValue:tv1_innerrates]);
@@ -80,6 +80,9 @@ extern HMOutput *gTime;
 {
 	[super initialize];
 	[self freeMemory];
+    
+    edges = [NSMutableIndexSet indexSet];
+
 	int k = intValue([self finalInputValueAt:tv1_k]);
 	
 	if (k <= 0) {
@@ -105,14 +108,14 @@ extern HMOutput *gTime;
     }
 	setFloatValue([self outputValue:tv1_rateout], 0);
 	
-//	dispersion = calloc(k, sizeof(float));
-//	imigration = calloc(nDirections, sizeof(float*));
-//	emigration = calloc(nDirections, sizeof(float*));
+	dispersion = calloc(k, sizeof(float));
+	immigration = calloc(6, sizeof(float*));
+	emigration = calloc(6, sizeof(float*));
 	int i;
-//	for (i = 0; i < nDirections; i++) {
-//		float *tmp = calloc(k, sizeof(float));
-//		emigration[i] = tmp;
-//	}
+	for (i = 0; i < 6; i++) {
+		float *tmp = calloc(k, sizeof(float));
+		emigration[i] = tmp;
+	}
 	
 	HMInput *initialState = [inputs objectAtIndex:tv1_initialstate];
 	val = [initialState value];
@@ -140,13 +143,15 @@ extern HMOutput *gTime;
 		}
 	}
 	setFloatValue([self outputValue:tv1_store], store);
+    
 }
 
 NSString *stringValue(Value *val);
+extern int gStep;
 
 - (void)updateStates
 {
-    bool negativeStateError = false;
+    int negativeStateError = 0;
 	int k = intValue([self finalInputValueAt:tv1_k]);
 	float ratein = floatValue([self finalInputValueAt:tv1_ratein]);
     Value *tmp = [self finalInputValueAt:tv1_inseep];
@@ -157,28 +162,28 @@ NSString *stringValue(Value *val);
 	float *loss = arrayValue([self outputValue:tv1_lossrates]);
 	float *seepout = arrayValue([self outputValue:tv1_translatedout]);
 	float store = 0.0;
-	int i;
-	for (i = 0; i < k; i++) {
-		float factor;
-//		for (j = 0; j < nDirections; j++) {
-//			if (imigration[j]) {
-//				tmp2 += imigration[j][i];
-//			}
-//
-//			tmp += emigration[j][i];
-//		}
-        float totalLoss = rates[i] + loss[i] + seepout[i];
+    float factor;
+	for (int i = 0; i < k; i++) {
+        float immigrating = 0.0, emigrating = 0.0;
+        for (int j = 0; j < 6; j++) {
+			if ([edges containsIndex:j]) {
+				immigrating += immigration[j][i];
+			}
+			emigrating += emigration[j][i];
+		}
+        float totalLoss = rates[i] + loss[i] + seepout[i] + emigrating;
         if (totalLoss < 0.000001) {
             totalLoss = 0.0;
         }
-		factor = ratein + seepin[i] - totalLoss;
-//		factor = ratein - (rates[i] + loss[i] - seepout[i]);
+		factor = ratein + seepin[i] + immigrating - totalLoss;
         float s = states[i] + dT * factor;
-//		states[i] += dT * factor;
         NSAssert(!isnan(states[i]), @"State is NAN");
         if (s < 0.0 /* && states[i] > -1.0e-4 */) {
+            if (negativeStateError == 0) {
+                printf("%d ", gStep);
+            }
             states[i] = 0.0;
-            negativeStateError = true;
+            negativeStateError = 1;
         } else {
             states[i] = s;
         }
@@ -249,25 +254,31 @@ NSString *stringValue(Value *val);
 	}
 	setFloatValue([self outputValue:tv1_rateout], rates[k - 1]);
 	
-//	float dispersionRate = floatValue([(HMPort*)[inputs objectAtIndex:tv1_dispersion] value]);
-//	dispersionRate = dispersionRate / nDirections;
-//	for (i = 0; i < k; i++) {
-//		state = states[i];
-//		dispersion[i] = state * dispersionRate;
-//	}
-//	float flux;
-//	for(i = 0; i < nDirections; i++) {
-//		for (j = 0; j < k; j++) {
+    float *dispersionRate = 0;
+    val = [self finalInputValueAt:tv1_dispersion];
+    if (val->utype == arraytype) {
+        if (val->length1 != 6) {
+            [NSException raise:@"Simulation terminated"
+                        format:@"Movement vector for %@ not of length 6.", self.fullPath];
+        }
+        dispersionRate = arrayValue(val);
+    }
+	for(int i = 0; i < 6; i++) {
+        float rate = dispersionRate == 0 ? 0.0 : dispersionRate[i];
+		for (int j = 0; j < k; j++) {
+            float flux;
+            flux = states[j] * rate;
 //			if ([edges containsIndex:i]) {
-//				flux = dispersion[j];
+//				flux = states[j] * rate;
 //			} else {
 //				flux = 0.0;
 //			}
-//			emigration[i][j] = flux;
-//		}
-//	}
+			emigration[i][j] = flux;
+		}
+	}
 }
 
+/*
 - (void)computeEmigrationFromAttractions
 {
 	int k = intValue([self finalInputValueAt:tv1_k]);
@@ -354,33 +365,24 @@ NSString *stringValue(Value *val);
 		iRow++;
 	}
 }
+*/
 
-- (float*)emigrationInDirection:(Direction) direction
+- (float*)emigrationInDirection:(NSUInteger) direction
 {
 	return emigration[direction];
 }
 
-- (float*)imigrationFromDirection:(Direction) direction
+- (float*)imigrationFromDirection:(NSUInteger) direction
 {
-	return imigration[direction];
+	return immigration[direction];
 }
 
-- (void)setImigration:(float*)anImigration fromDirection:(Direction)direction
+- (void)setImmigration:(float*)anImigration fromDirection:(NSUInteger)direction
 {
-	imigration[direction] = anImigration;
+    [edges addIndex: direction];
+	immigration[direction] = anImigration;
 }
 
-//=========================================================== 
-//  position 
-//=========================================================== 
-- (NSPoint)position
-{
-    return position;
-}
-- (void)setPosition:(NSPoint)aPosition
-{
-    position = aPosition;
-}
 
 
 @end

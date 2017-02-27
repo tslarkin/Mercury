@@ -32,6 +32,8 @@
 		1205216F0E58D6FE000D8508 /* parse.y in Sources */ = {isa = PBXBuildFile; fileRef = 1253AEBB0BBBF02700845BB7 /* parse.y */; };
 		120521700E58D703000D8508 /* rules.l in Sources */ = {isa = PBXBuildFile; fileRef = 1253AEBC0BBBF02700845BB7 /* rules.l */; };
 		120CB79A1A6329DF005BF04F /* HMWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = 120CB7991A6329DF005BF04F /* HMWeather.m */; };
+		121582881E3D042E00F8B696 /* HMRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 121582871E3D042E00F8B696 /* HMRandom.m */; };
+		127260481E31720600BA3F57 /* HexMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 127260471E31720600BA3F57 /* HexMap.m */; };
 		1274F95010C86204002AFB6A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1274F94F10C86204002AFB6A /* Cocoa.framework */; };
 		12B213930E5C48B3006FFAFC /* Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B213920E5C48B3006FFAFC /* Parsing.m */; };
 /* End PBXBuildFile section */
@@ -42,11 +44,13 @@
 		12051FD90E58C59D000D8508 /* Mercury */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mercury; sourceTree = BUILT_PRODUCTS_DIR; };
 		120CB7981A6329DF005BF04F /* HMWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWeather.h; sourceTree = "<group>"; };
 		120CB7991A6329DF005BF04F /* HMWeather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMWeather.m; sourceTree = "<group>"; };
+		121582861E3D042E00F8B696 /* HMRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMRandom.h; sourceTree = "<group>"; };
+		121582871E3D042E00F8B696 /* HMRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMRandom.m; sourceTree = "<group>"; };
 		1223D0EC0BC19DF600DB3273 /* HMLookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMLookup.h; sourceTree = "<group>"; tabWidth = 4; };
 		1223D0ED0BC19DF600DB3273 /* HMLookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMLookup.m; sourceTree = "<group>"; tabWidth = 4; };
 		122983330C50E5E9006A29D0 /* HMInputSplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMInputSplitter.h; sourceTree = "<group>"; tabWidth = 4; };
 		122983340C50E5E9006A29D0 /* HMInputSplitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMInputSplitter.m; sourceTree = "<group>"; tabWidth = 4; };
-		123B0B2A0BBD65BE009A5E51 /* Parts.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Parts.plist; path = ../GUI/Parts.plist; sourceTree = SOURCE_ROOT; };
+		123B0B2A0BBD65BE009A5E51 /* Parts.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Parts.plist; path = "../Hermes 64-bit/Parts.plist"; sourceTree = SOURCE_ROOT; };
 		124AFAE50B98667F0014D55D /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		1253ACF40BB9C37000845BB7 /* setup.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = setup.xml; sourceTree = "<group>"; };
 		1253ADA10BBA034D00845BB7 /* sample.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = sample.xml; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 		126216EA0BC51ADD007CED79 /* Dependency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dependency.m; sourceTree = "<group>"; };
 		126218770BC551F7007CED79 /* HMFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFile.h; sourceTree = "<group>"; tabWidth = 4; };
 		126218780BC551F7007CED79 /* HMFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMFile.m; sourceTree = "<group>"; tabWidth = 4; };
+		127260461E31720600BA3F57 /* HexMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexMap.h; sourceTree = "<group>"; };
+		127260471E31720600BA3F57 /* HexMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexMap.m; sourceTree = "<group>"; };
 		1274F94F10C86204002AFB6A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		128B3F640E3B851700BF2129 /* HMHTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMHTL.h; sourceTree = "<group>"; tabWidth = 4; };
 		128B3F650E3B851700BF2129 /* HMHTL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMHTL.m; sourceTree = "<group>"; tabWidth = 4; };
@@ -142,6 +148,8 @@
 				08FB7796FE84155DC02AAC07 /* Hernix.m */,
 				12ADF1740B8F1DD3003A1095 /* Instantiator.h */,
 				12ADF1750B8F1DD3003A1095 /* Instantiator.m */,
+				127260461E31720600BA3F57 /* HexMap.h */,
+				127260471E31720600BA3F57 /* HexMap.m */,
 				124AFAE50B98667F0014D55D /* AppController.h */,
 				1253AFAD0BBC07BD00845BB7 /* AppController.m */,
 				12B756C80D709CE6004CD4BA /* XML_procedures.h */,
@@ -204,6 +212,7 @@
 				128C34FF0BB820BC00FC6204 /* HMExpression.mm */,
 				12ADF3450B8F44D7003A1095 /* HMTVDD.h */,
 				12ADF3460B8F44D7003A1095 /* HMTVDD.m */,
+				122983340C50E5E9006A29D0 /* HMInputSplitter.m */,
 				12ADF2270B8F344B003A1095 /* HMLevel.h */,
 				12ADF2280B8F344B003A1095 /* HMLevel.m */,
 				1223D0EC0BC19DF600DB3273 /* HMLookup.h */,
@@ -211,13 +220,14 @@
 				126218770BC551F7007CED79 /* HMFile.h */,
 				126218780BC551F7007CED79 /* HMFile.m */,
 				122983330C50E5E9006A29D0 /* HMInputSplitter.h */,
-				122983340C50E5E9006A29D0 /* HMInputSplitter.m */,
 				12ED98C40D65261800620655 /* HM2DTVDD.h */,
 				12ED98C50D65261800620655 /* HM2DTVDD.m */,
 				128B3F640E3B851700BF2129 /* HMHTL.h */,
 				128B3F650E3B851700BF2129 /* HMHTL.m */,
 				120CB7981A6329DF005BF04F /* HMWeather.h */,
 				120CB7991A6329DF005BF04F /* HMWeather.m */,
+				121582861E3D042E00F8B696 /* HMRandom.h */,
+				121582871E3D042E00F8B696 /* HMRandom.m */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -301,6 +311,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0630;
+				TargetAttributes = {
+					12051FD80E58C59D000D8508 = {
+						DevelopmentTeam = P5AAYT7AT4;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "Mercury" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -325,6 +342,7 @@
 			files = (
 				12051FE50E58C5BE000D8508 /* AppController.m in Sources */,
 				12051FE90E58C5C4000D8508 /* Dependency.m in Sources */,
+				127260481E31720600BA3F57 /* HexMap.m in Sources */,
 				12051FF00E58C5D5000D8508 /* Hernix.m in Sources */,
 				12051FF10E58C5D6000D8508 /* HM2DTVDD.m in Sources */,
 				12051FF20E58C5D7000D8508 /* HMClock.m in Sources */,
@@ -347,6 +365,7 @@
 				1205200B0E58C5FF000D8508 /* XML_procedures_Linux.m in Sources */,
 				1205216F0E58D6FE000D8508 /* parse.y in Sources */,
 				120521700E58D703000D8508 /* rules.l in Sources */,
+				121582881E3D042E00F8B696 /* HMRandom.m in Sources */,
 				12B213930E5C48B3006FFAFC /* Parsing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +377,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = P5AAYT7AT4;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -367,6 +389,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/bin;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -375,6 +398,9 @@
 				);
 				PRODUCT_NAME = Mercury;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mercury-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -382,14 +408,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = P5AAYT7AT4;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
 				GCC_PFE_FILE_C_DIALECTS = "objective-c c++ objective-c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/bin;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -398,6 +428,8 @@
 				);
 				PRODUCT_NAME = Mercury;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mercury-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -406,12 +438,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = P5AAYT7AT4;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
 				GCC_PFE_FILE_C_DIALECTS = "objective-c c++ objective-c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/bin;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -420,6 +456,8 @@
 				);
 				PRODUCT_NAME = Mercury;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mercury-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = "Release Debug";
 		};
@@ -441,6 +479,7 @@
 			buildSettings = {
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DEBUG=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -451,6 +490,7 @@
 		1DEB927A08733DD40010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_NS_ASSERTIONS = NO;
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_FAST_OBJC_DISPATCH = YES;
@@ -471,7 +511,7 @@
 				12051FDD0E58C59E000D8508 /* Release Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "Mercury" */ = {
 			isa = XCConfigurationList;
@@ -481,7 +521,7 @@
 				128B41C50E3CBA0B00BF2129 /* Release Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

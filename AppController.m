@@ -12,6 +12,7 @@
 #import "Instantiator.h"
 #import "XML_procedures.h"
 #import "HMStepper.h"
+#import "HexMap.h"
 
 float dT;
 BOOL useGCD;
@@ -22,7 +23,7 @@ NSDictionary *gCellListDict = nil;
 
 -(id)init
 {
-	[super init];
+	self = [super init];
 	[self setDt:0.1];
 	[self setWriters:[NSMutableArray array]];
 	[self setOpenFiles:[NSMutableArray array]];
@@ -71,11 +72,11 @@ NSDictionary *gCellListDict = nil;
 //===========================================================
 //  space 
 //=========================================================== 
-- (NSArray *)space
+- (NSDictionary *)space
 {
     return space; 
 }
-- (void)setSpace:(NSArray *)aSpace
+- (void)setSpace:(NSDictionary *)aSpace
 {
     if (space != aSpace) {
         [aSpace retain];
@@ -143,53 +144,58 @@ NSDictionary *gCellListDict = nil;
     [[self openFiles] removeObject:anOpenFile];
 }
 
+// New style outputs are specified by the full path.
 - (void)setOutputFile:(FILE*)file forPath:(NSString*)path;
 {
-	[self addOpenFile:[NSValue valueWithPointer:file]];
+    NSMutableArray *names = [NSMutableArray array];
+    for (HMStepper *stepper in steppers) {
+        [names addObject:[stepper name]];
+    }
+
+    [names addObject:@"date"];
+    NSString *stepperList = [names componentsJoinedByString:@"\t"];
+    
+    fprintf(file, "*%s", [stepperList cStringUsingEncoding:NSMacOSRomanStringEncoding]);
+    
+    [self addOpenFile:[NSValue valueWithPointer:file]];
 	NSMutableArray *ports = [NSMutableArray array];
 	[writers addObject:ports];
-	NSEnumerator *e = [space objectEnumerator], *f;
-	HMLevel *level;
-	NSArray *tmp;
-	HMPort *port;
-	while (tmp = [e nextObject]) {
-		f = [tmp objectEnumerator];
-		while(level = [f nextObject]) {
-			path = [path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" /"]];
-			path = [@"Model/" stringByAppendingString:path];
-			NSArray *pathComponents = [path componentsSeparatedByString:@"/"];
-			port = [level recursiveSearchOnPath:pathComponents
-											  forPortIn:@"outputs"];
-			if (!port) {
-				[NSException raise:@"Simulation terminated" 
-							format:@"Couldn't find output port [%@]", path];
-			}
-			[ports addObject:port];
-		}
-	}
+    path = [path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" /"]];
+    path = [@"Model/" stringByAppendingString:path];
+    NSArray *pathComponents = [path componentsSeparatedByString:@"/"];
+    for (HexTile *tile in [space allValues]) {
+        HMLevel *level = tile.model;
+        HMPort *port = [level recursiveSearchOnPath:pathComponents
+                                  forPortIn:@"outputs"];
+        if (!port) {
+            [NSException raise:@"Simulation terminated"
+                        format:@"Couldn't find output port [%@]", path];
+        }
+        [ports addObject:port];
+        fprintf(file, "\t%ld,%ld", (long)tile.hex.q, (long)tile.hex.r);
+    }
+    fprintf(file, "\n");
 }
 
+// Old style outputs are specified by part and port name.
 - (void)setOutputFile:(FILE*)file ofPort:(NSString*)portName ofPart:(NSString*)partName
 {
 	
 	[self addOpenFile:[NSValue valueWithPointer:file]];
 	NSMutableArray *ports = [NSMutableArray array];
 	[writers addObject:ports];
-	NSEnumerator *e = [space objectEnumerator], *f;
-	HMLevel *level;
-	NSArray *tmp;
-	HMPort *port;
-	while (tmp = [e nextObject]) {
-		f = [tmp objectEnumerator];
-		while(level = [f nextObject]) {
-			port = [level portWithName:portName ofPart:partName];
-			if (port) {
-				[ports addObject:port];
-			}
-		}
-	}
+    for (HexTile *tile in [space allValues]) {
+        HMLevel *level = tile.model;
+        HMPort *port = [level portWithName:portName ofPart:partName];
+        if (port) {
+            [ports addObject:port];
+        }
+    }
 }
 
+// This is the usual case. The outputs are all written to a single file,
+// one column per output. The stepper valuse are inserted in each row between the date
+// and the output.
 - (void)setupOutputsFromRecordersUsingPath:(NSString*)pathName
 {
 	FILE *file = 0;
@@ -215,7 +221,7 @@ NSDictionary *gCellListDict = nil;
 	[self addOpenFile:[NSValue valueWithPointer:file]];
 	
 	NSMutableArray *recorders = [NSMutableArray array];
-	HMLevel *model = [[space lastObject] lastObject];
+	HMLevel *model = ((HexTile*)([space allValues][0])).model;
 	if (![model isMemberOfClass:[HMLevel class]]) {
 		[NSException raise:@"Simulation terminated" 
 					format:@"Model is not an HMLevel"];
@@ -257,102 +263,71 @@ NSDictionary *gCellListDict = nil;
 	temporaryDirectory = @"~/tmp/";
 	temporaryDirectory = [temporaryDirectory stringByExpandingTildeInPath];
 #endif
-	NSString *pathName = [NSString stringWithFormat:@"%@/Mercury.txt", temporaryDirectory];
+	NSString *pathName = [NSString stringWithFormat:@"%@Mercury.txt", temporaryDirectory];
 	NSLog(@"Writing output to \"%@\"", pathName);
 	return pathName;
 }
 
 - (void)awakeModel
 {
-	int m, n;
-	int end1 = [space count], end2 = [[space objectAtIndex:0] count];
-	NSArray *row;
-	HMLevel *model;
-	for (m = 0; m < end1; m++) {
-		row = [space objectAtIndex:m];
-		for (n = 0; n < end2; n++) {
-			model = [row objectAtIndex:n];
-			[model awake];
-		}
-	}
+    for (HexTile *tile in space.allValues) {
+        [tile.model awake];
+    }
 }
 
 -(void)establishStartDate
 {
     NSTimeInterval realStartDate = [self.startDay timeIntervalSinceReferenceDate];
-    for (NSArray *row in space) {
-        for (HMLevel *model in row) {
-            realStartDate = [model findLatestStartTime:realStartDate];
-        }
+    for (HexTile *tile in space.allValues) {
+        realStartDate = [tile.model findLatestStartTime:realStartDate];
     }
     self.startDay = [NSDate dateWithTimeIntervalSinceReferenceDate:realStartDate];
 }
 
 - (void)initializeModel
 {
-	int m, n;
-	int end1 = [space count], end2 = [[space objectAtIndex:0] count];
-	NSArray *row;
-	HMLevel *model;
-	for (m = 0; m < end1; m++) {
-		row = [space objectAtIndex:m];
-		for (n = 0; n < end2; n++) {
-			model = [row objectAtIndex:n];
-			[model initialize];
-			[model setMap:space];
-		}
-	}
+    for (HexTile *tile in space.allValues) {
+        HMLevel *model = tile.model;
+        [model initialize];
+        [model setMap:space];
+    }
 	wireMatrix(space);	
 }
 
+int gStep;
+
 -(void)runOneSimulationStep:(int)i  atCoordinates:(NSString*)coordinates
 {
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	NSArray *row;
-	HMLevel *model;
-	HMPort *port;
-	int m, n;
-	int end1 = [space count], end2 = [[space objectAtIndex:0] count];
-	
-	for (m = 0; m < end1; m++) {
-		row = [space objectAtIndex:m];
-		for (n = 0; n < end2; n++) {
-			model = [row objectAtIndex:n];
-			[model updateRates];
-			//				[model computeEmigrationFromAttractions];
-		}
-	}
+    gStep = i;
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    NSArray *tiles = space.allValues;
+    for (HexTile *tile in tiles) {
+        [tile.model updateRates];
+        //				[model computeEmigrationFromAttractions];
+    }
 	
 	if ((i % reportStep) == 0) {
-		int end1 = [writers count];
-		for (m = 0; m < end1; m++) {
-			row = [writers objectAtIndex:m];
-			NSValue *value = [openFiles objectAtIndex:m];
-			FILE *file = [value pointerValue];
-			const char *s = [coordinates cStringUsingEncoding:NSMacOSRomanStringEncoding];
-			int end2 = [row count];
-			fprintf(file, "%s", s);
-			for (n = 0; n < end2; n++) {
-				port = [row objectAtIndex:n];
-				fprintf(file, "\t");
-				[port recordValue:file];
-			}
-			
-			fprintf(file, " \n");		
-		}
+        int m = 0;
+        for (NSArray *row in writers) {
+            NSValue *value = [openFiles objectAtIndex:m++];
+            FILE *file = [value pointerValue];
+            const char *s = [coordinates cStringUsingEncoding:NSMacOSRomanStringEncoding];
+            fprintf(file, "%s", s);
+            for (HMPort *port in row) {
+                fprintf(file, "\t");
+                [port recordValue:file];
+            }
+            fprintf(file, "\n");
+        }
 		
 	}
 	
 	struct timeval tv1,tv2;
 	
 	gettimeofday(&tv1, 0);
-	for (m = 0; m < end1; m++) {
-			row = [space objectAtIndex:m];
-			for (n = 0; n < end2; n++) {
-				model = [row objectAtIndex:n];
-				[model updateStates];
-			}
-		}
+    for (HexTile *tile in tiles) {
+        [tile.model updateStates];
+    }
 	gettimeofday(&tv2,0);
 	long diff = ((tv2.tv_sec - tv1.tv_sec) * 1000000 + (tv2.tv_usec - tv1.tv_usec));
 //	NSAssert(diff >= 0, @"Negative time interval");
@@ -361,6 +336,7 @@ NSDictionary *gCellListDict = nil;
 
 }
 
+NSString *defaultDirectory;
 
 - (void)runSimulation:(NSString*)setupPath
 {
@@ -372,6 +348,8 @@ NSDictionary *gCellListDict = nil;
 #if __linux__
 	NS_DURING
 #endif
+        defaultDirectory = [setupPath stringByDeletingLastPathComponent];
+        [defaultDirectory retain];
 		[self getRunParameters:setupPath];
 		[self awakeModel];
         [self establishStartDate];
@@ -400,7 +378,7 @@ NSDictionary *gCellListDict = nil;
 	@finally {
 #endif
 	
-		printf("%d microseconds\n", time);
+		fprintf(stderr, "%d microseconds\n", time);
 //		FILE* f = fopen("/Users/tslarkin/Desktop/time.txt", "a");
 //		fprintf(f, "%d\n", time);
 //		fclose(f);

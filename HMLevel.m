@@ -176,11 +176,12 @@ extern BOOL useGCD;
 	  }
 }
 
-- (NSArray *)map
+- (NSDictionary *)map
 {
     return map; 
 }
-- (void)setMap:(NSArray *)aMap
+
+- (void)setMap:(NSDictionary *)aMap
 {
 	[super setMap:aMap];
 	NSEnumerator *e = [[self children] objectEnumerator];

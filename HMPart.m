@@ -17,7 +17,7 @@
 
 -(id)init
 {
-	[super init];
+	self = [super init];
 	attraction = 0;
 	parent = nil;
 	return self;
@@ -280,11 +280,11 @@
 //=========================================================== 
 //  map 
 //=========================================================== 
-- (NSArray *)map
+- (NSDictionary *)map
 {
     return map; 
 }
-- (void)setMap:(NSArray *)aMap
+- (void)setMap:(NSDictionary *)aMap
 {
     if (map != aMap) {
         [aMap retain];

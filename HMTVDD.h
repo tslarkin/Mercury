@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HMPart.h"
+#import "HexMap.h"
 
 typedef enum {
 	north, east, south, west, nDirections
@@ -15,18 +16,18 @@ typedef enum {
 
 @interface HMTVDD : HMPart {
 	float **emigration;
-	float **imigration;
+	float **immigration;
 	float *dispersion;
-	NSIndexSet *edges;
-	NSPoint position;
+	NSMutableIndexSet *edges;
 }
+@property (strong) Hex *position;
 
-- (float*)emigrationInDirection:(Direction) direction;
-- (float*)imigrationFromDirection:(Direction) direction;
-- (void)setImigration:(float*)imigration fromDirection:(Direction)direction;
+- (float*)emigrationInDirection:(NSUInteger) direction;
+- (float*)imigrationFromDirection:(NSUInteger) direction;
+- (void)setImmigration:(float*)immigration fromDirection:(NSUInteger)direction;
 - (NSIndexSet *)edges;
 - (void)setEdges:(NSIndexSet *)anEdges;
-- (NSPoint)position;
-- (void)setPosition:(NSPoint)aPosition;
+- (Hex*)position;
+- (void)setPosition:(Hex*)aPosition;
 
 @end

@@ -11,9 +11,17 @@
 
 @class HMPart;
 
-@interface AppController : NSObject {
+@interface AppController : NSObject <NSApplicationDelegate> {
 	double dt;
-	NSArray *space;
+	NSDictionary *space;
+    // The next two are parallel arrays. OpenFiles is an array of FILE* values, each
+    // for one set of outputs. Writers is an array of arrays of outputs; all the outputs
+    // in the second level array write to the same file.
+    // In the usual case, openFiles contains one object, the standard output file, and
+    // writers contains one object, an array of all the recorders in the model.
+    // In the spatial case, each file is the target of a single response variable, and
+    // writers contains an array for each response variable containing all the instances of that response
+    // variable (one per model).
 	NSMutableArray *openFiles;
 	NSMutableArray *writers;
 	int iterations, reportStep;
@@ -35,8 +43,8 @@
 - (NSString*)defaultOutputPath;
 - (void)setupOutputsFromRecordersUsingPath:(NSString*)pathName;
 
-- (NSArray *)space;
-- (void)setSpace:(NSArray *)aSpace;
+- (NSDictionary *)space;
+- (void)setSpace:(NSDictionary *)aSpace;
 
 - (NSMutableArray *)openFiles;
 - (void)setOpenFiles:(NSMutableArray *)anOpenFiles;
