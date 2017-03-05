@@ -16,13 +16,23 @@
 
 typedef enum{kwhite,kblack,kgray}Color;
 
+/*
+ All components inherit from HMPart.
+*/
+
 @interface HMPart : HMNode {
+    // The node's parent.
 	HMNode *parent;
+    // It's inputs and outputs.
 	NSArray *inputs;
 	NSArray *outputs;
+    // Not currently used.
 	float attraction;
+    // The Hermes space.
 	NSDictionary *map;
+    // An array of pointers to Value structs that sit at the far end of the input pipes.
 	NSArray *finalInputValues;
+    // These next three are used by DFSVisit.
 	Color color;
 	unsigned begin;
 	unsigned end;

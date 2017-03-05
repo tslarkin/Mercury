@@ -56,12 +56,13 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "&quot;/Users/tslarkin/Hermes/Models/CBB-1-10-17/Hole Model.crocusxmldoc&quot;"
+            argument = "&quot;/Volumes/Users/tslarkin/Hermes/Models/CBB-1-10-17/Hole Model.crocusxmldoc&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
+            key = ""
             value = ""
             isEnabled = "NO">
          </EnvironmentVariable>

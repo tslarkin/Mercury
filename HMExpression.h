@@ -17,6 +17,9 @@
 class TSymtab;
 class TSymtabNode;
 
+// HMExpressions are obsolete, and are never created by Mercury.
+// In previous versions, the HMHTL inherited from HMExpression.
+// This is no longer the case, so this class can be completely ignored.
 @interface HMExpression : HMPart {
   TExecutor *mExec;
   TSymtab**mvpSymtabs;

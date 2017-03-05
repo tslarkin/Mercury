@@ -11,6 +11,10 @@
 #import <Foundation/Foundation.h>
 
 #import "HMPort.h"
+
+// Read the header file, which will give you most of what you need
+// to know to understand this file.
+
 unsigned int columns(Value *val)
 {
 	return val->length1;
@@ -22,6 +26,7 @@ unsigned int rows(Value *val)
 	return val->length2;
 }
 
+// Convert the value to a string using NSString format methods.
 NSString *stringValue(Value *val)
 {
 	
@@ -101,6 +106,7 @@ void freeValue(Value *val)
 	val->u.dval = 0.0;
 }
 
+// Throw an exception if the value is not of the required type
 void checkDataType(Value *val, ValueType type)
 {
 	HMPort *thePort = (__bridge HMPort*)val->port;
@@ -122,6 +128,7 @@ void checkDataType(Value *val, ValueType type)
 	}
 }
 
+// Getters and setters.
 void setIntValue(Value *val, int d)
 {
 	freeValue(val);
@@ -152,6 +159,7 @@ void setArrayValue(Value *val, float *d, int n)
 	val->u.aval = d;
 }
 
+// Create a n2xn1 matrix of zeros.
 void setZeroMatrixValue(Value *val, int n1, int n2)
 {
 	freeValue(val);

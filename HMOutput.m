@@ -35,6 +35,9 @@
     }
 }
 
+// Follow the previous chain to the end and return the port there.
+// An output of an HMLevel is not the end of the chain.
+// The output of a leaf component is always the end of the chain.
 - (HMPort*)finalSource
 {
 	HMOutput *link = self;
@@ -49,6 +52,7 @@
 	return link;
 }
 
+// Follow the previous chain to the end and return the Value there.
 - (Value*)finalValue
 {
 	HMOutput *link = self;

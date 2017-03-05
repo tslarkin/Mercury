@@ -10,6 +10,7 @@
 #import "HMPort.h"
 
 @interface HMOutput : HMPort {
+    // clients is no longer used.
 	NSArray *clients;
 	NSString *recordp;
 }

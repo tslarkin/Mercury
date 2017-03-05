@@ -12,7 +12,9 @@
 @class HMOutput;
 
 @interface HMInput : HMPort {
-	HMOutput *provider;
+    // provider is no longer set to a non-nil value, even though
+    // it appears in some code.
+ 	HMOutput *provider;
 }
 
 - (HMOutput *)provider;

@@ -8,6 +8,10 @@
 
 #import "HexMap.h"
 
+// The hash function. So far, this is good enough to avoid
+// collisions. It is based on the <reference needed> function.
+// The orginal (hq << 6) has been changed to (hq << 8) to
+// eliminate collisions.
 NSNumber *hexHash(NSInteger r, NSInteger q)
 {
     NSInteger hr = r;
@@ -29,6 +33,7 @@ NSArray *hexDirections;
     [super dealloc];
 }
 
+// Initializer for r-q space.
 -(Hex*)initWithQ:(NSInteger) q andR:(NSInteger)r
 {
     self = [super init];
@@ -39,6 +44,7 @@ NSArray *hexDirections;
     return self;
 }
 
+// Initializer for x-y space.
 -(Hex*)initWithX:(NSInteger)col andY:(NSInteger)row
 {
     self = [super init];
@@ -49,11 +55,13 @@ NSArray *hexDirections;
     return self;
 }
 
+// Return an offset from the hex.
 -(Hex*)add:(Hex*)h
 {
     return [[[Hex alloc] initWithQ:self.q + h.q andR:self.r + h.r] autorelease];
 }
 
+// Get the hex neighbor in one of the six directions.
 -(Hex*)neighbor:(NSInteger)direction
 {
     if (hexDirections == nil) {

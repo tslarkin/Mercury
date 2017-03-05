@@ -12,12 +12,22 @@
 
 @class HMPart;
 
+/*
+ Ports are the places components (parts) connect.
+*/
 @interface HMPort : HMNode {
+    // All output ports have values. Input ports have values if they are unconnected.
 	Value value;
+    // The part that owns the port.
 	HMPart *part;
-	HMPort *next;
+    // next is no longer used.
+    HMPort *next;
+    // The port that connects to this port.
 	HMPort *previous;
+    // The variable ID. This is an index into the list of inputs. This is used
+    // instead of the name, since the user can change the name.
 	int varid;
+    // The ports Value as a string. This is what appears in the Hermes XML file.
 	NSString *stringvalue;
 //	NSNumber *record;
 }
@@ -48,4 +58,5 @@
 
 @end
 
+// Does the port have a name that signals it is a global variable?
 BOOL isGlobal(NSString *symbol);

@@ -11,10 +11,15 @@
 #import <Foundation/Foundation.h>
 #include "HMOutput.h"
 
+
 NSString *stringValue(Value *val);
+// HTL memory is an array of Values, store. pStore is the
+// next location to use. pStore wraps eventually.
 unsigned int pStore;
 const int storeSize = 10000;
 Value *store;
+
+#pragma mark Functions and Operators
 
 float *scanArray(const char *s, char **end, int *n)
 {
@@ -35,6 +40,8 @@ float *scanArray(const char *s, char **end, int *n)
 	return array;
 }
 
+// Scan the string representation of an array, {1, 2, 3, 4}, and return
+// a float* representation.
 void readArrayFromString(Value *v, char *s)
 {
 	int n;
@@ -43,6 +50,7 @@ void readArrayFromString(Value *v, char *s)
 	setArrayValue(v, d, n);
 }
 
+// Read a matrix from a string, {{1, 2, 3}{4,5,6}}, and return a float** representation.
 void readMatrixFromString(Value *v, char *s)
 {
 	char *p = s, *end;
@@ -70,6 +78,7 @@ void readMatrixFromString(Value *v, char *s)
 	setMatrixValue(v, d, N, [arrays count]);
 }
 
+// Get the next memory location.
 Value *next()
 {
 	  Value *v = store + pStore;
@@ -79,6 +88,7 @@ Value *next()
 	  return v;
 }
 
+// Get the next memory location as a float, array, or matrix.
 Value *newFloat()
 {
 	Value *v = next();
@@ -101,6 +111,7 @@ Value *newMatrix(int columns, int rows)
 	return v;
 }
 
+// Wrappers for standard library functions and other operations that return doubles.
 double absf(double a)
 {
 	return fabs(a);
@@ -193,6 +204,10 @@ double not(double a)
 	return !a;
 }
 
+// Functions that return Values.
+// These are generalized to deal with different types and different combinations of types.
+// sum(float) returns float. sum(array) returns the sum of the elements of the array.
+// sum(matrix) returns the sum of the elements of the matrix.
 Value *sum(Value *v)
 {
 	Value *u = next();
@@ -229,6 +244,8 @@ Value *sum(Value *v)
 	return u;
 }
 
+// rsum(float) and rsum(array) are the same as sum(float) and sum(array).
+// rsum(matrix) contains an array of row sums.
 Value *rsum(Value *v)
 {
     Value *u = next();
@@ -265,6 +282,10 @@ Value *rsum(Value *v)
     }
     return u;
 }
+
+// sums of columns.
+// csum(float) and csum(array) are the same as sum(float) and sum(array).
+// csum(matrix) contains an array of column sums.
 
 Value *csum(Value *v)
 {
@@ -303,6 +324,9 @@ Value *csum(Value *v)
     return u;
 }
 
+// Apply a function to two arrays by applying the function to the elements of the
+// array. Return an array of the results. The result array is as long as the
+// longer of the two argument arrays, padded with zeros if one array is shorter.
 float *applyArray(double(*func)(double, double), float *a, float *b, int max, int min)
 {
 	float *d = calloc(max, sizeof(float));
@@ -312,6 +336,7 @@ float *applyArray(double(*func)(double, double), float *a, float *b, int max, in
 	return d;
 }
 
+// A wrapper to call the above function with two Values, returning a Value.
 Value* apply2Array(double(*func)(double, double), Value* a, Value* b)
 {
 	Value *v = next();
@@ -345,9 +370,15 @@ Value* apply2Matrix(double(*func)(double, double), Value* a, Value* b)
 	return v;	
 }
 
+// Evaluate a function that takes two doubles.
+// We need to deal the situation that the Values may be of different types.
+// The values can be any combination of floats, arrays, and matrices.
+// Lower dimension types are promoted to the higher dimension, and then
+// the function is applied element wise, producing a result that is
+// the same type as the higher dimension.
 Value* apply2(double(*func)(double, double), Value* a, Value* b)
 {
-        if(!func) return (Value*)nil;
+    if(!func) return (Value*)nil;
 	Value *v = nil, *tmp;
 	switch (a->utype) {
 		case floattype:
@@ -439,6 +470,8 @@ Value* apply2(double(*func)(double, double), Value* a, Value* b)
 	return v;
 }
 
+// Apply a function that takes a single double.
+// There is no need for promotion.
 Value* apply1(double(*func)(double), Value* a)
 {
 	Value *v = next();
@@ -524,6 +557,7 @@ BOOL isFalse(Value* a)
 	return zero;
 }
 
+// Make a floating point, array, or matrix constant from a string.
 instructionPtr makeFloat(symbolTableEntryPtr step)
 {
 	instructionPtr ip = calloc(1, sizeof(instruction));
@@ -552,6 +586,7 @@ instructionPtr makeArray(symbolTableEntryPtr step)
 	return ip;
 }
 
+// Create function pointers.
 typedef struct {
 	char *name;
 	unsigned long address;
@@ -617,10 +652,13 @@ symbolTableEntryPtr symbolTableEntrySearch(symbolTableEntry ste[], int length, c
 	return (symbolTableEntryPtr)nil;
 }
 
+#pragma mark HMHTL Implementation
+
 @implementation HMHTL
 
 NSMutableDictionary *sharedVariables;
 
+#pragma mark Class methods.
 +(void)initialize
 {
 	  store = calloc(storeSize, sizeof(Value));
@@ -679,24 +717,34 @@ NSMutableDictionary *sharedVariables;
 	}
 }
 
+#pragma mark Instance methods
+// HTLs can have dependencies on global variables ([foo])
+// that do not appear in the input list, and therefore
+// would not be considered during dependency analysis, DFSVisit. This
+// method is used only during dependency analysis.
 - (NSArray*)otherDependencies
 {
     NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: @"\\[[A-Za-z][A-Za-z0-9]*\\]"
-                                                                           options:NSRegularExpressionUseUnicodeWordBoundaries
-                                                                             error:&error];
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern: @"\\[[A-Za-z][A-Za-z0-9]*\\]"
+                                  options:NSRegularExpressionUseUnicodeWordBoundaries
+                                  error:&error];
     NSString *program = [self valueForKey:@"programrpn"];
     NSArray *matches = [regex matchesInString:program
                                       options:0
                                         range:NSMakeRange(0, program.length)];
+    // If we don't find any global variables in the program body, then return nil.
     if (matches.count == 0) {
         return nil;
     }
+    // Collect these global variables into globalNames.
     NSMutableSet *globalNames = [NSMutableSet set];
     for (NSTextCheckingResult *result in matches) {
         NSString *gname = [program substringWithRange:result.range];
         [globalNames addObject:[gname lowercaseString]];
     }
+    // Make sets of the input names and output names. These can also
+    // be globals.
     NSMutableSet *inputNames = [NSMutableSet set];
     for (HMInput *input in inputs) {
         [inputNames addObject:[[input name] lowercaseString]];
@@ -706,9 +754,15 @@ NSMutableDictionary *sharedVariables;
         [outputNames addObject:[[output name] lowercaseString]];
     }
     extern NSArray *globals;
+    // Remove the global names that will be considered by DFSVisit because they
+    // are in the port lists.
+    // <Maybe we don't need to consider the output names.>
     [globalNames minusSet:inputNames];
     [globalNames minusSet:outputNames];
     NSMutableArray *dependencies = [NSMutableArray array];
+    // Check to see that each of the globals we found in the program is
+    // registered in the globals array. If not, then abort; otherwise add to
+    // the dependency array.
     for (NSString *gname in [globalNames allObjects]) {
         NSInteger index = [globals indexOfObjectPassingTest:^BOOL(HMOutput *obj, NSUInteger idx, BOOL *stop)
                              {
@@ -718,44 +772,6 @@ NSMutableDictionary *sharedVariables;
         [dependencies addObject:globals[index]];
     }
     return dependencies;
-}
-
-- (void) disassemble
-{
-	for (int i = 0; i < instructionCount; i++) {
-		instructionPtr instruction = instructions[i];
-		symbolTableEntryPtr step = (symbolTableEntryPtr)instruction->data;
-		switch (instruction->opcode) {
-			case kPushValue:
-				printf("%3d: psv\t%s\n", i, step->symbol);
-				break;
-			case kApply1:
-				printf("%3d: ap1\n", i);
-				break;
-			case kApply2:
-				printf("%3d: ap2\n", i);
-				break;
-			case kJump:
-				printf("%3d: jmp\t%04lu\n", i, instruction->data);
-				break;
-			case kIf:
-				printf("%3d: if\n", i);
-				break;
-			case kPushFunc:
-			{
-				functionPtr fp = (functionPtr)instruction->data;
-				printf("%3d: psf\t%s\n", i, fp->name);
-				
-			}
-				break;
-			case kAssign:
-				printf("%3d: sto\n", i);
-				break;
-				
-			default:
-				break;
-		}
-	}
 }
 
 -(void *)pop
@@ -781,132 +797,200 @@ NSMutableDictionary *sharedVariables;
 	  copyValue(a, b);
 }
 
+#pragma mark Initializations
+// awake is called when the before the first simulation.
+// This is the compilation stage, when the program tokens are converted into opcodes.
 - (void)awake
 {
-	  [super initialize];
-	  NSSet *idSet = [NSSet setWithArray:[identifiers componentsSeparatedByString:@","]];
-	  NSMutableDictionary *portDictionary = [NSMutableDictionary dictionary];
-	  NSEnumerator *e = [[[self inputs] arrayByAddingObjectsFromArray:[self outputs]]
-						 objectEnumerator];
-	  HMPort *port;
-	  while (port = [e nextObject]) {
-			[portDictionary setValue:port forKey:[[port name] lowercaseString]];
-	  }
-	  NSArray *tokens = [programrpn componentsSeparatedByString:@" "];
-	  
-	  localVariables = [NSMutableArray array];
-	  e = [idSet objectEnumerator];
-	  NSString *token;
-	  steLength = [idSet count];
-	  ste = calloc(steLength, sizeof(symbolTableEntry));
-	  symbolTableEntry *step = ste;
-	  while (token = [e nextObject]) {
-			char *symbol = malloc(([token length] + 1) * sizeof(char));
-			strcpy(symbol, [token cStringUsingEncoding:NSMacOSRomanStringEncoding]);
-			step->symbol = symbol;
-			symbolTableEntryPtr globalSymbol = [HMHTL sharedVariableWithName:token];
-			if (globalSymbol) {
-				  step->value = globalSymbol->value;
-			} else {
-				  port = [portDictionary valueForKey:[token lowercaseString]];
-				  if (port) {
-						step->value = [HMHTL finalValueForPort:port];
-				  }
-				  else {
-						step->value = calloc(1, sizeof(Value));
-						[localVariables addObject:[NSValue valueWithPointer:step]];
-				  }
-			}
-			step++;
-	  }
-	  
-	  NSMutableArray *instructions1 = [NSMutableArray array];
-	  
-	  e = [tokens objectEnumerator];
-	  while (token = [e nextObject]) {
-			functionPtr func;
-			symbolTableEntryPtr step;
-			const char *cToken = [token cStringUsingEncoding:NSMacOSRomanStringEncoding];
-			instructionPtr ip;
-			if ([token isEqualToString:@"assign"]) {
-				  ip = calloc(1, sizeof(instruction));
-				  ip->opcode = kAssign;
-				  [instructions1 addObject:[NSValue valueWithPointer:ip]];
-			} else if ([token isEqualToString:@"sum"]) {
-				  ip = calloc(1, sizeof(instruction));
-				  ip->opcode = kSum;
-				  [instructions1 addObject:[NSValue valueWithPointer:ip]];
-            } else if ([token isEqualToString:@"csum"]) {
-                ip = calloc(1, sizeof(instruction));
-                ip->opcode = kCSum;
+    [super initialize];
+    // Convert the string of identifiers into an NSSet.
+    NSSet *idSet = [NSSet setWithArray:[identifiers componentsSeparatedByString:@","]];
+    // Consider the input and output ports, entering each one into a dictionary
+    // keyed by the port name, and valued by the port instance.
+    NSMutableDictionary *portDictionary = [NSMutableDictionary dictionary];
+    NSEnumerator *e = [[[self inputs] arrayByAddingObjectsFromArray:[self outputs]]
+                       objectEnumerator];
+    HMPort *port;
+    while (port = [e nextObject]) {
+        [portDictionary setValue:port forKey:[[port name] lowercaseString]];
+    }
+    // Produce the sequence of tokens as an array.
+    NSArray *tokens = [programrpn componentsSeparatedByString:@" "];
+    
+    // Now we consider each identifier in the program, and produce a suitable
+    // entry in the symbol table.
+    localVariables = [NSMutableArray array];
+    e = [idSet objectEnumerator];
+    NSString *token;
+    steLength = [idSet count];
+    ste = calloc(steLength, sizeof(symbolTableEntry));
+    // step (symbol table entry pointer) is the next entry in the symbol table.
+    symbolTableEntry *step = ste;
+    // token is one of the identifiers
+    while (token = [e nextObject]) {
+        // Convert it to a C string,
+        char *symbol = malloc(([token length] + 1) * sizeof(char));
+        strcpy(symbol, [token cStringUsingEncoding:NSMacOSRomanStringEncoding]);
+        // Assign the step's name.
+        step->symbol = symbol;
+        symbolTableEntryPtr globalSymbol = [HMHTL sharedVariableWithName:token];
+        // If this is a global variable, then its Value in the symbol table
+        // is the same Value (pointer equality) as in the global table.
+        if (globalSymbol) {
+            step->value = globalSymbol->value;
+        } else {
+            // If it's not global, then consider two cases.
+            // It may be one of the ports. If so, then its Value is the same
+            // as the port's Value (pointer equality).
+            port = [portDictionary valueForKey:[token lowercaseString]];
+            if (port) {
+                step->value = [HMHTL finalValueForPort:port];
+            }
+            else {
+                // If it's not global, and it's not a port, then it is a locas (static)
+                // variable, and needs to allocate a Value.
+                step->value = calloc(1, sizeof(Value));
+                // Add it to the set of local variables.
+                [localVariables addObject:[NSValue valueWithPointer:step]];
+            }
+        }
+        // Increment step to point to the next symbol table entry.
+        step++;
+    }
+    
+    // The symbol table is complete. Now produce the instructions (opcodes).
+    NSMutableArray *instructions1 = [NSMutableArray array];
+    
+    // Consider each of the program tokens.
+    e = [tokens objectEnumerator];
+    while (token = [e nextObject]) {
+        functionPtr func;
+        symbolTableEntryPtr step;
+        // Convert the token to a C string.
+        const char *cToken = [token cStringUsingEncoding:NSMacOSRomanStringEncoding];
+        instructionPtr ip;
+        // Consider each possibility. Match the token name to a possible opcode name.
+        // If (when) a match is found, then allocate an instruction pointer, and
+        // set its opcode.
+        if ([token isEqualToString:@"assign"]) {
+            ip = calloc(1, sizeof(instruction));
+            ip->opcode = kAssign;
+            [instructions1 addObject:[NSValue valueWithPointer:ip]];
+        } else if ([token isEqualToString:@"sum"]) {
+            ip = calloc(1, sizeof(instruction));
+            ip->opcode = kSum;
+            [instructions1 addObject:[NSValue valueWithPointer:ip]];
+        } else if ([token isEqualToString:@"csum"]) {
+            ip = calloc(1, sizeof(instruction));
+            ip->opcode = kCSum;
+            [instructions1 addObject:[NSValue valueWithPointer:ip]];
+        } else if ([token isEqualToString:@"rsum"]) {
+            ip = calloc(1, sizeof(instruction));
+            ip->opcode = kRSum;
+            [instructions1 addObject:[NSValue valueWithPointer:ip]];
+        } else if ((func = functionSearch(cToken))) {
+            // The token may be the name of a function.
+            // The function list is a set of structures that identify the
+            // function's name, its signature, its number of arguments, and
+            // a flag, immediate, that indicates that the function is called
+            // at compile time rather than run time. This provides an opportunity
+            // to insert a numerical constant into the instruction sequence; the
+            // conversion from string representation is done now.
+            if (func->immediate) {
+                // If the previous token was a constant, then it is on the
+                // evaluation stack. We pop it and add it as an NSValue pointer
+                // to the instructions.
+                instructionPtr(*f)(symbolTableEntryPtr) = (void*)func->address;
+                ip = f((symbolTableEntryPtr)[self pop]);
                 [instructions1 addObject:[NSValue valueWithPointer:ip]];
-            } else if ([token isEqualToString:@"rsum"]) {
+            } else {
+                // If it's not immediate, then make an instruction, assign the function
+                // pointer to the instruction's data, while the opcode will push that
+                // address onto the stack.
                 ip = calloc(1, sizeof(instruction));
-                ip->opcode = kRSum;
+                ip->data = (unsigned long)func;
+                ip->opcode = kPushFunc;
                 [instructions1 addObject:[NSValue valueWithPointer:ip]];
-            } else if ((func = functionSearch(cToken))) {
-				  if (func->immediate) {
-						instructionPtr(*f)(symbolTableEntryPtr) = (void*)func->address;
-						ip = f((symbolTableEntryPtr)[self pop]);
-						[instructions1 addObject:[NSValue valueWithPointer:ip]];
-				  } else {
-						ip = calloc(1, sizeof(instruction));
-						ip->data = (unsigned long)func;
-						ip->opcode = kPushFunc;
-						[instructions1 addObject:[NSValue valueWithPointer:ip]];
-						ip = calloc(1, sizeof(instruction));
-						ip->opcode = func->nArgs;
-						[instructions1 addObject:[NSValue valueWithPointer:ip]];
-				  }
-			} else if ((step = symbolTableEntrySearch(ste, steLength, cToken))) {
-				  ip = calloc(1, sizeof(instruction));
-				  [instructions1 addObject:[NSValue valueWithPointer:ip]];
-				  ip->opcode = kPushValue;
-				  ip->data = (unsigned long)step;
-				  
-			} else if ([token isEqualToString:@"if"]) {
-				  ip = calloc(1, sizeof(instruction));
-				  [instructions1 addObject:[NSValue valueWithPointer:ip]];
-				  ip->opcode = kIf;
-				  ip = calloc(1, sizeof(instruction));
-				  [instructions1 addObject:[NSValue valueWithPointer:ip]];
-				  ip->opcode = kJump;
-				  [self push:ip];
-				  
-			} else if ([token isEqualToString:@"else"]) {
-				  ip = [self pop];
-				  ip->data = [instructions1 count] + 1;
-				  ip = calloc(1, sizeof(instruction));
-				  [instructions1 addObject:[NSValue valueWithPointer:ip]];
-				  ip->opcode = kJump;
-				  [self push:ip];
-				  
-			} else if ([token isEqualToString:@"endif"]) {
-				  ip = [self pop];
-				  ip->data = [instructions1 count];
-				  
-			} else {
-				  symbolTableEntryPtr step = calloc(1, sizeof(symbolTableEntry));
-				  char *symbol = calloc(([token length] + 1), sizeof(char));
-				  memcpy(symbol, [token cStringUsingEncoding:NSMacOSRomanStringEncoding], [token length]);
-				  step->symbol = symbol;
-				  step->value = calloc(1, sizeof(Value));
-				  [self push:step];
-			}
-	  }
-	  instructionCount = [instructions1 count];
-	  instructions = calloc(instructionCount, sizeof(instructionPtr));
-	  instructionPtr *pInstruction = instructions;
-	  e = [instructions1 objectEnumerator];
-	  NSValue *value;
-	  instructionPtr instr;
-	  while (value = [e nextObject]) {
-			instr = [value pointerValue];
-			*pInstruction++ = instr;
-	  }
-	  tos = 0;
+                // Add another instruction giving the number of arguments.
+                ip = calloc(1, sizeof(instruction));
+                ip->opcode = func->nArgs;
+                [instructions1 addObject:[NSValue valueWithPointer:ip]];
+            }
+        } else if ((step = symbolTableEntrySearch(ste, steLength, cToken))) {
+            // The token is a variable name. The instruction will cause the Value
+            // of the variable to be pushed on the stack.
+            ip = calloc(1, sizeof(instruction));
+            [instructions1 addObject:[NSValue valueWithPointer:ip]];
+            ip->opcode = kPushValue;
+            ip->data = (unsigned long)step;
+            
+        } else if ([token isEqualToString:@"if"]) {
+            // Consider a conditional. This is complicated because the evaluation
+            // of the condition can cause a jump either to an else branch or to the
+            // instruction past the endif.
+            ip = calloc(1, sizeof(instruction));
+            [instructions1 addObject:[NSValue valueWithPointer:ip]];
+            ip->opcode = kIf;
+            // The kJump instruction is a place holder at this point. It is replaced
+            // when we encounter an else or endif.
+            ip = calloc(1, sizeof(instruction));
+            [instructions1 addObject:[NSValue valueWithPointer:ip]];
+            ip->opcode = kJump;
+            [self push:ip];
+            
+        } else if ([token isEqualToString:@"else"]) {
+            // If we find an "else", then the kJump instruction that follows kIf is on
+            // the top of the stack. We pop it, and set its data to the current instruction
+            // count plus one. So if the if fails at runtime, then the kJump instruction
+            // that follows the kIf instruction contains a pointer to the instruction that begins
+            // the else branch. Then we push another kJump. This will be revised when we get
+            // to endif so that there's an instruction at the end of the if branch to jump
+            // over the else code.
+            ip = [self pop];
+            ip->data = [instructions1 count] + 1;
+            ip = calloc(1, sizeof(instruction));
+            [instructions1 addObject:[NSValue valueWithPointer:ip]];
+            ip->opcode = kJump;
+            [self push:ip];
+            
+        } else if ([token isEqualToString:@"endif"]) {
+            // When we find "endif", pop the kJump and set its data to the current instruction.
+            ip = [self pop];
+            ip->data = [instructions1 count];
+            
+        } else {
+            // All other cases having been considered, this token must be the string representation
+            // of some constant. It is added to the symbol table, and pushed on the stack, because
+            // its position in the RPN stream will always be followed immediately by one of the
+            // immediate make<type> instructions, which create floating point representations of
+            // the constants. The immediate functions pop the stack to find the string that needs
+            // to be converted to a numerical form.
+            symbolTableEntryPtr step = calloc(1, sizeof(symbolTableEntry));
+            char *symbol = calloc(([token length] + 1), sizeof(char));
+            memcpy(symbol, [token cStringUsingEncoding:NSMacOSRomanStringEncoding], [token length]);
+            step->symbol = symbol;
+            step->value = calloc(1, sizeof(Value));
+            [self push:step];
+        }
+    }
+    // This converts the instructions from an NSMutableArray to a C array
+    // of pointers.
+    instructionCount = [instructions1 count];
+    instructions = calloc(instructionCount, sizeof(instructionPtr));
+    instructionPtr *pInstruction = instructions;
+    e = [instructions1 objectEnumerator];
+    NSValue *value;
+    instructionPtr instr;
+    while (value = [e nextObject]) {
+        instr = [value pointerValue];
+        *pInstruction++ = instr;
+    }
+    tos = 0;
 }
 
+// Initialize is called before each simulation.
+// Set local variables to zero, and set outputs to -10.
+// It would probably be better to set the outputs to NaN.
 - (void)initialize
 {
 	  tos = 0;
@@ -928,6 +1012,8 @@ NSMutableDictionary *sharedVariables;
 
 NSString *stringValue(Value *val);
 
+#pragma mark Debugging
+// Some methods that can be run in the XCode debugger to see what's happening.
 - (void)dumpSymbolTable
 {
 	int maxLength = 0, n;
@@ -975,8 +1061,50 @@ NSString *stringValue(Value *val);
 	}
 }
 
+- (void) disassemble
+{
+    for (int i = 0; i < instructionCount; i++) {
+        instructionPtr instruction = instructions[i];
+        symbolTableEntryPtr step = (symbolTableEntryPtr)instruction->data;
+        switch (instruction->opcode) {
+            case kPushValue:
+                printf("%3d: psv\t%s\n", i, step->symbol);
+                break;
+            case kApply1:
+                printf("%3d: ap1\n", i);
+                break;
+            case kApply2:
+                printf("%3d: ap2\n", i);
+                break;
+            case kJump:
+                printf("%3d: jmp\t%04lu\n", i, instruction->data);
+                break;
+            case kIf:
+                printf("%3d: if\n", i);
+                break;
+            case kPushFunc:
+            {
+                functionPtr fp = (functionPtr)instruction->data;
+                printf("%3d: psf\t%s\n", i, fp->name);
+                
+            }
+                break;
+            case kAssign:
+                printf("%3d: sto\n", i);
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+#pragma mark Execute the program.
+// Execute the instructions. Bigly considered, iterate over the instructions,
+// and switch based on the opcode.
 - (void)updateRates
 {
+    
     pStore = 0;
     instructionPtr instr;
     symbolTableEntryPtr step;
@@ -984,32 +1112,24 @@ NSString *stringValue(Value *val);
     double (*f1)(double);
     double (*f2)(double a, double b);
     
-    //	if ([[self fullPath] isEqualToString:@"/Environmental Factors/Solar Radiation/Par/Solar Position/SolarTime/"]) {
-    //		Debugger();
-    //	}
     unsigned long pc = 0;
     NSCAssert(tos == 0, @"TOS is not zero before execution.");
+    
+    // Process each instruction.
     while (pc < instructionCount) {
-        instr = instructions[pc];
+        instr = instructions[pc];   // the current insntruction.
+        // Switch on its opcode.
         switch (instr->opcode) {
             case kPushValue:
+                // The instruction data is a pointer into the symbol table. Push the
+                // symbol's value onto the stack.
                 step = (symbolTableEntryPtr)(instr->data);
-                /*
-                 if (!(step->value->utype > errortype
-                 && step->value->utype < endtype)) {
-                 NSException *ex = [NSException
-                 exceptionWithName:@"Undefined Variable"
-                 reason:[NSString stringWithFormat:@"Variable \"%s\" is undefined"
-                 " during the evaluation of %@",
-                 step->symbol, [self fullPath]]
-                 userInfo:nil];
-                 [ex raise];
-                 }
-                 */
                 [self push:(void*)(step->value) ];
                 pc++;
                 break;
             case kApply1:
+                // Apply a function to a value, both of which are on the stack, and
+                // push the result onto the stack.
                 f1 = (void*)[self pop];
                 v1 = (Value*)[self pop];
                 v = apply1(f1, v1);
@@ -1017,6 +1137,8 @@ NSString *stringValue(Value *val);
                 pc++;
                 break;
             case kApply2:
+                // Apply a function to two values (all on the stack), and push the
+                // result onto the stack.
                 f2 = (void*)[self pop];
                 v2 = (Value*)[self pop];
                 v1 = (Value*)[self pop];
@@ -1025,9 +1147,14 @@ NSString *stringValue(Value *val);
                 pc++;
                 break;
             case kJump:
+                // The kJump instruction's data is the index of the jump target.
                 pc = instr->data;
                 break;
             case kIf:
+                // The result of the if evaluation is on the stack. Pop it. If false,
+                // then advance to the next instruction, which is a kJump either to an
+                // else or endif. If true, then skip over the kJump, and continue
+                // execution.
                 v = (Value*)[self pop];
                 if (isFalse(v)) {
                     pc++;
@@ -1036,6 +1163,7 @@ NSString *stringValue(Value *val);
                 }
                 break;
             case kPushFunc:
+                // Push a function pointer.
             {
                 functionPtr fp = (void*)instr->data;
                 [self push:(void*)fp->address];
@@ -1044,6 +1172,7 @@ NSString *stringValue(Value *val);
                 
             }
             case kSum:
+                // Compute a sum
             {
                 v1 = (Value*)[self pop];
                 v = sum(v1);
@@ -1052,6 +1181,7 @@ NSString *stringValue(Value *val);
                 break;
             }
             case kCSum:
+                // Compute an array of column-wise sums.
             {
                 v1 = (Value*)[self pop];
                 v = csum(v1);
@@ -1060,6 +1190,7 @@ NSString *stringValue(Value *val);
                 break;
             }
             case kRSum:
+                // Compute an array of row-wise sums.
             {
                 v1 = (Value*)[self pop];
                 v = rsum(v1);
@@ -1068,7 +1199,9 @@ NSString *stringValue(Value *val);
                 break;
             }
             case kAssign:
+                // Make an assignment. Symbol and value are on the stack.
                 [self assign];
+                // After an assignment, the evaluation stack should be empty.
                 NSCAssert(tos == 0, @"TOS is not zero after assignment.");
                 pc++;
                 break;
@@ -1083,6 +1216,7 @@ NSString *stringValue(Value *val);
 
 @end
 
+// Use this to disassemble an HMHTL which is not self.
 void disassemble(HMHTL *htl)
 {
 	[htl disassemble];

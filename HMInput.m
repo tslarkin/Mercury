@@ -29,6 +29,9 @@ extern NSArray *globals;
     }
 }
 
+// If the input is a global name, then find the port in the globals list.
+// Otherwise, follow the previous chain until the end and return the
+// port.
 - (HMPort*)finalSource
 {
 	if (isGlobal([self name])) {
@@ -64,6 +67,9 @@ extern NSArray *globals;
 	return final;
 }
 
+// If the input is a global name, then find the value in the globals list.
+// Otherwise, follow the previous chain until the end and return the
+// value.
 - (Value*)finalValue
 {
 	if (isGlobal([self name])) {
@@ -94,8 +100,9 @@ extern NSArray *globals;
 			link = (HMInput*)[link previous];
 		}
 	}
-	HMPort *tmp = [self finalSource];
-	NSAssert([tmp value] == val, @"Value of final source != final value");
+    // An unnecessary sanity check.
+//	HMPort *tmp = [self finalSource];
+//	NSAssert([tmp value] == val, @"Value of final source != final value");
 	return val;
 }
 

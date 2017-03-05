@@ -55,6 +55,8 @@ BOOL isGlobal (NSString *name)
 {
     return stringvalue; 
 }
+
+// When the string is set, a corresponding Value is produced.
 - (void)setStringvalue:(NSString *)aStringValue
 {
     if (stringvalue != aStringValue) {

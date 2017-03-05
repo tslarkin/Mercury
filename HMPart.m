@@ -23,6 +23,7 @@
 	return self;
 }
 
+#pragma mark Getters & Setters
 //=========================================================== 
 //  parent 
 //=========================================================== 
@@ -111,17 +112,25 @@
 	
 }
 
+// This is called at model initialization to determine the date for the
+// start of the simulation. This default method simply returns the suggested date.
 -(NSTimeInterval)findLatestStartTime:(NSTimeInterval)start
 {
     return start;
 }
 
+// This is where the part is initialized.
 - (void)initialize
 {
 	NSEnumerator *e = [inputs objectEnumerator];
 	HMInput *input;
+    // Iterate the inputs.
 	while ((input = [e nextObject])) {
+        // The input may be connected to an ouput. Then referenceP returns true.
 		if (![input referenceP]) {
+            // If it's not connected to an output, then it must define a
+            // constant. Use valueParse to convert the string representation of
+            // the constant to a Value.
 			NSString *s = [input stringvalue];
 			if (s) {
 				char error[256];
@@ -133,6 +142,7 @@
 	Value *val;
 	NSMutableArray *tmp = [NSMutableArray array];
 	e = [inputs objectEnumerator];
+    // Now go through all the inputs and collect the Values that feed them.
 	while ((input = [e nextObject])) {
 		val = [input finalValue];
 		[tmp addObject:[NSValue valueWithPointer:val]];
@@ -140,6 +150,7 @@
 	[self setFinalInputValues:tmp];
 }
 
+// The default updateStates and updateRates do nothing.
 - (void)updateStates
 {
 	
@@ -157,12 +168,17 @@
 
 //=========================================================== 
 //  doesWork 
-//=========================================================== 
+//===========================================================
+// Attraction is currently unused.
 - (BOOL)hasAttraction
 {
     return YES;
 }
 
+// This method is used during XML initialization to find the port referenced by
+// a stepper. This is called recursively from the top of the graph. This is the
+// terminal method. The path will consist of two components, the part name
+// and the port name.
 - (HMPort*)recursiveSearchOnPath:(NSArray*)path forPortIn:(NSString*)portSet
 {
 	if ([path count] != 2
@@ -170,6 +186,7 @@
 		return nil;
 	}
 	NSString *portName = [path objectAtIndex:1];
+    // portSet is either "inputs" or "outputs".
 	NSEnumerator *e = [[self valueForKey:portSet] objectEnumerator];
 	HMPort *port;
 	while (port = [e nextObject]) {
@@ -180,6 +197,7 @@
 	return port;
 }
 
+// A part searches inputs and outputs for a port with a name matching aName.
 - (HMPort*)portWithName:(NSString*)aName
 {
 	NSEnumerator *e = [[[self inputs] arrayByAddingObjectsFromArray:[self outputs]] objectEnumerator];
@@ -192,6 +210,7 @@
 	return port;
 }
 
+// Return self if self's name is aName.
 - (HMPart*)partWithName:(NSString*)aName
 {
 	if ([[self name] isEqualToString:aName]) {
@@ -202,6 +221,7 @@
 	}
 }
 
+// Return self if self's nodeID matches aNodeID
 - (HMPart*)partWithNodeID:(NSString*)aNodeID
 {
 	if ([[self nodeID] isEqualToString:aNodeID]) {
@@ -212,6 +232,8 @@
 	}
 }
 
+// Initialize the string value of port portName to valueString, the
+// string representation of a Value.
 - (void)setInitialValue:(NSString*)valueString forPort:(NSString*)portName
 {
 	HMPort *port = [self portWithName:portName];
@@ -330,6 +352,7 @@
     end = anEnd;
 }
 
+// Recursively construct the full path to a part. This is redundant with fullPath.
 - (NSString*)path
 {
 	NSString *parentPath = @"";
@@ -344,6 +367,8 @@
 	return path;
 }
 
+// These two methods are used to determine whether a port at index i
+// creates a dependency.
 -(BOOL)isRatePhaseInput:(Fixed)i
 {
     return YES;
@@ -354,7 +379,7 @@
     return YES;
 }
 
-
+// Collect the outputs that are marked to record their values.
 - (void)collectRecorders:(NSMutableArray*)collection
 {
 	NSEnumerator *e = [[self valueForKey:@"outputs"] objectEnumerator];
